@@ -12,7 +12,7 @@ html {
 
 body {
     font-size: 1.6rem;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Roboto Mono', monospace;
     box-sizing: border-box;
     background-color: #262626;
     color: #E5E5E5;
@@ -31,4 +31,17 @@ h3 {
 
 a, a:link, a:visited {
     color: inherit;
+}
+
+
+section {
+    padding: 5rem 3rem;
+}
+
+.text-accent {
+    color: #E67E22!important;
+}
+
+.border-accent {
+    border-color: #E67E22!important;
 }
