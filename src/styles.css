@@ -1,1 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%;
+    min-height: 100vh;
+}
+
+body {
+    font-size: 1.6rem;
+    font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box;
+    background-color: #262626;
+    color: #E5E5E5;
+}
+
+a, a:link, a:visited {
+    color: inherit;
+}
