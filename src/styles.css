@@ -8,7 +8,6 @@
 
 html {
     font-size: 62.5%;
-    min-height: 100vh;
 }
 
 body {
@@ -17,6 +16,17 @@ body {
     box-sizing: border-box;
     background-color: #262626;
     color: #E5E5E5;
+}
+
+h1 {
+    font-size: 2.8rem;
+}
+h2 {
+    font-size: 2.4rem;
+}
+
+h3 {
+    font-size: 1.8rem;
 }
 
 a, a:link, a:visited {
