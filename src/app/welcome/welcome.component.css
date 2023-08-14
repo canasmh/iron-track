@@ -23,13 +23,30 @@
     text-indent: 5px;
 }
 
+.welcome__slogan {
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 5px;
+    font-style: italic;
+}
+
 .btn, .btn:link, .btn:visited {
     display: block;
     border: 1px solid none;
     text-decoration: none;
     width: 60vw;
     padding: 1rem;
-    border-radius: 20px;
+    border-radius: 100px;
+    margin: 0 auto;
+
+    @media only screen and (min-width: 600px) {
+        width: 100%;
+        border-radius: 100px;
+    }
+}
+
+.btn-container {
+    width: 100%;
 }
 
 .btn:first-child {
@@ -45,12 +62,10 @@
     border: 1px solid #E5E5E5;
 }
 
-/* To be added on laptop/desktop screen widths 
+/* To be added on laptop/desktop screen widths */
 
 .btn-ghost:hover, .btn-fill:hover {
     background-color: inherit;
     color: #E67E22;
     border: 1px solid #E67E22;
 }
-
-*/
