@@ -10,8 +10,8 @@
 
 <app-header></app-header>
 <main>
-    <!-- <router-outlet></router-outlet> -->
-    <app-welcome></app-welcome>
+    <router-outlet></router-outlet>
+    <!-- <app-welcome></app-welcome> -->
 </main>
 
-<app-footer></app-footer>
+<app-footer *ngIf="showFooter"></app-footer>
