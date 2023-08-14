@@ -28,6 +28,10 @@
     font-weight: 300;
     letter-spacing: 5px;
     font-style: italic;
+    
+    @media only screen and (min-width: 600px) {
+        font-size: 1.4rem;
+    }
 }
 
 .btn, .btn:link, .btn:visited {
@@ -62,10 +66,12 @@
     border: 1px solid #E5E5E5;
 }
 
-/* To be added on laptop/desktop screen widths */
 
-.btn-ghost:hover, .btn-fill:hover {
-    background-color: inherit;
-    color: #E67E22;
-    border: 1px solid #E67E22;
+@media only screen and (min-width: 1200px) {
+    .btn-ghost:hover, .btn-fill:hover {
+        background-color: inherit;
+        color: #E67E22;
+        border: 1px solid #E67E22;
+    }
 }
+
