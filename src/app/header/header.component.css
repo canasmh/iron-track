@@ -5,8 +5,21 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 3rem;
-    border-bottom: 2px solid;
+    padding: 0 10%;
+    /* border-bottom: 3px solid; */
+    box-shadow: 0 1px 5px #E67E22;
+
+    @media only screen and (min-width: 600px) {
+        padding: 0 15%;
+    }
+
+    @media only screen and (min-width: 900px) {
+        padding: 0 25%;
+    }
+
+    @media only screen and (min-width: 1200px) {
+        padding: 0 30%;
+    }
 }
 
 .header__text {
@@ -15,9 +28,14 @@
     text-transform: uppercase;
     letter-spacing: 2px;
     text-indent: 2px;
+
 }
 
 .header__icon {
-    font-size: 2.4rem;
+    font-size: 2.8rem;
     transform: rotate(-30deg);
+
+    @media only screen and (min-width: 600px) {
+        font-size: 3.2rem;
+    }
 }

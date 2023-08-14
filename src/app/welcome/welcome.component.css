@@ -1,0 +1,77 @@
+.welcome {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 88vh;
+    text-align: center;
+}
+
+.welcome__heading {
+    line-height: 2;
+}
+
+.welcome__heading--sub {
+    font-weight: 300;
+    letter-spacing: 5px;
+    text-indent: 5px;
+}
+
+.welcome__heading--main {
+    font-weight: 600;
+    letter-spacing: 5px;
+    text-indent: 5px;
+}
+
+.welcome__slogan {
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 5px;
+    font-style: italic;
+    
+    @media only screen and (min-width: 600px) {
+        font-size: 1.4rem;
+    }
+}
+
+.btn, .btn:link, .btn:visited {
+    display: block;
+    border: 1px solid none;
+    text-decoration: none;
+    width: 60vw;
+    padding: 1rem;
+    border-radius: 100px;
+    margin: 0 auto;
+
+    @media only screen and (min-width: 600px) {
+        width: 100%;
+        border-radius: 100px;
+    }
+}
+
+.btn-container {
+    width: 100%;
+}
+
+.btn:first-child {
+    margin-bottom: 1.6rem;
+}
+
+.btn-fill {
+    background-color: #E67E22;
+    color: #262626;
+}
+
+.btn-ghost {
+    border: 1px solid #E5E5E5;
+}
+
+
+@media only screen and (min-width: 1200px) {
+    .btn-ghost:hover, .btn-fill:hover {
+        background-color: inherit;
+        color: #E67E22;
+        border: 1px solid #E67E22;
+    }
+}
+

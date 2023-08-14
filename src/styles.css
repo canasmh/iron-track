@@ -8,18 +8,48 @@
 
 html {
     font-size: 62.5%;
+
+    @media only screen and (min-width: 600px) {
+        font-size: 100%;
+    }
+
+    @media only screen and (min-width: 900px) {
+        font-size: 85%;
+    }
 }
 
 body {
     font-size: 1.6rem;
-    font-family: 'Montserrat', sans-serif;
+    line-height: 1.7;
+    font-family: 'Roboto Mono', monospace;
     box-sizing: border-box;
-    background-color: #262626;
     color: #E5E5E5;
+    background-image: linear-gradient(rgba(15, 16, 15, 0.7), rgba(15, 16, 15, 0.7)), url('./app/background-mobile.jpg');
+    background-position: center center;
+    background-repeat: no-repeat no-repeat;
+    background-size: cover;
+
+    @media only screen and (min-width: 600px) {
+        background-image: linear-gradient(rgba(15, 16, 15, 0.7), rgba(15, 16, 15, 0.7)), url('./app/background-tablet-port.jpg');
+        background-position: right;
+        background-size: cover;
+    }
+
+    @media only screen and (min-width: 900px) {
+        background-image: linear-gradient(rgba(15, 16, 15, 0.7), rgba(15, 16, 15, 0.7)), url('./app/background-tablet-land.jpg');
+        background-position: right;
+        background-size: cover;
+    }
+
+    @media only screen and (min-width: 1200px) {
+        background-image: linear-gradient(rgba(15, 16, 15, 0.7), rgba(15, 16, 15, 0.7)), url('./app/background-laptop.jpg');
+        background-position: right;
+        background-size: cover;
+    }
 }
 
 h1 {
-    font-size: 2.8rem;
+    font-size: 3.2rem;
 }
 h2 {
     font-size: 2.4rem;
@@ -31,4 +61,30 @@ h3 {
 
 a, a:link, a:visited {
     color: inherit;
+}
+ 
+
+section {
+    padding: 15% 10%;
+
+    @media only screen and (min-width: 600px) {
+        padding: 15%;
+    }
+
+    @media only screen and (min-width: 900px) {
+        padding: 5% 25%;
+    }
+
+    @media only screen and (min-width: 1200px) {
+        padding: 2% 30%;
+    }
+
+}
+
+.text-accent {
+    color: #E67E22!important;
+}
+
+.border-accent {
+    border-color: #E67E22!important;
 }
