@@ -36,13 +36,13 @@ body {
     }
 
     @media only screen and (min-width: 900px) {
-        background-image: linear-gradient(rgba(15, 16, 15, 0.7), rgba(15, 16, 15, 0.7)), url('./app/background-tablet-land.jpg');
+        background-image: linear-gradient(rgba(15, 16, 15, 0.95), rgba(15, 16, 15, 0.95)), url('./app/background-tablet-land.jpg');
         background-position: right;
         background-size: cover;
     }
 
     @media only screen and (min-width: 1200px) {
-        background-image: linear-gradient(rgba(15, 16, 15, 0.7), rgba(15, 16, 15, 0.7)), url('./app/background-laptop.jpg');
+        background-image: linear-gradient(rgba(15, 16, 15, 0.95), rgba(15, 16, 15, 0.95)), url('./app/background-laptop.jpg');
         background-position: right;
         background-size: cover;
     }
