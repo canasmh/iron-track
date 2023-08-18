@@ -28,10 +28,6 @@
     font-weight: 300;
     letter-spacing: 5px;
     font-style: italic;
-    
-    @media only screen and (min-width: 600px) {
-        font-size: 1.4rem;
-    }
 }
 
 .btn, .btn:link, .btn:visited {
@@ -43,10 +39,7 @@
     border-radius: 100px;
     margin: 0 auto;
 
-    @media only screen and (min-width: 600px) {
-        width: 100%;
-        border-radius: 100px;
-    }
+    
 }
 
 .btn-container {
@@ -64,6 +57,17 @@
 
 .btn-ghost {
     border: 1px solid #E5E5E5;
+}
+
+@media only screen and (min-width: 600px) {
+
+    .welcome__slogan {
+        font-size: 1.4rem;
+    }
+    .btn, .btn:link, .btn:visited {
+        width: 100%;
+        border-radius: 100px;
+    }
 }
 
 

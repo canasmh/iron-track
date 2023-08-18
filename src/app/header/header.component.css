@@ -6,20 +6,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 10%;
-    /* border-bottom: 3px solid; */
     box-shadow: 0 1px 5px #E67E22;
-
-    @media only screen and (min-width: 600px) {
-        padding: 0 15%;
-    }
-
-    @media only screen and (min-width: 900px) {
-        padding: 0 25%;
-    }
-
-    @media only screen and (min-width: 1200px) {
-        padding: 0 30%;
-    }
 }
 
 .header__text {
@@ -34,8 +21,27 @@
 .header__icon {
     font-size: 2.8rem;
     transform: rotate(-30deg);
+}
 
-    @media only screen and (min-width: 600px) {
+@media only screen and (min-width: 600px) {
+
+    header {
+        padding: 0 15%;
+    }
+
+    .header__icon {
         font-size: 3.2rem;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    header {
+        padding: 0 25%;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    header {
+        padding: 0 30%;
     }
 }
