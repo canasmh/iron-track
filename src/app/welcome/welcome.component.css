@@ -53,6 +53,7 @@
 .btn-fill {
     background-color: #E67E22;
     color: #262626;
+    border: 1px solid transparent;
 }
 
 .btn-ghost {
@@ -72,6 +73,9 @@
 
 
 @media only screen and (min-width: 1200px) {
+    .btn-ghost, .btn-fill {
+        transition: all 0.2s ease;
+    }
     .btn-ghost:hover, .btn-fill:hover {
         background-color: inherit;
         color: #E67E22;
