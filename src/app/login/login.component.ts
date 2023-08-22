@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
   get email() { return this.loginForm.controls['email'] ; }
   get password() { return this.loginForm.controls['password'] ; }
 
-  getErrorMessage(email: typeof this.loginForm.controls['email'], password: typeof this.loginForm.controls['password']) {
+  getErrorMessage(email: AbstractControl, password: AbstractControl) {
     if (email?.errors?.['required']) {
       return 'Email is required';
     } else if (email?.errors?.['email'] || email?.errors?.['pattern']) {
