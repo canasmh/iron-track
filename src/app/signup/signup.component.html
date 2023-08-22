@@ -1,20 +1,23 @@
 <section class="signup">
     <h2 class="signup__header">Welcome</h2>
     <p class="signup__text">Fill out the form below <br /> to create an account.</p>
-    <form class="form">
+    <form class="form" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
         <div class="form__group">
-            <input class="form__input" type="text" placeholder="Name"/>
+            <input class="form__input" id="name" type="text" placeholder="Name" formControlName="name" required/>
         </div>
         <div class="form__group">
-            <input class="form__input" type="email" placeholder="Email"/>
+            <input class="form__input" id="email" type="email" placeholder="Email" formControlName="email" required/>
         </div>
         <div class="form__group">
-            <input class="form__input" type="password" placeholder="Password" />
+            <input class="form__input" id="password" type="password" placeholder="Password" formControlName="password" required/>
         </div>
         <div class="form__group">
-            <input class="form__input" type="password" placeholder="Confirm Password" />
+            <input class="form__input" id="confirmPassword" type="password" placeholder="Confirm Password" formControlName="confirmPassword" required/>
         </div>
         <button class="form__button">Log In</button>
     </form>
+    <div *ngIf="submitted && (name?.invalid || email?.invalid || password?.invalid || confirmPassword?.invalid)" class="error"> 
+        <p class="error-message">{{ getErrorMessage(name, email, password, confirmPassword)}}</p> 
+    </div>
     <p class="signup__redirect">Already have an account? <br /> <a routerLink="/login">Log in here</a></p>
 </section>
