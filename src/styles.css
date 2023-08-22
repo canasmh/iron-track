@@ -168,7 +168,8 @@ section {
 }
 
 .form__input:active, .form__input:focus {
-    outline: 2px solid #2ECC71;
+    /* outline: 2px solid #2ECC71; */
+    outline: 2px solid #008000;
     outline-offset: -3px;
 }
 
@@ -271,7 +272,7 @@ section {
     }
     
     .form__input:active, .form__input:focus {
-        outline: 3px solid #2ECC71;
+        outline: 3px solid #008000;
         outline-offset: -4px;
     }
 
