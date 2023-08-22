@@ -24,13 +24,14 @@
 }
 
 .welcome__slogan {
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     font-weight: 300;
     letter-spacing: 5px;
     font-style: italic;
 }
 
 .btn, .btn:link, .btn:visited {
+    font-size: 1.6rem;
     display: block;
     border: 1px solid none;
     text-decoration: none;
@@ -38,8 +39,6 @@
     padding: 1rem;
     border-radius: 100px;
     margin: 0 auto;
-
-    
 }
 
 .btn-container {
