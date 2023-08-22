@@ -175,6 +175,33 @@ section {
     background-color: #E67E22;
 }
 
+@keyframes slide-down {
+    0% {
+        transform: translateY(0.8rem);
+        opacity: 0;
+    } 100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.error {
+    position: absolute;
+    top: 12vh;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 65, 54, 0.6);
+    border: 2px solid #ff4136;
+    box-shadow: 0 3px 20px rgba(255, 65, 54, 0.6);
+    text-align: center;
+    animation: slide-down 0.6s ease-out;
+    padding: 0.6rem;
+}
+
+.error-message {
+    font-size: 1.2rem;
+}
+
 
 @media only screen and (min-width: 900px) {
     html {
