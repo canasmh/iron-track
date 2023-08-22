@@ -71,7 +71,7 @@ export class SignupComponent implements OnInit {
     } else if (confirmPassword?.errors?.['required']) {
       return 'Please confirm password';
     } else if (confirmPassword?.errors?.['passwordMismatch']) {
-      return 'Password do not match';
+      return 'Passwords do not match';
     } else {
       console.log(confirmPassword?.errors)
       return '';
