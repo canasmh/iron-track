@@ -14,7 +14,7 @@
         <div class="form__group">
             <input class="form__input" id="confirmPassword" type="password" placeholder="Confirm Password" formControlName="confirmPassword" required/>
         </div>
-        <button class="form__button">Log In</button>
+        <button class="form__button">Sign Up</button>
     </form>
     <div *ngIf="submitted && (name?.invalid || email?.invalid || password?.invalid || confirmPassword?.invalid)" class="error"> 
         <p class="error-message">{{ getErrorMessage(name, email, password, confirmPassword)}}</p> 
