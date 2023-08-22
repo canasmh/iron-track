@@ -1,0 +1,32 @@
+.signup {
+    height: 88vh;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+}
+
+.signup > * {
+    margin-bottom: 1.6rem;
+}
+
+.signup__header, .signup__text {
+    text-align: center;
+}
+
+.signup__redirect {
+    font-size: 1.4rem;
+    text-align: center;
+    margin-top: 2.4rem;
+}
+
+@media only screen and (min-width: 900px) {
+    .signup__redirect {
+        margin-top: 0.8rem;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .signup__redirect {
+        margin-top: 2.4rem;
+    }
+}

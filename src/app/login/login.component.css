@@ -1,0 +1,32 @@
+.login {
+    height: 88vh;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+
+}
+
+.login > * {
+    margin-bottom: 1.6rem;
+}
+.login__header, .login__text {
+    text-align: center;
+}
+
+.login__redirect {
+    font-size: 1.4rem;
+    text-align: center;
+    margin-top: 2.4rem;
+}
+
+@media only screen and (min-width: 900px) {
+    .login__redirect {
+        margin-top: 0.8rem;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .login__redirect {
+        margin-top: 2.4rem;
+    }
+}
