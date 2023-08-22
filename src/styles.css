@@ -62,7 +62,7 @@ $orange-palette: (
 }
 
 html {
-    font-size: 62.5%;
+    font-size: 50%;
 }
 
 body {
@@ -80,14 +80,16 @@ body {
 h1 {
     font-size: 3.2rem;
 }
+
 h2 {
-    font-size: 2.4rem;
+    font-size: 2.8rem;
     font-weight: 300;
     letter-spacing: 5px;
     text-indent: 5px;
 }
 
 p {
+    font-size: 1.6rem;
     font-weight: 400;
     line-height: 1.7;
 }
@@ -97,6 +99,7 @@ h3 {
 }
 
 a, a:link, a:visited {
+    font-size: inherit;
     color: inherit;
 }
  
@@ -149,11 +152,14 @@ section {
 }
 
 .form__input {
+    font-size: 1.6rem;
     width: 100%;
     border-radius: 100px;
+    color: #3e3f3e;
     padding: 0.6rem 1.6rem;
     border: 2px solid transparent;
     transition: all 0.2s ease;
+    background-color: #cecece;
 }
 
 .form__input:active.ng-invalid, .form__input:focus.ng-invalid {
@@ -167,12 +173,14 @@ section {
 }
 
 .form__button {
+    font-size: 1.6rem;
     width: 100%;
     padding: 0.6rem 1.6rem;
     border-radius: 100px;
-    /* margin-top: 2.8rem; */
+    cursor: pointer;
     border: 2px solid #E67E22;
     background-color: #E67E22;
+    transition: all 0.3s ease;
 }
 
 @keyframes slide-down {
@@ -199,13 +207,23 @@ section {
 }
 
 .error-message {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+}
+
+@media only screen and (min-width: 600px) {
+    html {
+        font-size: 75%;
+    } 
+    
+    .form__input, .form__button {
+        padding: 1.2rem 2.4rem;
+    }
 }
 
 
 @media only screen and (min-width: 900px) {
     html {
-        font-size: 85%;
+        font-size: 70%;
     }
 
     body {
@@ -217,17 +235,54 @@ section {
     section {
         padding: 5rem 20rem;
     }
-    
+
+    .form__input, .form__button {
+        padding: 0.8rem 2rem;
+    }
 }
 
 @media only screen and (min-width: 1200px) {
+    html {
+        font-size: 62.5%;
+    }
+
     body {
         background-image: linear-gradient(rgba(15, 16, 15, 0.95), rgba(15, 16, 15, 0.95)), url('./app/background-laptop.jpg');
         background-position: right;
         background-size: cover;
     }
+
     section {
         padding: 5rem 40rem;
     }
+
+    .error {
+        border: 3px solid #ff4136;
+        padding: 1.6rem;
+    }
+
+    .form__input, .form__button {
+        padding: 1.2rem 2rem;
+    }
+
+    .form__input:active.ng-invalid, .form__input:focus.ng-invalid {
+        outline: 3px solid #ff4136;
+        outline-offset: -4px;
+    }
     
+    .form__input:active, .form__input:focus {
+        outline: 3px solid #2ECC71;
+        outline-offset: -4px;
+    }
+
+    .form__button:hover {
+        border: 2px solid #cf711e;
+        background-color: #cf711e;
+    }
+
+    .form__button:active {
+        border: 2px solid #b8641b;
+        background-color: #b8641b;
+        
+    }
 }
