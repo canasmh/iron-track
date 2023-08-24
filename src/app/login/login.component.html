@@ -3,14 +3,14 @@
     <p class="login__text">Please enter your <br /> credentials to log in.</p>
     <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="form__group">
-            <input class="form__input" id="email" type="email" placeholder="Email" formControlName="email" required/>
+            <input class="form__input" id="email" type="email" placeholder="Email" formControlName="email" aria-label="Enter your email" required/>
         </div>
         <div class="form__group">
-            <input class="form__input" type="password" placeholder="Password" formControlName="password" required/>
+            <input class="form__input" type="password" placeholder="Password" formControlName="password" aria-label="Enter your password" required/>
         </div>
         <button class="form__button">Log In</button>
     </form>
-    <div *ngIf="submitted && (email?.invalid || password?.invalid)" class="error"> 
+    <div *ngIf="submitted && (email?.invalid || password?.invalid)" class="error" aria-live="assertive"> 
         <p class="error-message">{{ getErrorMessage(email, password)}}</p> 
     </div>
     <p class="login__redirect">Don't have an account yet? <br /> <a routerLink="/signup">Create an Account</a></p>
