@@ -1,3 +1,17 @@
 <section class="home">
+
+    <div *ngIf="Routines.length !== 0" class="home__routines">
+        <div class="home__routines--container">
+            <a href="#" class="btn home__btn home__routines--btn" *ngFor="let routine of Routines">
+                <i class="fa-solid fa-dumbbell home__routines--icon"></i>
+                <span>{{ routine }}</span>
+            </a>
+        </div>
+        <a class="home__btn btn" href="/create"><i class="fa-solid fa-plus"></i> Create a Routine</a>
+    </div>
+    <div *ngIf="Routines.length === 0" class="home__cta">
+        <p class="home__cta--text">Looks like you don't <br /> have a routine yet.</p>
+        <a class="home__btn btn" href="/create"><i class="fa-solid fa-plus"></i> Create a Routine</a>
+    </div>
     
 </section>
