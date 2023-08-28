@@ -7,7 +7,7 @@ import { SignupComponent } from './signup/signup.component';
 const routes: Routes = [
   { path: '', component: WelcomeComponent, data: {showFooter: false}, title: "Welcome | Iron Track"},
   { path: 'login', component: LoginComponent, data: {showFooter: false}, title: "Log In | Iron Track"},
-  { path: 'signup', component: SignupComponent, data: {showFooter: false}, title: "Sign Up | Iron Track"}
+  { path: 'signup', component: SignupComponent, data: {showFooter: false}, title: "Sign Up | Iron Track"},
 ];
 
 @NgModule({
