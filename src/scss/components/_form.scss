@@ -63,6 +63,7 @@
         border-radius: 100px;
         border: 2px solid mat.get-color-from-palette($iron-track-accent, 600);
         background-color: mat.get-color-from-palette($iron-track-accent, 600);
+        color: mat.get-color-from-palette($iron-track-dark-primary, 'default-contrast');
 
         &:focus {
             outline: 3px solid mat.get-color-from-palette($iron-track-accent, 50);
@@ -73,6 +74,7 @@
             &:hover {
                 border: 2px solid mat.get-color-from-palette($iron-track-accent, 800);
                 background-color: mat.get-color-from-palette($iron-track-accent, 800);
+                color: mat.get-color-from-palette($iron-track-dark-primary, 'darker-contrast');
             }
 
             &:focus:active {
