@@ -1,0 +1,79 @@
+@use "@angular/material" as mat;
+@import "../../scss/abstracts/variables";
+@import "../../scss/abstracts/mixins";
+@import "../../scss/custom-theme";
+
+.home {
+    min-height: 75vh;
+
+    &__routines {
+        padding-top: 3.6rem;
+        padding-bottom: 3.6rem;
+        height: 75vh;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-between;
+
+        &--container {
+            & > a:not(:last-child) {
+                margin-bottom: $md;
+            }
+        }
+
+        &--btn {
+            text-align: left;
+            justify-content: flex-start;
+            align-items: center;
+            overflow-x: scroll;
+            white-space: nowrap;
+            position: relative;
+
+            & span {
+                margin-left: 4rem;
+            }
+        }
+
+        &--icon {
+            margin-right: $smmd;
+            position: absolute;
+            left: 1.6rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+        }
+
+    }
+
+    &__cta {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+        height: 75vh;
+
+        &--text {
+            margin-bottom: calc($xl * 2);
+            font-size: 1.8rem;
+        }
+    }
+
+    &__btn {
+            &, &:link, &:visited {
+                border: 1px solid mat.get-color-from-palette($iron-track-dark-primary, 'default-contrast');
+            }
+
+            @include respond(laptop) {
+                &:hover {
+                    border-color: mat.get-color-from-palette($iron-track-dark-primary, '500-contrast');
+                    color: mat.get-color-from-palette($iron-track-dark-primary, '500-contrast');
+                }
+
+                &:active {
+
+                    border-color: mat.get-color-from-palette($iron-track-dark-primary, '400-contrast');
+                    color: mat.get-color-from-palette($iron-track-dark-primary, '400-contrast');
+
+                }
+            }
+        }
+}
