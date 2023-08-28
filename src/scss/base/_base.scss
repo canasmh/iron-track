@@ -1,0 +1,57 @@
+@use '@angular/material' as mat;
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 50%;
+
+    @include respond(tab-port) {
+        font-size: 85%;
+    }
+
+    @include respond(tab-land) {
+        font-size: 70%;
+    }
+
+    @include respond(laptop) {
+        font-size: 65%;
+    }
+
+    @include respond(lg-desktop) {
+        font-size: 75%;
+    }
+}
+
+body {
+    box-sizing: border-box;
+    background-color: mat.get-color-from-palette($iron-track-dark-primary, 'default');
+    color: mat.get-color-from-palette($iron-track-dark-primary, 'default-contrast');
+}
+
+header, section {
+    padding-left: 10%;
+    padding-right: 10%;
+
+    @include respond(tab-port) {
+        padding-left: 20%;
+        padding-right: 20%;
+    }
+
+    @include respond(tab-land) {
+        padding-left: 30%;
+        padding-right: 30%;
+    }
+
+    @include respond(laptop) {
+        padding-left: 35%;
+        padding-right: 35%;
+    }
+}
+
+

@@ -1,0 +1,64 @@
+@use '@angular/material' as mat;
+@import '../../scss/abstracts/variables';
+@import '../../scss/abstracts/mixins';
+@import '../../scss/custom-theme.scss';
+
+.signup {
+    height: 88vh;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+
+    & > *:not(:last-child) {
+        margin-bottom: $lg;
+    }
+
+    &__redirect {
+        font-size: 1.4rem;
+
+        & a {
+            text-decoration: underline;
+
+            @include respond(laptop) {
+                transition: all 0.2s ease;
+                &:hover {
+                    color: mat.get-color-from-palette($iron-track-dark-primary, 'darker-contrast');
+                }
+            }
+        }
+    }
+}
+
+
+/* .signup {
+    height: 88vh;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+}
+
+.signup > * {
+    margin-bottom: 1.6rem;
+}
+
+.signup__header, .signup__text {
+    text-align: center;
+}
+
+.signup__redirect {
+    font-size: 1.4rem;
+    text-align: center;
+    margin-top: 2.4rem;
+}
+
+@media only screen and (min-width: 900px) {
+    .signup__redirect {
+        margin-top: 0.8rem;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .signup__redirect {
+        margin-top: 2.4rem;
+    }
+} */

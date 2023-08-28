@@ -5,7 +5,7 @@ import { filter } from 'rxjs';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['../scss/custom-theme.scss']
 })
 export class AppComponent implements OnInit {
   title = 'iron-track';

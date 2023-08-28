@@ -1,0 +1,67 @@
+@use '@angular/material' as mat;
+@import '../../scss/custom-theme.scss';
+@import '../../scss/abstracts/mixins';
+
+$orange-dark: mat.get-color-from-palette($iron-track-accent, 900);
+$orange: mat.get-color-from-palette($iron-track-accent, 700);
+$orange-lightest: mat.get-color-from-palette($iron-track-accent, 300);
+$orange-lighter: mat.get-color-from-palette($iron-track-accent, 500);
+$orange-light: mat.get-color-from-palette($iron-track-accent, 600);
+
+.footer {
+    height: 13vh;
+    max-height: 13vh;
+    min-height: 13vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid;
+
+    &__nav {
+        flex-basis: 100%;
+    }
+
+    &__list {
+        display: flex;
+        flex-wrap: nowrap;
+        list-style-type: none;
+
+        &--item {
+            height: calc(13vh/2);
+            flex-basis: 33%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &:not(:last-child) {
+                border-right: 1px solid;
+            }
+        }
+
+        &--link {
+            transition: all 0.2s ease;
+            font-size: 2.8rem;
+
+            @include respond(laptop) {
+
+                &:not(.active):hover {
+                    color: $orange-lightest;
+                    transform: scale(1.3) translateY(-2px);
+                    filter: drop-shadow(0 2px 2px $orange);                    
+                }
+
+                &:not(.active):active {
+                    color: $orange-lighter;
+                    transform: scale(1.28) translateY(-1px);
+                    filter: drop-shadow(0 2px 2px $orange-dark);
+                }
+            }
+        }
+    }
+}
+
+.active {
+    color: $orange;
+    // filter: drop-shadow(1px 2px 1px $orange);
+    transform: scale(1.3) translateY(-2px);
+}

@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { confirmPasswordValidator } from '../confirmPasswordValidator';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
 
@@ -14,7 +15,10 @@ export class SignupComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
+    !this.signupForm.invalid && this.router.navigate(['/home'])
   }
+
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
 

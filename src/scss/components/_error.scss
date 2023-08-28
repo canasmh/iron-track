@@ -1,0 +1,29 @@
+@use '@angular/material' as mat;
+
+@keyframes slide-down {
+    0% {
+        transform: translateY(0.8rem);
+        opacity: 0;
+    } 100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.error {
+    position: absolute;
+    top: 12vh;
+    left: 0;
+    width: 100%;
+    background-color: rgba(mat.get-color-from-palette($iron-track-warn, 700), 0.6); //rgba(255, 65, 54, 0.6);
+    border: 2px solid #ff4136;
+    box-shadow: 0 3px 20px rgba(255, 65, 54, 0.6);
+    text-align: center;
+    animation: slide-down 0.5s ease-out;
+    padding: $smmd;
+
+    &__message {
+        font-size: 1.4rem;
+    }
+}
+

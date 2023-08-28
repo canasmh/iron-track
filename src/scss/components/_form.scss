@@ -1,0 +1,85 @@
+@use '@angular/material' as mat;
+
+.form {
+
+    &__input, &__label, &__button {
+        display: block;
+    }
+
+    &__group {
+        margin-bottom: $sm;
+    }
+
+    &__input {
+        transition: all 0.2s ease;
+        width: 100%;
+        border-radius: 100px;
+        padding: $sm $mdlg;
+        background-color: mat.get-color-from-palette($iron-track-dark-primary, 100);
+        color: mat.get-color-from-palette($iron-track-dark-primary, 900);
+        border: 2px solid transparent;
+
+        &:focus {
+            background-color: mat.get-color-from-palette($iron-track-dark-primary, 50);
+            outline: 2px solid mat.get-color-from-palette($iron-track-accent, 400);
+            outline-offset: -3px;
+        }
+
+        &:focus:not(:placeholder-shown) {
+            background-color: mat.get-color-from-palette($iron-track-dark-primary, 50);
+            outline: 2px solid #008000;
+            outline-offset: -3px;
+        }
+
+        &:focus:not(:placeholder-shown).ng-invalid {
+            outline: 2px solid mat.get-color-from-palette($iron-track-warn, 600);
+            outline-offset: -3px;
+        }
+
+        @include respond(laptop) {
+            &:focus {
+                outline: 3px solid mat.get-color-from-palette($iron-track-accent, 300);
+                outline-offset: -4px;
+            }
+    
+            &:focus:not(:placeholder-shown) {
+                background-color: mat.get-color-from-palette($iron-track-dark-primary, 50);
+                outline: 3px solid #008000;
+                outline-offset: -4px;
+            }
+    
+            &:focus:not(:placeholder-shown).ng-invalid {
+                outline: 3px solid mat.get-color-from-palette($iron-track-warn, 700);
+                outline-offset: -4px;
+            }
+
+        }
+    }
+
+    &__button {
+        width: 100%;
+        cursor: pointer;
+        padding: $sm $mdlg;
+        border-radius: 100px;
+        border: 2px solid mat.get-color-from-palette($iron-track-accent, 600);
+        background-color: mat.get-color-from-palette($iron-track-accent, 600);
+
+        &:focus {
+            outline: 3px solid mat.get-color-from-palette($iron-track-accent, 50);
+        }
+
+        @include respond(laptop) {
+            transition: all 0.2s ease;
+            &:hover {
+                border: 2px solid mat.get-color-from-palette($iron-track-accent, 800);
+                background-color: mat.get-color-from-palette($iron-track-accent, 800);
+            }
+
+            &:focus:active {
+                border: 2px solid mat.get-color-from-palette($iron-track-accent, 900);
+                background-color: mat.get-color-from-palette($iron-track-accent, 900);
+                outline: 0 solid transparent;
+            }
+        }
+    }
+}
