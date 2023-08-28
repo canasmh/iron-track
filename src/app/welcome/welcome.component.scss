@@ -53,12 +53,13 @@
             @include respond(laptop) {
 
                 &:hover {
-                    border: 1px solid mat.get-color-from-palette($iron-track-dark-primary, '500-contrast');
+                    border-color: mat.get-color-from-palette($iron-track-dark-primary, '500-contrast');
                     color: mat.get-color-from-palette($iron-track-dark-primary, '500-contrast');
                 }
 
                 &:active {
-                    background-color: mat.get-color-from-palette($iron-track-accent, 900);
+                    border-color: mat.get-color-from-palette($iron-track-dark-primary, '400-contrast');
+                    color: mat.get-color-from-palette($iron-track-dark-primary, '400-contrast');
                 }
             }
         }
