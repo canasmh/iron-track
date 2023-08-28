@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder, AbstractControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 
 export class LoginComponent implements OnInit {
@@ -12,8 +13,12 @@ export class LoginComponent implements OnInit {
   submitted: boolean = false;
   loginForm!: FormGroup;
 
+  constructor(private router: Router) {}
+
   onSubmit() {
     this.submitted = true;
+    !this.loginForm.invalid && this.router.navigate(['/home']);
+    console.log(this.loginForm.invalid);
   }
 
   ngOnInit(): void {

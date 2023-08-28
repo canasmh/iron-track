@@ -1,0 +1,67 @@
+@use '@angular/material' as mat;
+@import '../../scss/custom-theme.scss';
+@import '../../scss/abstracts/mixins';
+@import '../../scss/abstracts/variables';
+
+.welcome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 88vh;
+
+    &__content {
+        flex-basis: 100%;
+
+        & > *:not(:last-child) {
+            margin-bottom: $xl;
+        }
+    }
+
+    &__heading {
+        &--variant {
+            color: mat.get-color-from-palette($iron-track-accent, 'default');
+        }
+    }
+
+    &__slogan {
+        font-style: italic;
+        font-weight: 300;
+        font-size: 1.6rem;
+    }
+
+    &__btn {
+
+        &--fill {
+            background-color: mat.get-color-from-palette($iron-track-accent, 600);
+
+            @include respond(laptop) {
+
+                &:hover {
+                    background-color: mat.get-color-from-palette($iron-track-accent, 800);
+                }
+
+                &:active {
+                    background-color: mat.get-color-from-palette($iron-track-accent, 900);
+                }
+            }
+        }
+
+        &--ghost {
+            border: 1px solid mat.get-color-from-palette($iron-track-dark-primary, 'default-contrast');
+            color: mat.get-color-from-palette($iron-track-dark-primary, 'default-contrast');
+
+            @include respond(laptop) {
+
+                &:hover {
+                    border: 1px solid mat.get-color-from-palette($iron-track-dark-primary, '500-contrast');
+                    color: mat.get-color-from-palette($iron-track-dark-primary, '500-contrast');
+                }
+
+                &:active {
+                    background-color: mat.get-color-from-palette($iron-track-accent, 900);
+                }
+            }
+        }
+
+    }
+}

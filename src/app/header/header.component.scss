@@ -1,0 +1,27 @@
+@use '@angular/material' as mat;
+@import '../../scss/custom-theme.scss';
+
+.header {
+    min-height: 12vh;
+    box-shadow: 0 2px 5px mat.get-color-from-palette($iron-track-accent, 'default');
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__text {
+        letter-spacing: 5px;
+        text-indent: 5px;
+        font-weight: 400;
+        text-transform: uppercase;
+        font-size: 3.2rem;
+
+        &--variant {
+            color: mat.get-color-from-palette($iron-track-accent, 'default');
+        }
+    }
+
+    &__icon {
+        font-size: 2.4rem;
+        transform: rotate(-30deg);
+    }
+}

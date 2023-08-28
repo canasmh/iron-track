@@ -1,0 +1,30 @@
+@use '@angular/material' as mat;
+@import '../../scss/abstracts/variables';
+@import '../../scss/abstracts/mixins';
+@import '../../scss/custom-theme.scss';
+
+.login {
+    height: 88vh;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+
+    & > *:not(:last-child) {
+        margin-bottom: $lg;
+    }
+
+    &__redirect {
+        font-size: 1.4rem;
+
+        & a {
+            text-decoration: underline;
+
+            @include respond(laptop) {
+                transition: all 0.2s ease;
+                &:hover {
+                    color: mat.get-color-from-palette($iron-track-dark-primary, 'darker-contrast');
+                }
+            }
+        }
+    }
+}
