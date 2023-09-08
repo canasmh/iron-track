@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { AddRoutineComponent } from './add-routine/add-routine.component';
+import { AddRoutineFinalComponent } from './add-routine-final/add-routine-final.component';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent, data: {showFooter: false}, title: "Welcome | Iron Track"},
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent, data: {showFooter: false}, title: "Sign Up | Iron Track"},
   { path: 'home', component: HomeComponent, title: "Routines | Iron Track"},
   { path: 'home/add-routine', component: AddRoutineComponent},
+  { path: 'home/add-routine/final', component: AddRoutineFinalComponent},
 ];
 
 @NgModule({

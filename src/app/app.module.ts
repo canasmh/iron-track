@@ -11,6 +11,7 @@ import { SignupComponent } from './signup/signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { AddRoutineComponent } from './add-routine/add-routine.component';
+import { AddRoutineFinalComponent } from './add-routine-final/add-routine-final.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { AddRoutineComponent } from './add-routine/add-routine.component';
     SignupComponent,
     HomeComponent,
     AddRoutineComponent,
+    AddRoutineFinalComponent,
   ],
   imports: [
     BrowserModule,
