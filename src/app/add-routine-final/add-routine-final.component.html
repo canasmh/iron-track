@@ -1,0 +1,16 @@
+<section class="add-routine-final">
+    <h2>Name your routine</h2>
+    <form class="form" [formGroup]="nameRoutineForm" (ngSubmit)="addRoutine()">
+        <input 
+            type="text"
+            class="form__input"
+            aria-label="name routine"
+            placeholder="MY NEW ROUTINE"
+            formControlName="name"
+            >
+        <button class="form__button">Create Routine</button>
+    </form>
+    <div *ngIf="submitted && nameRoutineForm.invalid" class="error" aria-live="assertive">
+        <p class="error__message">{{ getErrorMessage(name) }}</p>
+    </div>
+</section>

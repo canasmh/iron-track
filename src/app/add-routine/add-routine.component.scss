@@ -1,0 +1,143 @@
+@use '@angular/material' as mat;
+@import '../../scss/abstracts/variables';
+@import '../../scss/custom-theme.scss';
+@import '../../scss/abstracts/mixins';
+
+.add-routine {
+    height: 75vh;
+    padding-top: 6.4rem;
+    padding-bottom: 4rem;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+
+    &__header {
+        font-size: 2.8rem;
+        margin-bottom: $sm;
+        text-transform: uppercase;
+    }
+
+    &__form {
+        &-group {
+            margin-bottom: $md;
+
+            &--sub {
+                display: flex;
+                flex-wrap: nowrap;
+                justify-content: space-between;
+                margin-top: $xl;
+                align-items: center;
+            }
+
+            &--half {
+                display: inline-block;
+
+                & label {
+                    display: inline-block;
+                    margin-right: $sm;
+                }
+
+                & input:not(:last-child) {
+                    margin-right: $sm;
+                }
+            }
+        }
+    }
+
+    &__label, &__input {
+        display: block;
+        margin: 0 auto;
+    }
+
+    &__label {
+        text-align: center;
+        padding-bottom: $xs;
+    }
+
+    &__input {
+        width: 100%;
+        padding: 0.6rem;
+        border-radius: 3px;
+        border: 1px solid transparent;
+
+        &:focus {
+            outline: 2px solid mat.get-color-from-palette($iron-track-accent, 'default');
+            outline-offset: 2px;
+        }
+
+        &:focus:not(:placeholder-shown) {
+            outline: 2px solid #008800;
+            outline-offset: 2px;
+        }
+
+        &:focus:not(:placeholder-shown).ng-invalid {
+            outline: 2px solid red;
+            outline-offset: 2px;
+        }
+
+        &--sub {
+            width: 3.2rem;
+            padding: $xs;
+            display: inline-block;
+
+            &-longer {
+                width: 5rem;
+                padding: $xs;
+                display: inline-block;
+            }
+        }
+    }
+
+    & select {
+        padding: $xs;
+        border-radius: 3px;
+        border: 1px solid transparent;
+        font-size: inherit;
+
+        &:focus {
+            outline: 2px solid #008800;
+            outline-offset: 2px;
+        }
+    }
+}
+
+.btn {
+    &__ghost {
+        color: mat.get-color-from-palette($iron-track-accent, 'default');
+        border: 1px solid mat.get-color-from-palette($iron-track-accent, 'default');
+        margin-bottom: $md;
+
+        @include respond(laptop) {
+            &:hover {
+                color: mat.get-color-from-palette($iron-track-accent, 'darker');
+                border-color: mat.get-color-from-palette($iron-track-accent, 'darker');
+            }
+        }
+    }
+
+    &__ghost--accent {
+        color: mat.get-color-from-palette($iron-track-dark-primary, 'default-contrast');
+        border: 1px solid mat.get-color-from-palette($iron-track-dark-primary, 'default-contrast');
+
+        @include respond(laptop) {
+            &:hover {
+                color: mat.get-color-from-palette($iron-track-accent, 'lighter-contrast');
+                border-color: mat.get-color-from-palette($iron-track-accent, 'lighter-contrast');
+            }
+        }
+
+    }
+}
+
+.relative {
+    position: relative;
+
+    & p {
+        position: absolute;
+        top: 50%;
+        right: 1.6rem;
+        transform: translateY(-50%);
+        color: mat.get-color-from-palette($iron-track-dark-primary, 'default');
+        font-family: inherit;
+    }
+}

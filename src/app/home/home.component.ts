@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Routine } from '../shared/types/customTypes';
+import { RoutinesService } from '../shared/services/RoutinesService';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +9,10 @@ import { Component } from '@angular/core';
 })
 
 export class HomeComponent {
+  routines: Routine[];
 
-  Routines = [];
+  constructor(private routinesService: RoutinesService) {
+    this.routines = this.routinesService.getRoutines();
+  }
 
 }

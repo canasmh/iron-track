@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { confirmPasswordValidator } from '../confirmPasswordValidator';
+import { confirmPasswordValidator } from '../shared/validators/customValidators';
 import { Router } from '@angular/router';
 
 @Component({
