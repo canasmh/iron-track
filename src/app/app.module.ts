@@ -10,7 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
-import { RoutineAddComponent } from './routine-add/routine-add.component';
+import { AddRoutineComponent } from './add-routine/add-routine.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { RoutineAddComponent } from './routine-add/routine-add.component';
     LoginComponent,
     SignupComponent,
     HomeComponent,
-    RoutineAddComponent,
+    AddRoutineComponent,
   ],
   imports: [
     BrowserModule,

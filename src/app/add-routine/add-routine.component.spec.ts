@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RoutineAddComponent } from './routine-add.component';
+import { RoutineAddComponent } from './add-routine.component';
 
 describe('RoutineAddComponent', () => {
   let component: RoutineAddComponent;
