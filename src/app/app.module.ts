@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { AddRoutineComponent } from './add-routine/add-routine.component';
 import { AddRoutineFinalComponent } from './add-routine-final/add-routine-final.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { AddRoutineFinalComponent } from './add-routine-final/add-routine-final.
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
