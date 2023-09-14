@@ -2,23 +2,47 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { confirmPasswordValidator } from '../shared/validators/customValidators';
 import { Router } from '@angular/router';
+import { User } from '../shared/types/customTypes';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
+
 export class SignupComponent implements OnInit {
 
   submitted: boolean = false;
   signupForm!: FormGroup;
+  userData: User = {
+    name: '',
+    email: '',
+    password: '',
+  };
 
   onSubmit() {
     this.submitted = true;
-    !this.signupForm.invalid && this.router.navigate(['/home'])
+    if (!this.signupForm.invalid) {
+      this.userData.name = this.signupForm.value.name;
+      this.userData.email = this.signupForm.value.email;
+      this.userData.password = this.signupForm.value.password;
+
+      // Call the signup method from the AuthService
+      this.authService.signup(this.userData).subscribe({
+        next: (data) => {
+          // this is executed if api call is successfull
+          console.log(data)
+          this.router.navigate(['/home'])
+        },
+        error: (e) => {
+          // this is where I would handle errors
+          console.error(e)},
+      })
+    }
   }
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {
 
