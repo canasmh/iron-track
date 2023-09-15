@@ -1,0 +1,18 @@
+<section class="routine">
+    <div clas="routine__container">
+        <h2 class="routine__heading">{{ routine?.name }}</h2>
+        <div class="routine__grid">
+            <div class="routine__grid--data" *ngFor="for let exercise of routine?.exercises">
+                <h3 class="routine__grid--main-heading">{{exercise.workout}}</h3>
+                <h4 class="routine__grid--sub-heading">Weight</h4>
+                <h4 class="routine__grid--sub-heading">Sets</h4>
+                <h4 class="routine__grid--sub-heading">{{exercise.unit}}</h4>
+                <p class="routine__grid--text">{{exercise.weight}} {{exercise.weightUnit}}</p>
+                <p class="routine__grid--text">{{exercise.sets}}</p>
+                <p class="routine__grid--text">{{exercise.quantity}}</p>
+            </div>
+        </div>
+        <a href="#" class="btn btn__ghost">Edit Routine</a>
+        <a href="#" class="btn btn__fill">Begin Workout</a>
+    </div>
+</section>
