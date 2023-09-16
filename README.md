@@ -21,7 +21,7 @@ Be sure to set `production=false`. Once you're environment variables are set up,
 # Running the Application
 
 ```
-ng serve --configuration development
+$ ng serve --configuration development
 ```
 
 You should now be able to visit `localhost:4200` and see the application running
