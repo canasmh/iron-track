@@ -3,6 +3,7 @@
 @import '../../scss/custom-theme.scss';
 @import '../../scss/abstracts/mixins';
 
+
 .add-routine {
     height: 75vh;
     padding-top: 6.4rem;
@@ -59,6 +60,7 @@
         padding: 0.6rem;
         border-radius: 3px;
         border: 1px solid transparent;
+        text-transform: capitalize;
 
         &:focus {
             outline: 2px solid mat.get-color-from-palette($iron-track-accent, 'default');
@@ -139,5 +141,38 @@
         transform: translateY(-50%);
         color: mat.get-color-from-palette($iron-track-dark-primary, 'default');
         font-family: inherit;
+    }
+}
+
+.search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    width: 100%;
+    z-index: 100;
+    padding: 0.6rem;
+    border-radius: 3px;
+
+    
+
+    &__list {
+        list-style-type: none;
+        text-transform: capitalize;
+
+        &--item {
+            text-align: left;
+            cursor: pointer;
+            color: mat.get-color-from-palette($iron-track-dark-primary, 'default');
+
+            @include respond(laptop) {
+                &:hover {
+                    background-color: mat.get-color-from-palette($iron-track-dark-primary, 50);
+                    
+                }
+            }
+        }
+
+        
     }
 }

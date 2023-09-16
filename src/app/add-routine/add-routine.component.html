@@ -2,17 +2,30 @@
     <h2 class="add-routine__header">Add exercises</h2>
 
     <form class="add-routine__form" [formGroup]="addExerciseForm">
-        <div class="add-routine__form-group">
+        <div class="add-routine__form-group relative">
             <label class="add-routine__label" for="workout">Select a workout</label>
             
-                <input 
-                    type="text" 
-                    class="add-routine__input" 
-                    name="workout"
-                    id="workout"
-                    placeholder="Barbell Squat"
-                    formControlName="workout"
-                >
+            <input 
+                type="text" 
+                class="add-routine__input" 
+                name="workout"
+                id="workout"
+                placeholder="Barbell Squat"
+                formControlName="workout"
+                (ngModelChange)="searchExercises()"
+            >
+            <div class="search-results" *ngIf="workoutInputChanged && addExerciseForm.controls['workout']?.dirty">
+                <ul class="search-results__list">
+                    <li 
+                        *ngFor="let exerciseName of availableExercises" 
+                        class="search-results__list--item"
+                        (click)="selectExercise(exerciseName)"
+                    >
+                        {{ exerciseName }}
+                    </li>
+                    <li *ngIf="availableExercises.length === 0 && addExerciseForm.dirty">Exercise Not Available</li>
+                </ul>
+            </div>
         </div>
         <div class="add-routine__form-group">
             <label class="add-routine__label" for="weight">Select a weight</label>
@@ -65,8 +78,8 @@
         <a class="btn btn__ghost--accent" role="button" (click)="nextStep()">Next Step</a>
     </div>
 
-    <div *ngIf="submittedExercise && addExerciseForm?.invalid" class="error" aria-live="assertive"> 
-        <p class="error__message">{{ getErrorMessage(workout, weight, sets, quantity) }}</p> 
+    <div *ngIf="submittedExercise && errorMessage" class="error" aria-live="assertive"> 
+        <p class="error__message">{{ errorMessage }}</p> 
     </div>
 
 </section>
