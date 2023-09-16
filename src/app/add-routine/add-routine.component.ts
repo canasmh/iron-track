@@ -2,8 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { checkIfNumber, isGreaterThanZero } from '../shared/validators/customValidators';
-import { Exercise } from '../shared/types/customTypes';
+import { Exercise, ExerciseApi } from '../shared/types/customTypes';
 import { RoutineService } from '../shared/services/RoutineService';
+import { ExercisesApiService } from '../shared/services/exercises-api.service';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { ErrorMessageService } from '../shared/services/error-message.service';
 
 @Component({
   selector: 'app-add-routine',
@@ -12,8 +16,12 @@ import { RoutineService } from '../shared/services/RoutineService';
 })
 
 export class AddRoutineComponent implements OnInit {
+  private inputChanged$ = new Subject<string>();
 
   addExerciseForm!: FormGroup;
+  availableExercises: string[] = [];
+  workoutInputChanged = true;
+  errorMessage?: string | null;
   
 
   initExercise: Exercise = {
@@ -33,15 +41,16 @@ export class AddRoutineComponent implements OnInit {
   addExercise() {
     this.submittedExercise = true
 
-    if (!this.addExerciseForm.invalid ) {
-      this.exercises.push(this.addExerciseForm.value);
-      this.addExerciseForm.reset();
-      this.addExerciseForm.patchValue(this.initExercise);
-      
+    if (!this.addExerciseForm.invalid) {
+      if (!this.workoutInputChanged) {
+        this.exercises.push(this.addExerciseForm.value);
+        this.addExerciseForm.reset();
+        this.addExerciseForm.patchValue(this.initExercise);
+        this.workoutInputChanged = true;
+      } else {
+        this.errorMessage = 'Invalid workout selected'
+      }
     }
-    
-    
-    console.log(this.exercises);
   }
 
   nextStep() {
@@ -52,7 +61,31 @@ export class AddRoutineComponent implements OnInit {
     }
   }
 
-  constructor(private router: Router, private routineService: RoutineService) {}
+  searchExercises() {
+    const exerciseName = this.addExerciseForm.value.workout 
+
+    if (this.addExerciseForm.controls['workout'].dirty) {
+      this.workoutInputChanged = true;
+    }
+    
+    if (this.workoutInputChanged) {
+      this.inputChanged$.next(exerciseName);
+    }
+  }
+
+  selectExercise(name: string) {
+    this.addExerciseForm.controls['workout'].setValue(name);
+    this.addExerciseForm.controls['workout'].markAsPristine();
+    this.availableExercises = [];
+    this.workoutInputChanged = false;
+  }
+
+  constructor(
+    private router: Router, 
+    private routineService: RoutineService, 
+    private exercisesService: ExercisesApiService,
+    private errorMessageService: ErrorMessageService
+  ) {}
 
   ngOnInit(): void {
 
@@ -79,10 +112,39 @@ export class AddRoutineComponent implements OnInit {
       ])
     })
 
+    this.inputChanged$
+      .pipe(
+        debounceTime(350),
+        distinctUntilChanged(),
+        switchMap((inputValue: string) => {  
+          return this.exercisesService.getExercises(inputValue);
+        })
+      )
+      .subscribe((data: ExerciseApi[]) => {
+        this.availableExercises = data.map(exercise => exercise.name).slice(0, 5);
+      });
+
     this.addExerciseForm.valueChanges.subscribe(status => {
       if (status.unit === 'rep') { this.reps = true}
       else {this.reps = false}
       this.submittedExercise = false;
+      this.errorMessage = null;
+    });
+
+    this.workout.valueChanges.subscribe(() => {
+      this.setErrorMessage(this.workout, 'Workout');
+    });
+  
+    this.weight.valueChanges.subscribe(() => {
+      this.setErrorMessage(this.weight, 'Weight');
+    });
+  
+    this.sets.valueChanges.subscribe(() => {
+      this.setErrorMessage(this.sets, 'Sets');
+    });
+  
+    this.quantity.valueChanges.subscribe(() => {
+      this.setErrorMessage(this.quantity, this.reps ? 'Reps' : 'Duration');
     });
   }
 
@@ -91,27 +153,7 @@ export class AddRoutineComponent implements OnInit {
   get sets() { return this.addExerciseForm.controls['sets']};
   get quantity() { return this.addExerciseForm.controls['quantity']};
 
-  getErrorMessage(workout: AbstractControl, weight: AbstractControl, sets: AbstractControl, quantity: AbstractControl) {
-    if (workout?.errors?.['required']) {
-      return 'A workout is required';
-    } else if (weight?.errors?.['required']) {
-      return 'A weight is required';
-    } else if (weight?.errors?.['notANumber']) {
-      return 'Weight must be a number';
-    }  else if (sets?.errors?.['required']) {
-      return 'Sets is required';
-    } else if (sets?.errors?.['lessThanZero']) {
-      return 'Sets must be greater than zero';
-    } else if (sets?.errors?.['notANumber']) {
-      return 'Sets must be a number';
-    }  else if (quantity?.errors?.['required']) {
-      return `${this.reps ? 'Reps' : 'Duration'} is required`;
-    } else if (quantity?.errors?.['lessThanZero']) {
-      return `${this.reps ? 'Reps' : 'Duration'} must be greater than zero`;
-    } else if (quantity?.errors?.['notANumber']) {
-      return `${this.reps ? 'Reps' : 'Duration'} must be a number`;
-    } else {
-      return null;
-    }
+  setErrorMessage(field: AbstractControl, fieldName: string) {
+    this.errorMessage = !this.errorMessage ? this.errorMessageService.getErrorMessage(field, fieldName) : this.errorMessage;
   }
 }
