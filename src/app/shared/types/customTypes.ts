@@ -7,6 +7,15 @@ export type Exercise = {
     unit: string,
 }
 
+export type ExerciseApi = {
+    difficulty: string,
+    equipment: string,
+    instructions: string,
+    muscle: string,
+    name: string,
+    type: string,
+}
+
 export type Routine = {
     name: string,
     exercises: Exercise[],
