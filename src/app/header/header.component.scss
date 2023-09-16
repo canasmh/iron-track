@@ -3,6 +3,8 @@
 
 .header {
     min-height: 12vh;
+    max-height: 12vh;
+    height: 12vh;
     box-shadow: 0 2px 5px mat.get-color-from-palette($iron-track-accent, 'default');
     display: flex;
     justify-content: space-between;

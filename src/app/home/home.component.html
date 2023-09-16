@@ -2,10 +2,14 @@
 
     <div *ngIf="routines.length !== 0" class="home__routines">
         <div class="home__routines--container">
-            <a href="#" class="btn home__btn home__routines--btn" *ngFor="let routine of routines">
-                <i class="fa-solid fa-dumbbell home__routines--icon"></i>
-                <span>{{ routine.name }}</span>
-            </a>
+            <ul class="home__routines--list">
+                <li *ngFor="let routine of routines" class="home__routines--list-item">
+                    <a [routerLink]="['/home/routine', routine.name]" class="btn home__btn home__routines--btn">
+                        <i class="fa-solid fa-dumbbell home__routines--icon"></i>
+                        <span>{{ routine.name }}</span>
+                    </a>
+                </li>
+            </ul>
         </div>
         <a class="home__btn btn" routerLink="/home/add-routine"><i class="fa-solid fa-plus"></i> Create a Routine</a>
     </div>

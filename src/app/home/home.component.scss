@@ -20,6 +20,10 @@
             }
         }
 
+        &--list {
+            list-style-type: none;
+        }
+
         &--btn {
             text-align: left;
             justify-content: flex-start;

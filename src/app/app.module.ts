@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { AddRoutineComponent } from './add-routine/add-routine.component';
 import { AddRoutineFinalComponent } from './add-routine-final/add-routine-final.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RoutineComponent } from './routine/routine.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     AddRoutineComponent,
     AddRoutineFinalComponent,
+    RoutineComponent,
   ],
   imports: [
     BrowserModule,
