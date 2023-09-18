@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder, AbstractControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserCredentials } from '../shared/types/customTypes';
-import { AuthService } from '../shared/services/auth.service';
+import { UserCredentials } from '../../shared/types/customTypes';
+import { AuthService } from '../../shared/services/auth.service';
+import { ErrorMessageService } from '../../shared/services/error-message.service';
 
 @Component({
   selector: 'app-login',
@@ -14,31 +15,43 @@ export class LoginComponent implements OnInit {
 
   submitted: boolean = false;
   loginForm!: FormGroup;
+  errorMessage?: string | null;
   userCredentials: UserCredentials = {
     email: '',
-    password: '',
+    password: ''
   };
 
   onSubmit() {
     this.submitted = true;
+    this.errorMessage = null;
+
     if (!this.loginForm.invalid ) {
-      this.userCredentials.email = this.loginForm.value.email
-      this.userCredentials.password = this.loginForm.value.password
+      this.userCredentials.email = this.loginForm.value.email.trim();
+      this.userCredentials.password = this.loginForm.value.password.trim();
       this.authService.login(this.userCredentials).subscribe({
         next: (data) => {
           // this is executed if api call is successfull
-          console.log(data)
-          this.router.navigate(['/home'])
+          console.log(data);
+          this.router.navigate(['/home']);
         },
         error: (e) => {
           // this is where I would handle errors
-          console.error(e)},
-
-      })
+          console.error(e);
+        }
+      });
+    } else {
+      if (this.email.invalid) {
+        this.getErrorMessage(this.email, 'Email');
+      } else if (this.password.invalid) {
+        this.getErrorMessage(this.password, 'Password');
+      } else {
+        console.error('Uncaught Validation Error');
+        this.errorMessage = 'Uncaught Validation Error';
+      }
     }
   }
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService, private errorMessageService: ErrorMessageService) {}
 
   ngOnInit(): void {
 
@@ -52,30 +65,18 @@ export class LoginComponent implements OnInit {
         Validators.required,
         Validators.minLength(5),
         Validators.maxLength(72)
-      ]),
-    });  
+      ])
+    });
 
-    this.loginForm.valueChanges.subscribe(newStatus => {
+    this.loginForm.valueChanges.subscribe(() => {
       this.submitted = false;
-    })
+    });
   }
 
   get email() { return this.loginForm.controls['email'] ; }
   get password() { return this.loginForm.controls['password'] ; }
 
-  getErrorMessage(email: AbstractControl, password: AbstractControl) {
-    if (email?.errors?.['required']) {
-      return 'Email is required';
-    } else if (email?.errors?.['email'] || email?.errors?.['pattern']) {
-      return 'Email is invalid';
-    }  else if (password?.errors?.['required']) {
-      return 'Password is required';
-    } else if (password?.errors?.['minlength']) {
-      return 'Password needs at least 5 characters';
-    } else if (password?.errors?.['maxlength']) {
-      return 'Password exceeds 72 characters';
-    } else {
-      return '';
-    }
+  getErrorMessage(field: AbstractControl, fieldName: string) {
+    this.errorMessage = this.errorMessageService.getErrorMessage(field, fieldName);
   }
 }

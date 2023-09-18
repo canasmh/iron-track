@@ -1,10 +1,11 @@
-import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 export function checkIfNumber(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const value = control.value;
+
     if (value === null || value === undefined || value === '') {
-      return { required: true}
+      return { required: true };
     }
 
     if (isNaN(value)) {
@@ -14,25 +15,28 @@ export function checkIfNumber(): ValidatorFn {
     return null;
   };
 }
-  
+
 export function isGreaterThanZero(): ValidatorFn {
 
   return (control: AbstractControl): ValidationErrors | null => {
     const value = control.value;
+
     if (value <= 0 ) {
-      return { lessThanZero: true}
+      return { lessThanZero: true };
     } else {
       return null;
     }
-  }
+  };
 }
-  
+
 export const confirmPasswordValidator: ValidatorFn = (
   control: AbstractControl
 ): ValidationErrors | null => {
-  console.log('in function', control.get('password')?.value, control.get('confirmPassword')?.value)
+  console.log('in function', control.get('password')?.value, control.get('confirmPassword')?.value);
+
   if (control.get('password')?.value !== control.get('confirmPassword')?.value) {
-    control.get('confirmPassword')?.setErrors({ passwordMismatch: true }) 
+    control.get('confirmPassword')?.setErrors({ passwordMismatch: true });
   }
+
   return null;
 };

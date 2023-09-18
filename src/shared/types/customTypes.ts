@@ -1,10 +1,9 @@
 export type Exercise = {
-    workout: string,
+    name: string,
     weight: string,
-    weightUnit: string,
     sets: string,
     quantity: string,
-    unit: string,
+    quantityUnit: string,
 }
 
 export type ExerciseApi = {

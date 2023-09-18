@@ -48,8 +48,8 @@
         </div>
         <button class="form__button">Sign Up</button>
     </form>
-    <div *ngIf="submitted && signupForm?.invalid" class="error" aria-live="assertive"> 
-        <p class="error__message">{{ getErrorMessage(name, email, password, confirmPassword)}}</p> 
+    <div *ngIf="submitted && errorMessage" class="error" aria-live="assertive"> 
+        <p class="error__message">{{ errorMessage }}</p> 
     </div>
     <p class="signup__redirect">Already have an account? <br /> <a routerLink="/login" aria-label="Navigate to the login page">Log in here</a></p>
 </section>
