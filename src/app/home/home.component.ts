@@ -14,5 +14,4 @@ export class HomeComponent {
   constructor(private routinesService: RoutinesService) {
     this.routines = this.routinesService.getRoutines();
   }
-
 }

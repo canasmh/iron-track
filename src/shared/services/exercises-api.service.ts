@@ -7,33 +7,18 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class ExercisesApiService {
-  private apiUrl = environment.ninjaApiUrl
+  private apiUrl = environment.ninjaApiUrl;
   constructor(private http: HttpClient) { }
 
   getExercises(name: string): Observable<any> {
 
     const headers = new HttpHeaders({
       'X-Api-Key': environment.apiKey
-    })
+    });
 
     const params = new HttpParams()
-      .set('name', name)
+      .set('name', name);
 
-    return this.http.get(this.apiUrl, { headers, params })
+    return this.http.get(this.apiUrl, { headers, params });
   }
 }
-
-// export class AuthService {
-
-  
-
-//   constructor() { }
-
-//   signup(user: User): Observable<any> {
-//     return this.http.post(`${this.apiUrl}/signup`, user)
-//   }
-
-//   login(user: UserCredentials): Observable<any> {
-//     return this.http.post(`${this.apiUrl}/login`, user)
-//   }
-// }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { User, UserCredentials } from '../types/customTypes';
 
 @Injectable({
@@ -13,12 +13,10 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   signup(user: User): Observable<any> {
-    return this.http.post(`${this.apiUrl}/signup`, user)
+    return this.http.post(`${this.apiUrl}/signup`, user);
   }
 
   login(user: UserCredentials): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, user)
+    return this.http.post(`${this.apiUrl}/login`, user);
   }
 }
-
-

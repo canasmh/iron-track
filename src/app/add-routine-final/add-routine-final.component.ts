@@ -20,9 +20,10 @@ export class AddRoutineFinalComponent implements OnInit {
   addRoutine() {
     this.submitted = true;
     this.errorMessage = null;
+
     if (!this.nameRoutineForm.invalid) {
       const name: string = this.nameRoutineForm.value['name'];
-      this.routineService.setRoutineName(name)
+      this.routineService.setRoutineName(name);
       this.routines.addRoutine(this.routineService.getRoutine());
       this.routineService.resetRoutine();
       this.router.navigate(['/home']);
@@ -37,27 +38,27 @@ export class AddRoutineFinalComponent implements OnInit {
   }
 
   constructor(
-    private router: Router, 
-    private routineService: RoutineService, 
+    private router: Router,
+    private routineService: RoutineService,
     private routines: RoutinesService,
-    private errorMessageService: ErrorMessageService,
-    ) {}
+    private errorMessageService: ErrorMessageService
+  ) {}
 
   ngOnInit(): void {
 
     this.nameRoutineForm = new FormGroup({
       name: new FormControl('', [
         Validators.required,
-        Validators.minLength(3),
+        Validators.minLength(3)
       ])
-    })
+    });
 
-    this.nameRoutineForm.valueChanges.subscribe(status => {
+    this.nameRoutineForm.valueChanges.subscribe(() => {
       this.submitted = false;
-    })
+    });
   }
 
-  get name() { return this.nameRoutineForm.controls['name']}
+  get name() { return this.nameRoutineForm.controls['name']; }
 
   getErrorMessage(field: AbstractControl, fieldName: string) {
     this.errorMessage = this.errorMessageService.getErrorMessage(field, fieldName);

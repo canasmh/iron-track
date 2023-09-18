@@ -1,19 +1,18 @@
-import { Injectable } from "@angular/core";
-import { Routine } from "../types/customTypes";
-
+import { Injectable } from '@angular/core';
+import { Routine } from '../types/customTypes';
 
 @Injectable({
-    providedIn: 'root',
+  providedIn: 'root'
 })
 
 export class RoutinesService {
-    private routines: Routine[] = []
+  private routines: Routine[] = [];
 
-    getRoutines() {
-        return this.routines;
-    }
+  getRoutines() {
+    return this.routines;
+  }
 
-    addRoutine(routine: Routine) {
-        this.routines = [...this.routines, routine]
-    }
+  addRoutine(routine: Routine) {
+    this.routines = [...this.routines, routine];
+  }
 }

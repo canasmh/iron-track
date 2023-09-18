@@ -26,13 +26,13 @@ import { RoutineComponent } from './routine/routine.component';
     HomeComponent,
     AddRoutineComponent,
     AddRoutineFinalComponent,
-    RoutineComponent,
+    RoutineComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

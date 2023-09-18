@@ -18,7 +18,6 @@ export class RoutineComponent implements OnInit {
     this.route.params.subscribe(params => {
       const all_routines = this.routinesService.getRoutines();
       this.routine = all_routines.filter(routine => routine.name === params['routine_name'])[0];
-    })
+    });
   }
-
 }

@@ -14,10 +14,10 @@ export class ErrorMessageService {
     lessThanZero: (fieldName: string) => `${fieldName} must be greater than zero`,
     minlength: (fieldName:string, length?: number) => `${fieldName} needs at least ${length} characters`,
     maxlength: (fieldName:string, length?: number) => `${fieldName} needs at least ${length} characters`,
-    passwordMismatch: (fieldName: string) => `Passwords do not match`,
+    passwordMismatch: () => 'Passwords do not match',
     email: (fieldName: string) => `${fieldName} is invalid`,
-    pattern: (fieldName: string) => `${fieldName} is invalid`,
-  }
+    pattern: (fieldName: string) => `${fieldName} is invalid`
+  };
 
   getErrorMessage(field: AbstractControl, fieldName: string): string | null {
     if (field.errors) {
@@ -26,6 +26,7 @@ export class ErrorMessageService {
 
       if (errorMessageFn) {
         const length = field.errors[errorKey]?.requiredLength;
+
         return errorMessageFn(fieldName, length);
       }
     }

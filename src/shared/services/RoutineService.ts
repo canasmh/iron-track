@@ -1,42 +1,41 @@
-import { Injectable } from "@angular/core";
-import { Exercise, Routine } from "../types/customTypes";
-
+import { Injectable } from '@angular/core';
+import { Exercise, Routine } from '../types/customTypes';
 
 @Injectable({
-    providedIn: 'root',
+  providedIn: 'root'
 })
 
 export class RoutineService {
-    private routine: Routine = {
-        name: '',
-        exercises: [],
-    }
+  private routine: Routine = {
+    name: '',
+    exercises: []
+  };
 
-    getExercises() {
-        return this.routine.exercises;
-    }
+  getExercises() {
+    return this.routine.exercises;
+  }
 
-    setExercise(exercise: Exercise) {
-        this.routine.exercises = [...this.routine.exercises, exercise]
-    }
+  setExercise(exercise: Exercise) {
+    this.routine.exercises = [...this.routine.exercises, exercise];
+  }
 
-    setExercises(exercises: Exercise[]) {
-        this.routine.exercises = exercises
-    }
+  setExercises(exercises: Exercise[]) {
+    this.routine.exercises = exercises;
+  }
 
-    getRoutineName() {
-        return this.routine.name;
-    }
+  getRoutineName() {
+    return this.routine.name;
+  }
 
-    setRoutineName(name: string) {
-        this.routine.name = name;
-    }
+  setRoutineName(name: string) {
+    this.routine.name = name;
+  }
 
-    getRoutine() {
-        return this.routine;
-    }
+  getRoutine() {
+    return this.routine;
+  }
 
-    resetRoutine() {
-        this.routine = {name: '', exercises: []}
-    }
+  resetRoutine() {
+    this.routine = { name: '', exercises: [] };
+  }
 }

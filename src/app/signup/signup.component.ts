@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { confirmPasswordValidator } from '../../shared/validators/customValidators';
 import { Router } from '@angular/router';
 import { User } from '../../shared/types/customTypes';
@@ -20,12 +20,13 @@ export class SignupComponent implements OnInit {
   userData: User = {
     name: '',
     email: '',
-    password: '',
+    password: ''
   };
 
   onSubmit() {
     this.submitted = true;
     this.errorMessage = null;
+
     if (!this.signupForm.invalid) {
       this.userData.name = this.signupForm.value.name.trim();
       this.userData.email = this.signupForm.value.email.trim();
@@ -35,25 +36,26 @@ export class SignupComponent implements OnInit {
       this.authService.signup(this.userData).subscribe({
         next: (data) => {
           // this is executed if api call is successfull
-          console.log(data)
-          this.router.navigate(['/home'])
+          console.log(data);
+          this.router.navigate(['/home']);
         },
         error: (e) => {
           // this is where I would handle errors
-          console.error(e)},
-      })
+          console.error(e);
+        }
+      });
     } else {
       if (this.name.invalid) {
         this.getErrorMessage(this.name, 'Name');
       } else if (this.email.invalid) {
         this.getErrorMessage(this.email, 'Email');
       } else if (this.password.invalid) {
-        this.getErrorMessage(this.password, 'Password')
+        this.getErrorMessage(this.password, 'Password');
       } else if (this.confirmPassword.invalid) {
-        this.getErrorMessage(this.confirmPassword, 'Confirm Password')
+        this.getErrorMessage(this.confirmPassword, 'Confirm Password');
       } else {
-        console.error('Uncaught Validation Error')
-        this.errorMessage = 'Uncaught Validation Error'
+        console.error('Uncaught Validation Error');
+        this.errorMessage = 'Uncaught Validation Error';
       }
     }
   }
@@ -76,26 +78,26 @@ export class SignupComponent implements OnInit {
       password: new FormControl('', [
         Validators.required,
         Validators.minLength(5),
-        Validators.maxLength(72),
+        Validators.maxLength(72)
       ]),
       confirmPassword: new FormControl('', [
         Validators.required,
         Validators.minLength(5),
-        Validators.maxLength(72),
+        Validators.maxLength(72)
       ])
-    }, {validators: confirmPasswordValidator});  
+    }, { validators: confirmPasswordValidator });
 
-    this.signupForm.valueChanges.subscribe(newStatus => {
+    this.signupForm.valueChanges.subscribe(() => {
       this.submitted = false;
-    })
+    });
   }
 
-  get name() { return this.signupForm.controls['name'] ; }
-  get email() { return this.signupForm.controls['email'] ; }
-  get password() { return this.signupForm.controls['password'] ; }
-  get confirmPassword() { return this.signupForm.controls['confirmPassword'] ; }
+  get name() { return this.signupForm.controls['name']; }
+  get email() { return this.signupForm.controls['email']; }
+  get password() { return this.signupForm.controls['password']; }
+  get confirmPassword() { return this.signupForm.controls['confirmPassword']; }
 
   getErrorMessage(field: AbstractControl, fieldName: string) {
-    this.errorMessage = this.errorMessageservice.getErrorMessage(field, fieldName)
+    this.errorMessage = this.errorMessageservice.getErrorMessage(field, fieldName);
   }
 }
