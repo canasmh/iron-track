@@ -25,6 +25,7 @@ export class SignupComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
+    this.errorMessage = null;
     if (!this.signupForm.invalid) {
       this.userData.name = this.signupForm.value.name.trim();
       this.userData.email = this.signupForm.value.email.trim();
@@ -51,7 +52,8 @@ export class SignupComponent implements OnInit {
       } else if (this.confirmPassword.invalid) {
         this.getErrorMessage(this.confirmPassword, 'Confirm Password')
       } else {
-        console.error('Unknown Error')
+        console.error('Uncaught Validation Error')
+        this.errorMessage = 'Uncaught Validation Error'
       }
     }
   }

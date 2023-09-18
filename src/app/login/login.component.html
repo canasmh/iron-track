@@ -10,8 +10,8 @@
         </div>
         <button class="form__button">Log In</button>
     </form>
-    <div *ngIf="submitted && loginForm.invalid" class="error" aria-live="assertive"> 
-        <p class="error__message">{{ getErrorMessage(email, password)}}</p> 
+    <div *ngIf="submitted && errorMessage" class="error" aria-live="assertive"> 
+        <p class="error__message">{{ errorMessage }}</p> 
     </div>
     <p class="login__redirect">Don't have an account yet? <br /> <a routerLink="/signup" aria-label="Go to sign up page">Create an account</a></p>
 </section>
