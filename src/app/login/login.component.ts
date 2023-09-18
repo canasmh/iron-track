@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
 
   submitted: boolean = false;
   loginForm!: FormGroup;
+  errorMessage?: string | null;
   userCredentials: UserCredentials = {
     email: '',
     password: '',
@@ -22,8 +23,8 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     if (!this.loginForm.invalid ) {
-      this.userCredentials.email = this.loginForm.value.email
-      this.userCredentials.password = this.loginForm.value.password
+      this.userCredentials.email = this.loginForm.value.email.trim()
+      this.userCredentials.password = this.loginForm.value.password.trim()
       this.authService.login(this.userCredentials).subscribe({
         next: (data) => {
           // this is executed if api call is successfull

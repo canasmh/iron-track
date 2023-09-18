@@ -26,9 +26,9 @@ export class SignupComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     if (!this.signupForm.invalid) {
-      this.userData.name = this.signupForm.value.name;
-      this.userData.email = this.signupForm.value.email;
-      this.userData.password = this.signupForm.value.password;
+      this.userData.name = this.signupForm.value.name.trim();
+      this.userData.email = this.signupForm.value.email.trim();
+      this.userData.password = this.signupForm.value.password.trim();
 
       // Call the signup method from the AuthService
       this.authService.signup(this.userData).subscribe({
