@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { RoutineService } from '../shared/services/RoutineService';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { RoutinesService } from '../shared/services/RoutinesService';
+import { ErrorMessageService } from '../shared/services/error-message.service';
 
 @Component({
   selector: 'app-add-routine-final',
@@ -14,20 +15,33 @@ export class AddRoutineFinalComponent implements OnInit {
 
   nameRoutineForm!: FormGroup;
   submitted: boolean = false;
+  errorMessage?: string | null;
 
   addRoutine() {
     this.submitted = true;
-
+    this.errorMessage = null;
     if (!this.nameRoutineForm.invalid) {
       const name: string = this.nameRoutineForm.value['name'];
       this.routineService.setRoutineName(name)
       this.routines.addRoutine(this.routineService.getRoutine());
       this.routineService.resetRoutine();
       this.router.navigate(['/home']);
+    } else {
+      if (this.name.invalid) {
+        this.getErrorMessage(this.name, 'Name');
+      } else {
+        console.error('Uncaught Validation Error');
+        this.errorMessage = 'Uncaught Validation Error';
+      }
     }
   }
 
-  constructor(private router: Router, private routineService: RoutineService, private routines: RoutinesService) {}
+  constructor(
+    private router: Router, 
+    private routineService: RoutineService, 
+    private routines: RoutinesService,
+    private errorMessageService: ErrorMessageService,
+    ) {}
 
   ngOnInit(): void {
 
@@ -45,14 +59,7 @@ export class AddRoutineFinalComponent implements OnInit {
 
   get name() { return this.nameRoutineForm.controls['name']}
 
-  getErrorMessage(name: AbstractControl) {
-    console.log(name?.errors?.['required']);
-    if (name?.errors?.['required']) {
-      return 'A name is required';
-    } else if (name?.errors?.['minlength']) {
-      return 'Name must be greater than 2 characters';
-    } else {
-      return null;
-    }
+  getErrorMessage(field: AbstractControl, fieldName: string) {
+    this.errorMessage = this.errorMessageService.getErrorMessage(field, fieldName);
   }
 }

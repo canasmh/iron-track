@@ -10,7 +10,7 @@
             >
         <button class="form__button">Create Routine</button>
     </form>
-    <div *ngIf="submitted && nameRoutineForm.invalid" class="error" aria-live="assertive">
-        <p class="error__message">{{ getErrorMessage(name) }}</p>
+    <div *ngIf="submitted && errorMessage" class="error" aria-live="assertive">
+        <p class="error__message">{{ errorMessage }}</p>
     </div>
 </section>
