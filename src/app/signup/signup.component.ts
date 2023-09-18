@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { confirmPasswordValidator } from '../shared/validators/customValidators';
+import { confirmPasswordValidator } from '../../shared/validators/customValidators';
 import { Router } from '@angular/router';
-import { User } from '../shared/types/customTypes';
-import { AuthService } from '../shared/services/auth.service';
-import { ErrorMessageService } from '../shared/services/error-message.service';
+import { User } from '../../shared/types/customTypes';
+import { AuthService } from '../../shared/services/auth.service';
+import { ErrorMessageService } from '../../shared/services/error-message.service';
 
 @Component({
   selector: 'app-signup',

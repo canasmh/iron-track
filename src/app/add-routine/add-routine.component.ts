@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { checkIfNumber, isGreaterThanZero } from '../shared/validators/customValidators';
-import { Exercise, ExerciseApi } from '../shared/types/customTypes';
-import { RoutineService } from '../shared/services/RoutineService';
-import { ExercisesApiService } from '../shared/services/exercises-api.service';
+import { checkIfNumber, isGreaterThanZero } from '../../shared/validators/customValidators';
+import { Exercise, ExerciseApi } from '../../shared/types/customTypes';
+import { RoutineService } from '../../shared/services/RoutineService';
+import { ExercisesApiService } from '../../shared/services/exercises-api.service';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { ErrorMessageService } from '../shared/services/error-message.service';
+import { ErrorMessageService } from '../../shared/services/error-message.service';
 
 @Component({
   selector: 'app-add-routine',

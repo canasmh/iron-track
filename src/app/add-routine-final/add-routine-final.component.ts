@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { RoutineService } from '../shared/services/RoutineService';
+import { RoutineService } from '../../shared/services/RoutineService';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
-import { RoutinesService } from '../shared/services/RoutinesService';
-import { ErrorMessageService } from '../shared/services/error-message.service';
+import { RoutinesService } from '../../shared/services/RoutinesService';
+import { ErrorMessageService } from '../../shared/services/error-message.service';
 
 @Component({
   selector: 'app-add-routine-final',
