@@ -40,15 +40,27 @@ export class AddRoutineComponent implements OnInit {
 
   addExercise() {
     this.submittedExercise = true
+    this.errorMessage = null;
 
-    if (!this.addExerciseForm.invalid) {
-      if (!this.workoutInputChanged) {
-        this.exercises.push(this.addExerciseForm.value);
-        this.addExerciseForm.reset();
-        this.addExerciseForm.patchValue(this.initExercise);
-        this.workoutInputChanged = true;
-      } else {
-        this.errorMessage = 'Invalid workout selected'
+    if (this.workoutInputChanged) {
+
+      this.errorMessage = 'Invalid workout selected'
+
+    } else if (!this.addExerciseForm.invalid) {
+
+      this.exercises.push(this.addExerciseForm.value);
+      this.addExerciseForm.reset();
+      this.addExerciseForm.patchValue(this.initExercise);
+      this.workoutInputChanged = true;
+
+    } else {
+
+      if (this.weight.invalid) {
+        this.setErrorMessage(this.weight, 'Weight');
+      } else if (this.sets.invalid) {
+        this.setErrorMessage(this.sets, 'Sets');
+      } else if (this.quantity.invalid) {
+        this.setErrorMessage(this.quantity, this.reps ? 'Reps' : 'Duration');
       }
     }
   }
@@ -125,26 +137,8 @@ export class AddRoutineComponent implements OnInit {
       });
 
     this.addExerciseForm.valueChanges.subscribe(status => {
-      if (status.unit === 'rep') { this.reps = true}
-      else {this.reps = false}
+      this.reps = status.unit === 'rep'
       this.submittedExercise = false;
-      this.errorMessage = null;
-    });
-
-    this.workout.valueChanges.subscribe(() => {
-      this.setErrorMessage(this.workout, 'Workout');
-    });
-  
-    this.weight.valueChanges.subscribe(() => {
-      this.setErrorMessage(this.weight, 'Weight');
-    });
-  
-    this.sets.valueChanges.subscribe(() => {
-      this.setErrorMessage(this.sets, 'Sets');
-    });
-  
-    this.quantity.valueChanges.subscribe(() => {
-      this.setErrorMessage(this.quantity, this.reps ? 'Reps' : 'Duration');
     });
   }
 
@@ -154,6 +148,6 @@ export class AddRoutineComponent implements OnInit {
   get quantity() { return this.addExerciseForm.controls['quantity']};
 
   setErrorMessage(field: AbstractControl, fieldName: string) {
-    this.errorMessage = !this.errorMessage ? this.errorMessageService.getErrorMessage(field, fieldName) : this.errorMessage;
+    this.errorMessage = this.errorMessageService.getErrorMessage(field, fieldName);
   }
 }
