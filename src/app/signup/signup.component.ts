@@ -4,6 +4,7 @@ import { confirmPasswordValidator } from '../shared/validators/customValidators'
 import { Router } from '@angular/router';
 import { User } from '../shared/types/customTypes';
 import { AuthService } from '../shared/services/auth.service';
+import { ErrorMessageService } from '../shared/services/error-message.service';
 
 @Component({
   selector: 'app-signup',
@@ -15,6 +16,7 @@ export class SignupComponent implements OnInit {
 
   submitted: boolean = false;
   signupForm!: FormGroup;
+  errorMessage?: string | null;
   userData: User = {
     name: '',
     email: '',
@@ -39,10 +41,22 @@ export class SignupComponent implements OnInit {
           // this is where I would handle errors
           console.error(e)},
       })
+    } else {
+      if (this.name.invalid) {
+        this.getErrorMessage(this.name, 'Name');
+      } else if (this.email.invalid) {
+        this.getErrorMessage(this.email, 'Email');
+      } else if (this.password.invalid) {
+        this.getErrorMessage(this.password, 'Password')
+      } else if (this.confirmPassword.invalid) {
+        this.getErrorMessage(this.confirmPassword, 'Confirm Password')
+      } else {
+        console.error('Unknown Error')
+      }
     }
   }
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService, private errorMessageservice: ErrorMessageService) {}
 
   ngOnInit(): void {
 
@@ -79,30 +93,7 @@ export class SignupComponent implements OnInit {
   get password() { return this.signupForm.controls['password'] ; }
   get confirmPassword() { return this.signupForm.controls['confirmPassword'] ; }
 
-  getErrorMessage(name: AbstractControl, email: AbstractControl, password: AbstractControl, confirmPassword: AbstractControl) {
-    if (name?.errors?.['required']) {
-      return 'Name is required';
-    } else if (name?.errors?.['minlength']) {
-      return 'Name needs at leat 3 characters';
-    } else if (name?.errors?.['maxlength']) {
-      return 'Name exceeds 18 characters'
-    } else if (email?.errors?.['required']) {
-      return 'Email is required';
-    } else if (email?.errors?.['email'] || email?.errors?.['pattern']) {
-      return 'Email is invalid';
-    }  else if (password?.errors?.['required']) {
-      return 'Password is required';
-    } else if (password?.errors?.['minlength']) {
-      return 'Password needs at least 5 characters';
-    } else if (password?.errors?.['maxlength']) {
-      return 'Password exceeds 72 characters';
-    } else if (confirmPassword?.errors?.['required']) {
-      return 'Please confirm password';
-    } else if (confirmPassword?.errors?.['passwordMismatch']) {
-      return 'Passwords do not match';
-    } else {
-      console.log(confirmPassword?.errors)
-      return '';
-    }
+  getErrorMessage(field: AbstractControl, fieldName: string) {
+    this.errorMessage = this.errorMessageservice.getErrorMessage(field, fieldName)
   }
 }
