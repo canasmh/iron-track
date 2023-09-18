@@ -22,14 +22,14 @@ export class AddRoutineComponent implements OnInit {
   availableExercises: string[] = [];
   workoutInputChanged = true;
   errorMessage?: string | null;
+  weightUnit: string = 'lbs';
 
   initExercise: Exercise = {
-    workout: '',
+    name: '',
     weight: '',
-    weightUnit: 'lbs',
     sets: '',
     quantity: '',
-    unit: 'rep'
+    quantityUnit: 'rep'
   };
 
   exercises: Exercise[] = [];
@@ -68,9 +68,9 @@ export class AddRoutineComponent implements OnInit {
   }
 
   searchExercises() {
-    const exerciseName = this.addExerciseForm.value.workout;
+    const exerciseName = this.addExerciseForm.value.name;
 
-    if (this.addExerciseForm.controls['workout'].dirty) {
+    if (this.addExerciseForm.controls['name'].dirty) {
       this.workoutInputChanged = true;
     }
 
@@ -80,8 +80,8 @@ export class AddRoutineComponent implements OnInit {
   }
 
   selectExercise(name: string) {
-    this.addExerciseForm.controls['workout'].setValue(name);
-    this.addExerciseForm.controls['workout'].markAsPristine();
+    this.addExerciseForm.controls['name'].setValue(name);
+    this.addExerciseForm.controls['name'].markAsPristine();
     this.availableExercises = [];
     this.workoutInputChanged = false;
   }
@@ -96,7 +96,7 @@ export class AddRoutineComponent implements OnInit {
   ngOnInit(): void {
 
     this.addExerciseForm = new FormGroup({
-      workout: new FormControl('', [
+      name: new FormControl('', [
         Validators.required
       ]),
       weight: new FormControl('', [
@@ -136,7 +136,7 @@ export class AddRoutineComponent implements OnInit {
     });
   }
 
-  get workout() { return this.addExerciseForm.controls['workout']; }
+  get name() { return this.addExerciseForm.controls['name']; }
   get weight() { return this.addExerciseForm.controls['weight']; }
   get sets() { return this.addExerciseForm.controls['sets']; }
   get quantity() { return this.addExerciseForm.controls['quantity']; }

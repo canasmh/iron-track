@@ -3,11 +3,11 @@
         <h2 class="routine__heading">{{ routine?.name }}</h2>
         <div class="routine__grid">
             <div class="routine__grid--data" *ngFor="for let exercise of routine?.exercises">
-                <h3 class="routine__grid--main-heading">{{exercise.workout}}</h3>
+                <h3 class="routine__grid--main-heading">{{exercise.name}}</h3>
                 <h4 class="routine__grid--sub-heading">Weight</h4>
                 <h4 class="routine__grid--sub-heading">Sets</h4>
-                <h4 class="routine__grid--sub-heading">{{exercise.unit}}</h4>
-                <p class="routine__grid--text">{{exercise.weight}} {{exercise.weightUnit}}</p>
+                <h4 class="routine__grid--sub-heading">{{exercise.quantityUnit}}</h4>
+                <p class="routine__grid--text">{{exercise.weight}} lbs</p>
                 <p class="routine__grid--text">{{exercise.sets}}</p>
                 <p class="routine__grid--text">{{exercise.quantity}}</p>
             </div>
