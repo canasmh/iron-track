@@ -22,6 +22,7 @@ export class AddRoutineComponent implements OnInit {
   availableExercises: string[] = [];
   workoutInputChanged = true;
   errorMessage?: string | null;
+  successMessage: string | null = null;
   weightUnit: string = 'lbs';
 
   initExercise: Exercise = {
@@ -40,14 +41,17 @@ export class AddRoutineComponent implements OnInit {
   addExercise() {
     this.submittedExercise = true;
     this.errorMessage = null;
+    this.successMessage = null;
 
     if (this.workoutInputChanged) {
       this.errorMessage = 'Invalid workout selected';
     } else if (!this.addExerciseForm.invalid) {
       this.exercises.push(this.addExerciseForm.value);
-      this.addExerciseForm.reset();
       this.addExerciseForm.patchValue(this.initExercise);
+      this.successMessage = 'Exercise successfully added';
+
       this.workoutInputChanged = true;
+
     } else {
       if (this.weight.invalid) {
         this.setErrorMessage(this.weight, 'Weight');
@@ -113,7 +117,7 @@ export class AddRoutineComponent implements OnInit {
         checkIfNumber(),
         isGreaterThanZero()
       ]),
-      unit: new FormControl('rep', [
+      quantityUnit: new FormControl('rep', [
         Validators.required
       ])
     });
@@ -131,8 +135,9 @@ export class AddRoutineComponent implements OnInit {
       });
 
     this.addExerciseForm.valueChanges.subscribe(status => {
-      this.reps = status.unit === 'rep';
+      this.reps = status.quantityUnit === 'rep';
       this.submittedExercise = false;
+      this.successMessage = null;
     });
   }
 
