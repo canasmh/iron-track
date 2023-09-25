@@ -82,4 +82,8 @@
         <p class="error__message">{{ errorMessage }}</p>
     </div>
 
+    <div *ngIf="successMessage" class="success" aria-live="assertive">
+      <p class="success__message">{{ successMessage }}</p>
+    </div>
+
 </section>
