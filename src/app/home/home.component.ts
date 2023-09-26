@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Routine } from '../../shared/types/customTypes';
-import { RoutinesService } from '../../shared/services/RoutinesService';
+import { RoutinesService } from '../../shared/services/routines.service';
 
 @Component({
   selector: 'app-home',
