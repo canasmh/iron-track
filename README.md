@@ -16,12 +16,15 @@ There are some variables we want to keep secret, such as our api-ninjas API key!
 $ cp src/environments/environment.ts src/enviornments/environment.development.ts
 ```
 
-Be sure to set `production=false`. Once you're environment variables are set up, run the application using the following command:
+Be sure to set `production=false`. Once you're environment variables are set up, you are ready to run the application.
 
 # Running the Application
 
+To run the application, use the command
 ```
-$ ng serve --configuration development
+$ npm run dev
 ```
 
-You should now be able to visit `localhost:4200` and see the application running
+This will set up the proxy so that calls made to `/api/<endpoint>` redirect to `http:<serverurl>/<endpoint>`. It also replaces every instance of `environment.ts` with `environment.development.ts`.
+
+Visit `localhost:4200` to see the application live!
