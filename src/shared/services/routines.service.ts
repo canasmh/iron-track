@@ -8,7 +8,6 @@ import { HttpClient } from '@angular/common/http';
 
 export class RoutinesService {
   private routines: Routine[] = [];
-  private apiUrl: string = 'http://localhost:8080';
 
   constructor(private http: HttpClient) { }
 
@@ -17,7 +16,7 @@ export class RoutinesService {
   }
 
   retrieveRoutines() {
-    return this.http.get(`${this.apiUrl}/home`);
+    return this.http.get('/api/home');
   }
 
   addRoutine(routine: Routine) {

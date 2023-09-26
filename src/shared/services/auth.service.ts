@@ -8,15 +8,13 @@ import { User, UserCredentials } from '../types/customTypes';
 })
 export class AuthService {
 
-  private apiUrl = 'http://localhost:8080';
-
   constructor(private http: HttpClient) { }
 
   signup(user: User): Observable<any> {
-    return this.http.post(`${this.apiUrl}/signup`, user);
+    return this.http.post('/api/signup', user);
   }
 
   login(user: UserCredentials): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, user);
+    return this.http.post('/api/login', user);
   }
 }

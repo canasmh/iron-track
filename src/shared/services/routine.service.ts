@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class RoutineService {
-  private apiUrl = 'http://localhost:8080';
+
   private routine: Routine = {
     name: '',
     exercises: []
@@ -40,7 +40,7 @@ export class RoutineService {
   }
 
   createRoutine() {
-    return this.http.post(`${this.apiUrl}/createRoutine`, this.routine);
+    return this.http.post('/api/createRoutine', this.routine);
   }
 
   resetRoutine() {
