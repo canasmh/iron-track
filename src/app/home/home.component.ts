@@ -12,6 +12,15 @@ export class HomeComponent {
   routines: Routine[];
 
   constructor(private routinesService: RoutinesService) {
+    this.routinesService.retrieveRoutines().subscribe({
+      next: (data) => {
+        console.log(data);
+      },
+      error: (e) => {
+        console.error(e);
+      }
+    });
+
     this.routines = this.routinesService.getRoutines();
   }
 }
