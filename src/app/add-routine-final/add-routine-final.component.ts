@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { RoutineService } from '../../shared/services/RoutineService';
+import { RoutineService } from '../../shared/services/routine.service';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
-import { RoutinesService } from '../../shared/services/RoutinesService';
+import { RoutinesService } from '../../shared/services/routines.service';
 import { ErrorMessageService } from '../../shared/services/error-message.service';
 
 @Component({
@@ -24,9 +24,18 @@ export class AddRoutineFinalComponent implements OnInit {
     if (!this.nameRoutineForm.invalid) {
       const name: string = this.nameRoutineForm.value['name'];
       this.routineService.setRoutineName(name);
-      this.routines.addRoutine(this.routineService.getRoutine());
-      this.routineService.resetRoutine();
-      this.router.navigate(['/home']);
+      this.routineService.createRoutine().subscribe({
+        next: (data) => {
+          console.log(data);
+          this.routines.addRoutine(this.routineService.getRoutine());
+          this.routineService.resetRoutine();
+          this.router.navigate(['/home']);
+        },
+        error: (e) => {
+          console.error(e);
+          this.router.navigate(['/home']);
+        }
+      });
     } else {
       if (this.name.invalid) {
         this.getErrorMessage(this.name, 'Name');
