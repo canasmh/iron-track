@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { RoutinesService } from '../../shared/services/RoutinesService';
+import { RoutinesService } from '../../shared/services/routines.service';
 import { Routine } from '../../shared/types/customTypes';
 
 @Component({

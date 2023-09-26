@@ -3,7 +3,7 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { Router } from '@angular/router';
 import { checkIfNumber, isGreaterThanZero } from '../../shared/validators/customValidators';
 import { Exercise, ExerciseApi } from '../../shared/types/customTypes';
-import { RoutineService } from '../../shared/services/RoutineService';
+import { RoutineService } from '../../shared/services/routine.service';
 import { ExercisesApiService } from '../../shared/services/exercises-api.service';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { Subject } from 'rxjs';
