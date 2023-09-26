@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Exercise, Routine } from '../types/customTypes';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class RoutineService {
+  private apiUrl = 'http://localhost:8080';
   private routine: Routine = {
     name: '',
     exercises: []
   };
+
+  constructor(private http: HttpClient) { }
 
   getExercises() {
     return this.routine.exercises;
@@ -33,6 +37,10 @@ export class RoutineService {
 
   getRoutine() {
     return this.routine;
+  }
+
+  createRoutine() {
+    return this.http.post(`${this.apiUrl}/createRoutine`, this.routine);
   }
 
   resetRoutine() {
