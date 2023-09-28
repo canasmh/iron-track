@@ -15,6 +15,6 @@ export class AuthService {
   }
 
   login(user: UserCredentials): Observable<any> {
-    return this.http.post('/api/login', user);
+    return this.http.post<UserCredentials>('/api/login', user, { responseType: 'json', observe: 'body' });
   }
 }
