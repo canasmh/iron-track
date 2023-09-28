@@ -65,12 +65,16 @@
         },
         "serve": {
           "builder": "@ngx-env/builder:dev-server",
+          "options": {
+            "proxyConfig": "proxy.conf.js"
+          },
           "configurations": {
             "production": {
               "browserTarget": "iron-track:build:production"
             },
             "development": {
-              "browserTarget": "iron-track:build:development"
+              "browserTarget": "iron-track:build:development",
+              "proxyConfig": "proxy.conf.js"
             }
           },
           "defaultConfiguration": "development"
