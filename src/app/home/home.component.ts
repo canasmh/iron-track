@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Routine } from '../../shared/types/customTypes';
+import { Routine } from 'src/shared/types/customTypes';
 import { RoutinesService } from '../../shared/services/routines.service';
 
 @Component({
@@ -12,6 +12,7 @@ export class HomeComponent {
   routines: Routine[];
 
   constructor(private routinesService: RoutinesService) {
+    this.routines = this.routinesService.getRoutines();
     this.routinesService.retrieveRoutines().subscribe({
       next: (data) => {
         console.log(data);
@@ -20,7 +21,5 @@ export class HomeComponent {
         console.error(e);
       }
     });
-
-    this.routines = this.routinesService.getRoutines();
   }
 }

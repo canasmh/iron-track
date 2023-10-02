@@ -27,13 +27,11 @@ export class AddRoutineFinalComponent implements OnInit {
       this.routineService.createRoutine().subscribe({
         next: (data) => {
           console.log(data);
-          this.routines.addRoutine(this.routineService.getRoutine());
           this.routineService.resetRoutine();
           this.router.navigate(['/home']);
         },
         error: (e) => {
           console.error(e);
-          this.router.navigate(['/home']);
         }
       });
     } else {
