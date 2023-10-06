@@ -9,8 +9,30 @@ import { HttpClient } from '@angular/common/http';
 export class RoutineService {
 
   private routine: Routine = {
-    name: '',
-    exercises: []
+    name: 'Chest Day',
+    exercises: [
+      {
+        name: 'Bench Press',
+        weight: '150 lbs',
+        sets: '3',
+        quantity: '30',
+        quantityUnit: 'sec'
+      },
+      {
+        name: 'Pec Fly',
+        weight: '150 lbs',
+        sets: '3',
+        quantity: '30',
+        quantityUnit: 'sec'
+      },
+      {
+        name: 'Incline Dumbell Press',
+        weight: '150 lbs',
+        sets: '3',
+        quantity: '30',
+        quantityUnit: 'sec'
+      }
+    ]
   };
 
   constructor(private http: HttpClient) { }

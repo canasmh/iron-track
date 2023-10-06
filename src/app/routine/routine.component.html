@@ -1,7 +1,51 @@
 <section class="routine">
     <div clas="routine__container">
         <h2 class="routine__heading">{{ routine?.name }}</h2>
-        <div class="routine__grid">
+        <div class="exercise__container">
+          <div class="exercise__header">
+            <h4 class="exercise__header--name">Bench Press</h4>
+            <i class="fa-regular fa-chevron-down exercise__header--icon"></i>
+          </div>
+          <table class="exercise__table">
+            <thead>
+              <tr>
+                <th class="exercise__table--heading">Sets</th>
+                <th class="exercise__table--heading">Duration</th>
+                <th class="exercise__table--heading">Weight</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>3</td>
+                <td>30 sec</td>
+                <td>150 lbs</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="exercise__container">
+          <div class="exercise__header">
+            <h4 class="exercise__header--name">Bench Press</h4>
+            <i class="fa-regular fa-chevron-down exercise__header--icon"></i>
+          </div>
+          <table class="exercise__table">
+            <thead class="exercise__table--heading">
+              <tr>
+                <th>Sets</th>
+                <th>Duration</th>
+                <th>Weight</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>3</td>
+                <td>30 sec</td>
+                <td>150 lbs</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- <div class="routine__grid">
             <div class="routine__grid--data" *ngFor="for let exercise of routine?.exercises">
                 <h3 class="routine__grid--main-heading">{{exercise.name}}</h3>
                 <h4 class="routine__grid--sub-heading">Weight</h4>
@@ -11,7 +55,7 @@
                 <p class="routine__grid--text">{{exercise.sets}}</p>
                 <p class="routine__grid--text">{{exercise.quantity}}</p>
             </div>
-        </div>
+        </div> -->
         <a href="#" class="btn btn__ghost">Edit Routine</a>
         <a href="#" class="btn btn__fill">Begin Workout</a>
     </div>
