@@ -11,7 +11,7 @@ export class RoutinesService {
   private routines: Routine[];
 
   constructor(private http: HttpClient, private routineService: RoutineService) {
-    this.routines = [routineService.getRoutine()];
+    this.routines = [];
   }
 
   getRoutines() {
