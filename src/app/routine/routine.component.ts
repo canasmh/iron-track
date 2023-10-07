@@ -8,11 +8,21 @@ import { Routine } from '../../shared/types/customTypes';
   templateUrl: './routine.component.html',
   styleUrls: ['./routine.component.scss']
 })
+
 export class RoutineComponent implements OnInit {
 
-  routine?: Routine;
+  routine: Routine;
+  expand: boolean[];
 
-  constructor(private route: ActivatedRoute, private routinesService: RoutinesService) {}
+  handleExpand(i: number) {
+    this.expand[i] = !this.expand[i];
+  }
+
+  constructor(private route: ActivatedRoute, private routinesService: RoutinesService) {
+    const routineName = this.route.snapshot.params['routine_name'];
+    this.routine = this.routinesService.getRoutines().filter(routine => routine.name === routineName)[0];
+    this.expand = this.routine.exercises.map(() => false);
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {

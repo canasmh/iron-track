@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Routine } from '../types/customTypes';
 import { HttpClient } from '@angular/common/http';
+import { RoutineService } from './routine.service';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class RoutinesService {
-  private routines: Routine[] = [];
+  private routines: Routine[];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private routineService: RoutineService) {
+    this.routines = [routineService.getRoutine()];
+  }
 
   getRoutines() {
     return this.routines;

@@ -3,76 +3,116 @@
 @import '../../scss//custom-theme.scss';
 
 .routine {
-    height: 75vh;
-    max-height: 75vh;
-    overflow-y: scroll;
-    padding-top: $xl;
-    padding-bottom: $xl;
-    text-transform: uppercase;
+  height: 75vh;
+  max-height: 75vh;
+  overflow-y: scroll;
+  padding-top: $xl;
+  padding-bottom: $xl;
+  text-transform: uppercase;
 
-    &__container {
-        max-height: 75vh;
+  &__container {
+      max-height: 75vh;
 
-        display: flex;
-        flex-flow: column nowrap;
-        justify-content: center;
-    }
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+  }
 
-    &__heading {
-      letter-spacing: 3px;
-      text-indent: 3px;
-      font-weight: 200;
-      margin-bottom: $xl;
+  &__heading {
+    letter-spacing: 3px;
+    text-indent: 3px;
+    font-weight: 200;
+    margin-bottom: $xl;
 
-    }
-
-    &__grid {
-        display: grid;
-        justify-content: center;
-        width: 100%;
-        grid-template-columns: 1fr;
-        letter-spacing: 1px;
-        text-indent: 1px;
-        row-gap: $mdlg;
-        margin-bottom: $xl;
-
-
-        &--main-heading {
-            grid-column: span 3;
-            // border: 1px solid white;
-            font-size: 2.4rem;
-            margin-bottom: $smmd;
-        }
-
-        &--sub-heading {
-            border: 1px solid white;
-            padding: $sm;
-            // border-top: none;
-            font-size: 1.8rem;
-        }
-
-        &--text {
-            border: 1px solid white;
-            padding: $xs;
-            border-top: none;
-            font-size: 1.8rem;
-        }
-
-        &--data {
-            width: 100%;
-            display: grid;
-            justify-content: center;
-            grid-template-columns: repeat(3, 1fr);
-        }
-    }
+  }
 }
 
+.exercise {
+
+  &__container {
+    margin-bottom: $lg;
+    &:last-of-type {
+      margin-bottom: $xl;
+    }
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid mat.get-color-from-palette($iron-track-accent, 'default');
+    padding: $sm $md;
+    padding-left: 0;
+
+    &--content {
+      display: flex;
+      align-items: center;
+
+    }
+
+    &--name {
+      white-space: nowrap;
+      overflow-x: auto;
+      max-width: 60vw;
+
+      &-icon {
+        margin-right: $md;
+        font-size: 2rem;
+        cursor: pointer;
+      }
+    }
+
+    &--icon {
+      transition: transform 0.2s ease;
+      cursor: pointer;
+    }
+  }
+
+  &__content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease;
+
+  }
+  &__table {
+    width: 100%;
+    border: 1px solid mat.get-color-from-palette($iron-track-accent, 'default');
+    border-top: none;
+    border-collapse: collapse;
+    letter-spacing: 1px;
+    text-indent: 1px;
+    transform-origin: top;
+
+
+    &--head-data {
+      padding: $sm 0;
+    }
+
+    &--body {
+      background-color: mat.get-color-from-palette($iron-track-accent, 'default');
+      color: mat.get-color-from-palette($iron-track-dark-primary, 'default');
+      &-data {
+        padding: $sm 0;
+      }
+    }
+  }
+}
+
+.rotate {
+  transform: rotate(-180deg);
+}
+
+.expand {
+  max-height: 10rem;
+}
 .btn__ghost {
     border: 1px solid mat.get-color-from-palette($iron-track-dark-primary, 'default-contrast');
     color: mat.get-color-from-palette($iron-track-dark-primary, 'default-contrast');
     margin-bottom: $md;
+    border-radius: 8px;
 }
 .btn__fill {
     background-color: #008000;
     border: 1px solid #008000;
+    border-radius: 8px;
 }
