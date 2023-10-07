@@ -30,9 +30,9 @@
 .exercise {
 
   &__container {
-    margin-bottom: $md;
+    margin-bottom: $lg;
     &:last-of-type {
-      margin-bottom: $lg;
+      margin-bottom: $xl;
     }
   }
 
@@ -42,27 +42,77 @@
     align-items: center;
     border-bottom: 1px solid mat.get-color-from-palette($iron-track-accent, 'default');
     padding: $sm $md;
+    padding-left: 0;
+
+    &--content {
+      display: flex;
+      align-items: center;
+
+    }
+
+    &--name {
+      white-space: nowrap;
+      overflow-x: auto;
+      max-width: 60vw;
+
+      &-icon {
+        margin-right: $md;
+        font-size: 2rem;
+        cursor: pointer;
+      }
+    }
+
+    &--icon {
+      transition: transform 0.2s ease;
+      cursor: pointer;
+    }
   }
 
+  &__content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease;
+
+  }
   &__table {
     width: 100%;
     border: 1px solid mat.get-color-from-palette($iron-track-accent, 'default');
     border-top: none;
-    transform: scaleY(0);
-    display: none;
+    border-collapse: collapse;
+    letter-spacing: 1px;
+    text-indent: 1px;
+    transform-origin: top;
 
-    &--heading {
+
+    &--head-data {
       padding: $sm 0;
+    }
+
+    &--body {
+      background-color: mat.get-color-from-palette($iron-track-accent, 'default');
+      color: mat.get-color-from-palette($iron-track-dark-primary, 'default');
+      &-data {
+        padding: $sm 0;
+      }
     }
   }
 }
 
+.rotate {
+  transform: rotate(-180deg);
+}
+
+.expand {
+  max-height: 10rem;
+}
 .btn__ghost {
     border: 1px solid mat.get-color-from-palette($iron-track-dark-primary, 'default-contrast');
     color: mat.get-color-from-palette($iron-track-dark-primary, 'default-contrast');
     margin-bottom: $md;
+    border-radius: 8px;
 }
 .btn__fill {
     background-color: #008000;
     border: 1px solid #008000;
+    border-radius: 8px;
 }

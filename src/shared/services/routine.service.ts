@@ -22,8 +22,8 @@ export class RoutineService {
         name: 'Pec Fly',
         weight: '150 lbs',
         sets: '3',
-        quantity: '30',
-        quantityUnit: 'sec'
+        quantity: '10',
+        quantityUnit: 'reps'
       },
       {
         name: 'Incline Dumbell Press',

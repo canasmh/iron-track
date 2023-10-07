@@ -1,61 +1,41 @@
 <section class="routine">
-    <div clas="routine__container">
-        <h2 class="routine__heading">{{ routine?.name }}</h2>
-        <div class="exercise__container">
+    <div class="routine__container">
+        <h2 class="routine__heading">{{ routine.name }}</h2>
+        <div *ngFor="let exercise of routine.exercises; index as i;" class="exercise__container">
           <div class="exercise__header">
-            <h4 class="exercise__header--name">Bench Press</h4>
-            <i class="fa-regular fa-chevron-down exercise__header--icon"></i>
-          </div>
-          <table class="exercise__table">
-            <thead>
-              <tr>
-                <th class="exercise__table--heading">Sets</th>
-                <th class="exercise__table--heading">Duration</th>
-                <th class="exercise__table--heading">Weight</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>3</td>
-                <td>30 sec</td>
-                <td>150 lbs</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="exercise__container">
-          <div class="exercise__header">
-            <h4 class="exercise__header--name">Bench Press</h4>
-            <i class="fa-regular fa-chevron-down exercise__header--icon"></i>
-          </div>
-          <table class="exercise__table">
-            <thead class="exercise__table--heading">
-              <tr>
-                <th>Sets</th>
-                <th>Duration</th>
-                <th>Weight</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>3</td>
-                <td>30 sec</td>
-                <td>150 lbs</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <!-- <div class="routine__grid">
-            <div class="routine__grid--data" *ngFor="for let exercise of routine?.exercises">
-                <h3 class="routine__grid--main-heading">{{exercise.name}}</h3>
-                <h4 class="routine__grid--sub-heading">Weight</h4>
-                <h4 class="routine__grid--sub-heading">Sets</h4>
-                <h4 class="routine__grid--sub-heading">{{exercise.quantityUnit}}</h4>
-                <p class="routine__grid--text">{{exercise.weight}} lbs</p>
-                <p class="routine__grid--text">{{exercise.sets}}</p>
-                <p class="routine__grid--text">{{exercise.quantity}}</p>
+            <div class="exercise__header--content">
+              <i class="fa-light fa-circle-info exercise__header--name-icon" role="button" tabindex="0"></i>
+              <h4 class="exercise__header--name"> {{ exercise.name }}</h4>
             </div>
-        </div> -->
+            <i
+              class="fa-regular fa-chevron-down exercise__header--icon"
+              [ngClass]="{'rotate' : expand[i]}"
+              (click)="handleExpand(i)"
+              attr.aria-label="{{expand[i] ? 'Collapse' : 'Expand'}} Exercise"
+              tabindex="0"
+              (keydown.enter)="handleExpand(i)"
+              (keydown.space)="handleExpand(i)"
+            ></i>
+          </div>
+          <div class="exercise__content" [ngClass]="{'expand': expand[i]}">
+            <table class="exercise__table">
+              <thead>
+                <tr class="exercise__table--head">
+                  <th class="exercise__table--head-data">Sets</th>
+                  <th class="exercise__table--head-data">{{ exercise.quantityUnit == 'rep' ? 'Reps' : 'Duration' }}</th>
+                  <th class="exercise__table--head-data">Weight</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="exercise__table--body">
+                  <td class="exercise__table--body-data">{{ exercise.sets }}</td>
+                  <td class="exercise__table--body-data">{{ exercise.quantity }} {{ exercise.quantityUnit }}(s)</td>
+                  <td class="exercise__table--body-data">150 lbs</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
         <a href="#" class="btn btn__ghost">Edit Routine</a>
         <a href="#" class="btn btn__fill">Begin Workout</a>
     </div>
