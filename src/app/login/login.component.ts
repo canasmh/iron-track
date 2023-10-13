@@ -32,7 +32,6 @@ export class LoginComponent implements OnInit {
         next: (data) => {
           // this is executed if api call is successfull
           this.authService.addHeader('Authorization', `Bearer ${data.token}`);
-          console.log(this.authService.getHeader());
           localStorage.setItem('token', data.token);
           this.router.navigate(['/home']);
         },
