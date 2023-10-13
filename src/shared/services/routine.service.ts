@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Exercise, Routine } from '../types/customTypes';
+import { Routine } from '../types/Routine';
 import { HttpClient } from '@angular/common/http';
+import { RoutineExercise } from '../types/RoutineExercise';
 
 @Injectable({
   providedIn: 'root'
@@ -8,30 +9,21 @@ import { HttpClient } from '@angular/common/http';
 
 export class RoutineService {
 
-  private routine: Routine = {
-    name: '',
-    exercises: []
-  };
+  private routine: Routine;
 
-  constructor(private http: HttpClient) { }
-
-  getExercises() {
-    return this.routine.exercises;
+  constructor(private http: HttpClient) {
+    this.routine = {
+      name: '',
+      exercises: []
+    };
   }
 
-  setExercise(exercise: Exercise) {
-    this.routine.exercises = [...this.routine.exercises, exercise];
-  }
+  setExercises(exercises: RoutineExercise[]) {
 
-  setExercises(exercises: Exercise[]) {
     this.routine.exercises = exercises;
   }
 
-  getRoutineName() {
-    return this.routine.name;
-  }
-
-  setRoutineName(name: string) {
+  setName(name: string) {
     this.routine.name = name;
   }
 
@@ -39,11 +31,18 @@ export class RoutineService {
     return this.routine;
   }
 
-  createRoutine() {
-    return this.http.post('/api/createRoutine', this.routine);
+  setRoutine(routine: Routine) {
+    this.routine = routine;
   }
 
   resetRoutine() {
-    this.routine = { name: '', exercises: [] };
+    this.routine = {
+      name: '',
+      exercises: []
+    };
+  }
+
+  createRoutine() {
+    return this.http.post('/api/createRoutine', this.routine);
   }
 }

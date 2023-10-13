@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Routine } from '../types/customTypes';
+import { Routine } from '../types/Routine';
 import { HttpClient } from '@angular/common/http';
 import { RoutineService } from './routine.service';
 
@@ -18,11 +18,11 @@ export class RoutinesService {
     return this.routines;
   }
 
-  retrieveRoutines() {
-    return this.http.get('/api/home');
+  setRoutines(routines: Routine[]) {
+    this.routines = routines;
   }
 
-  addRoutine(routine: Routine) {
-    this.routines = [...this.routines, routine];
+  retrieveRoutines() {
+    return this.http.get('/api/home');
   }
 }
