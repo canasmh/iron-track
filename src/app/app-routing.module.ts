@@ -7,15 +7,16 @@ import { HomeComponent } from './home/home.component';
 import { AddRoutineComponent } from './add-routine/add-routine.component';
 import { AddRoutineFinalComponent } from './add-routine-final/add-routine-final.component';
 import { RoutineComponent } from './routine/routine.component';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent, data: { showFooter: false }, title: 'Welcome | Iron Track' },
   { path: 'login', component: LoginComponent, data: { showFooter: false }, title: 'Log In | Iron Track' },
   { path: 'signup', component: SignupComponent, data: { showFooter: false }, title: 'Sign Up | Iron Track' },
-  { path: 'home', component: HomeComponent, title: 'Routines | Iron Track' },
-  { path: 'home/add-routine', component: AddRoutineComponent, title: 'Add Exercises | Iron Track' },
-  { path: 'home/add-routine/final', component: AddRoutineFinalComponent, title: 'Name Routine | Iron Track' },
-  { path: 'home/routine/:routine_name', component: RoutineComponent }
+  { path: 'home', component: HomeComponent, title: 'Routines | Iron Track', canActivate: [AuthGuard] },
+  { path: 'home/add-routine', component: AddRoutineComponent, title: 'Add Exercises | Iron Track', canActivate: [AuthGuard] },
+  { path: 'home/add-routine/final', component: AddRoutineFinalComponent, title: 'Name Routine | Iron Track', canActivate: [AuthGuard] },
+  { path: 'home/routine/:routine_name', component: RoutineComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
