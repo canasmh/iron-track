@@ -23,7 +23,7 @@ export class AddRoutineFinalComponent implements OnInit {
 
     if (!this.nameRoutineForm.invalid) {
       const name: string = this.nameRoutineForm.value['name'];
-      this.routineService.setRoutineName(name);
+      this.routineService.setName(name);
       this.routineService.createRoutine().subscribe({
         next: (data) => {
           console.log(data);

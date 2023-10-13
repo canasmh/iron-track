@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Routine } from 'src/shared/types/customTypes';
+import { Routine } from 'src/shared/types/Routine';
 import { RoutinesService } from '../../shared/services/routines.service';
 
 @Component({
