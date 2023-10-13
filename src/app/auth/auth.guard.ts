@@ -23,3 +23,22 @@ export const AuthGuard: CanActivateFn = (
   );
 };
 
+export const NoAuthGuard: CanActivateFn = (
+  route: ActivatedRouteSnapshot,
+  state: RouterStateSnapshot
+) => {
+  const authService = inject(AuthService);
+  const router = inject(Router);
+
+  return authService.isAuthenticated().pipe(
+    map(() => {
+      router.navigate(['/home']);
+
+      return false;
+    }),
+    catchError(() => {
+      return of(true);
+    })
+  );
+};
+
