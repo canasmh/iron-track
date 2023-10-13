@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ExercisesApiService } from './exercises-api.service';
+import { ExercisesApiService } from './apiNinjas.service';
 
 describe('ExercisesApiService', () => {
   let service: ExercisesApiService;
