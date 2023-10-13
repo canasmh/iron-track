@@ -31,7 +31,9 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.userCredentials).subscribe({
         next: (data) => {
           // this is executed if api call is successfull
-          console.log(data);
+          this.authService.addHeader('Authorization', `Bearer ${data.token}`);
+          console.log(this.authService.getHeader());
+          localStorage.setItem('token', data.token);
           this.router.navigate(['/home']);
         },
         error: (e) => {
