@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserCredentials } from '../../shared/types/customTypes';
+import { Login } from 'src/shared/types/Login';
 import { AuthService } from '../../shared/services/auth.service';
 import { ErrorMessageService } from '../../shared/services/error-message.service';
 
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   submitted: boolean = false;
   loginForm!: FormGroup;
   errorMessage?: string | null;
-  userCredentials: UserCredentials = {
+  userCredentials: Login = {
     email: '',
     password: ''
   };
