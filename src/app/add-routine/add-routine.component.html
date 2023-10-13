@@ -17,11 +17,11 @@
             <div class="search-results" *ngIf="workoutInputChanged && addExerciseForm.controls['name']?.dirty">
                 <ul class="search-results__list">
                     <li
-                        *ngFor="let exerciseName of availableExercises"
+                        *ngFor="let availableExercise of availableExercises"
                         class="search-results__list--item"
-                        (click)="selectExercise(exerciseName)"
+                        (click)="selectExercise(availableExercise)"
                     >
-                        {{ exerciseName }}
+                        {{ availableExercise.name }}
                     </li>
                     <li *ngIf="availableExercises.length === 0 && addExerciseForm.dirty">Exercise Not Available</li>
                 </ul>

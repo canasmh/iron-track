@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { checkIfNumber, isGreaterThanZero } from '../../shared/validators/customValidators';
-import { Exercise, ExerciseApi } from '../../shared/types/customTypes';
+import { RoutineExercise } from 'src/shared/types/RoutineExercise';
+import { Exercise, initExercise } from 'src/shared/types/Exercise';
 import { RoutineService } from '../../shared/services/routine.service';
-import { ExercisesApiService } from '../../shared/services/exercises-api.service';
+import { ExercisesApiService } from '../../shared/services/apiNinjas.service';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { ErrorMessageService } from '../../shared/services/error-message.service';
@@ -19,22 +20,15 @@ export class AddRoutineComponent implements OnInit {
   private inputChanged$ = new Subject<string>();
 
   addExerciseForm!: FormGroup;
-  availableExercises: string[] = [];
+  availableExercises: Exercise[] = [];
   workoutInputChanged = true;
-  errorMessage?: string | null;
+  errorMessage: string | null = null;
   successMessage: string | null = null;
   weightUnit: string = 'lbs';
 
-  initExercise: Exercise = {
-    name: '',
-    weight: '',
-    sets: '',
-    quantity: '',
-    quantityUnit: 'rep'
-  };
-
-  exercises: Exercise[] = [];
-  nExercises = this.exercises.length;
+  routineExercises: RoutineExercise[] = [];
+  exercise: Exercise = initExercise;
+  nExercises = this.routineExercises.length;
   reps: boolean = true;
   submittedExercise = false;
 
@@ -46,8 +40,23 @@ export class AddRoutineComponent implements OnInit {
     if (this.workoutInputChanged) {
       this.errorMessage = 'Invalid workout selected';
     } else if (!this.addExerciseForm.invalid) {
-      this.exercises.push(this.addExerciseForm.value);
-      this.addExerciseForm.patchValue(this.initExercise);
+      // add exercises to the local routineExercises
+      this.routineExercises.push({
+        exercise: this.exercise,
+        weight: this.weight.value + ` ${this.weightUnit}`,
+        sets: this.sets.value,
+        quantity: this.quantity.value,
+        quantityUnit: this.quantityUnit.value
+      });
+
+      // reset form values
+      this.addExerciseForm.patchValue({
+        name: '',
+        weight: '',
+        quantity: '',
+        quantityUnity: 'rep'
+      });
+
       this.successMessage = 'Exercise successfully added';
 
       this.workoutInputChanged = true;
@@ -64,9 +73,8 @@ export class AddRoutineComponent implements OnInit {
   }
 
   nextStep() {
-
-    if (this.exercises.length > 0) {
-      this.routineService.setExercises(this.exercises);
+    if (this.routineExercises.length > 0) {
+      this.routineService.setExercises(this.routineExercises);
       this.router.navigate(['/home/add-routine/final']);
     }
   }
@@ -83,11 +91,12 @@ export class AddRoutineComponent implements OnInit {
     }
   }
 
-  selectExercise(name: string) {
-    this.addExerciseForm.controls['name'].setValue(name);
+  selectExercise(exercise: Exercise) {
+    this.addExerciseForm.controls['name'].setValue(exercise.name);
     this.addExerciseForm.controls['name'].markAsPristine();
     this.availableExercises = [];
     this.workoutInputChanged = false;
+    this.exercise = exercise;
   }
 
   constructor(
@@ -130,8 +139,8 @@ export class AddRoutineComponent implements OnInit {
           return this.exercisesService.getExercises(inputValue);
         })
       )
-      .subscribe((data: ExerciseApi[]) => {
-        this.availableExercises = data.map(exercise => exercise.name).slice(0, 5);
+      .subscribe((data: Exercise[]) => {
+        this.availableExercises = data.map(exercise => exercise);
       });
 
     this.addExerciseForm.valueChanges.subscribe(status => {
@@ -145,6 +154,7 @@ export class AddRoutineComponent implements OnInit {
   get weight() { return this.addExerciseForm.controls['weight']; }
   get sets() { return this.addExerciseForm.controls['sets']; }
   get quantity() { return this.addExerciseForm.controls['quantity']; }
+  get quantityUnit() { return this.addExerciseForm.controls['quantityUnit']; }
 
   setErrorMessage(field: AbstractControl, fieldName: string) {
     this.errorMessage = this.errorMessageService.getErrorMessage(field, fieldName);
