@@ -11,8 +11,8 @@ import { AuthService } from './auth.service';
 export class RoutinesService {
   private routines: Routine[];
 
-  constructor(private http: HttpClient, private routineService: RoutineService, private authService: AuthService) {
-    this.routines = [routineService.getRoutine()];
+  constructor(private http: HttpClient, private routineService: RoutineService) {
+    this.routines = [];
   }
 
   getRoutines() {
