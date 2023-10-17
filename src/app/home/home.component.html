@@ -4,7 +4,7 @@
         <div class="home__routines--container">
             <ul class="home__routines--list">
                 <li *ngFor="let routine of routines" class="home__routines--list-item">
-                    <a [routerLink]="['/home/routine', routine.name]" class="btn home__btn home__routines--btn">
+                    <a [routerLink]="['/home/routine', routine?.id]" class="btn home__btn home__routines--btn">
                         <i class="fa-solid fa-dumbbell home__routines--icon"></i>
                         <span>{{ routine.name }}</span>
                     </a>
