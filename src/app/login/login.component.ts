@@ -31,11 +31,13 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.userCredentials).subscribe({
         next: (data) => {
           // this is executed if api call is successfull
-          console.log(data);
+          this.authService.addHeader('Authorization', `Bearer ${data.token}`);
+          localStorage.setItem('token', data.token);
           this.router.navigate(['/home']);
         },
         error: (e) => {
-          console.error(e);
+          this.errorMessage = e.error.message;
+          console.error('Error on login: ', e);
         }
       });
     } else {

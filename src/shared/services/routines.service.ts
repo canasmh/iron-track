@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Routine } from '../types/customTypes';
 import { HttpClient } from '@angular/common/http';
 import { RoutineService } from './routine.service';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class RoutinesService {
   }
 
   retrieveRoutines() {
-    return this.http.get('/api/home');
+    return this.http.get('/api/home', { headers: this.authService.getHeader() });
   }
 
   addRoutine(routine: Routine) {
