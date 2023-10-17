@@ -42,4 +42,8 @@ export class AuthService {
   login(login: Login): Observable<any> {
     return this.http.post('/api/auth/login', login, { headers: this.header });
   }
+
+  isAuthenticated() {
+    return this.http.get('/api/token', { headers: this.header });
+  }
 }
