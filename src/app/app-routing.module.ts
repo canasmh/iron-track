@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent, title: 'Routines | Iron Track', canActivate: [AuthGuard] },
   { path: 'home/add-routine', component: AddRoutineComponent, title: 'Add Exercises | Iron Track', canActivate: [AuthGuard] },
   { path: 'home/add-routine/final', component: AddRoutineFinalComponent, title: 'Name Routine | Iron Track', canActivate: [AuthGuard] },
-  { path: 'home/routine/:routine_name', component: RoutineComponent, canActivate: [AuthGuard] }
+  { path: 'home/routine/:routine_id', component: RoutineComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
