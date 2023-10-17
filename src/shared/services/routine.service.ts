@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Routine } from '../types/Routine';
 import { HttpClient } from '@angular/common/http';
+
 import { RoutineExercise } from '../types/RoutineExercise';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,7 @@ export class RoutineService {
 
   private routine: Routine;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private authService: AuthService) {
     this.routine = {
       name: '',
       exercises: []
@@ -43,6 +45,6 @@ export class RoutineService {
   }
 
   createRoutine() {
-    return this.http.post('/api/createRoutine', this.routine);
+    return this.http.post('/api/home/createRoutine', this.routine, { headers: this.authService.getHeader() });
   }
 }
