@@ -3,6 +3,7 @@ import { Routine } from '../types/Routine';
 import { HttpClient } from '@angular/common/http';
 import { RoutineService } from './routine.service';
 import { AuthService } from './auth.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class RoutinesService {
     this.routines = routines;
   }
 
-  retrieveRoutines() {
+  retrieveRoutines(): Observable<any> {
     return this.http.get('/api/home', { headers: this.authService.getHeader() });
   }
 }
