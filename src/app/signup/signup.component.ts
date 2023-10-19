@@ -38,7 +38,7 @@ export class SignupComponent implements OnInit {
           // this is executed if api call is successfull
           this.authService.addHeader('Authorization', `Bearer ${data.token}`);
           localStorage.setItem('token', data.token);
-          this.router.navigate(['/home']);
+          this.router.navigate(['/routines']);
         },
         error: (e) => {
           // this is where I would handle errors

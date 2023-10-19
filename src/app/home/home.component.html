@@ -4,18 +4,18 @@
         <div class="home__routines--container">
             <ul class="home__routines--list">
                 <li *ngFor="let routine of routines" class="home__routines--list-item">
-                    <a [routerLink]="['/home/routine', routine?.id]" class="btn home__btn home__routines--btn">
+                    <a [routerLink]="['routines', routine?.id]" class="btn home__btn home__routines--btn">
                         <i class="fa-solid fa-dumbbell home__routines--icon"></i>
                         <span>{{ routine.name }}</span>
                     </a>
                 </li>
             </ul>
         </div>
-        <a class="home__btn btn" routerLink="/home/add-routine"><i class="fa-solid fa-plus"></i> Create a Routine</a>
+        <a class="home__btn btn" routerLink="/routines/add-routine"><i class="fa-solid fa-plus"></i> Create a Routine</a>
     </div>
     <div *ngIf="routines.length === 0" class="home__cta">
         <p class="home__cta--text">Looks like you don't <br /> have any routines yet.</p>
-        <a class="home__btn btn" routerLink="/home/add-routine"><i class="fa-solid fa-plus"></i> Create a Routine</a>
+        <a class="home__btn btn" routerLink="/routines/add-routine"><i class="fa-solid fa-plus"></i> Create a Routine</a>
     </div>
 
 </section>

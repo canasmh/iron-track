@@ -75,7 +75,7 @@ export class AddRoutineComponent implements OnInit {
   nextStep() {
     if (this.routineExercises.length > 0) {
       this.routineService.setExercises(this.routineExercises);
-      this.router.navigate(['/home/add-routine/final']);
+      this.router.navigate(['/routines/add-routine/final']);
     }
   }
 

@@ -32,7 +32,7 @@ export const NoAuthGuard: CanActivateFn = (
 
   return authService.isAuthenticated().pipe(
     map(() => {
-      router.navigate(['/home']);
+      router.navigate(['/routines']);
 
       return false;
     }),

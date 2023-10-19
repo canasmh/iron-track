@@ -28,7 +28,7 @@ export class AddRoutineFinalComponent implements OnInit {
         next: (data) => {
           console.log(data);
           this.routineService.resetRoutine();
-          this.router.navigate(['/home']);
+          this.router.navigate(['/routines']);
         },
         error: (e) => {
           console.error(e);

@@ -13,10 +13,10 @@ const routes: Routes = [
   { path: '', component: WelcomeComponent, data: { showFooter: false }, title: 'Welcome | Iron Track', canActivate: [NoAuthGuard] },
   { path: 'login', component: LoginComponent, data: { showFooter: false }, title: 'Log In | Iron Track', canActivate: [NoAuthGuard] },
   { path: 'signup', component: SignupComponent, data: { showFooter: false }, title: 'Sign Up | Iron Track', canActivate: [NoAuthGuard] },
-  { path: 'home', component: HomeComponent, title: 'Routines | Iron Track', canActivate: [AuthGuard] },
-  { path: 'home/add-routine', component: AddRoutineComponent, title: 'Add Exercises | Iron Track', canActivate: [AuthGuard] },
-  { path: 'home/add-routine/final', component: AddRoutineFinalComponent, title: 'Name Routine | Iron Track', canActivate: [AuthGuard] },
-  { path: 'home/routine/:routine_id', component: RoutineComponent, canActivate: [AuthGuard] }
+  { path: 'routines', component: HomeComponent, title: 'Routines | Iron Track', canActivate: [AuthGuard] },
+  { path: 'routines/add-routine', component: AddRoutineComponent, title: 'Add Exercises | Iron Track', canActivate: [AuthGuard] },
+  { path: 'routines/add-routine/final', component: AddRoutineFinalComponent, title: 'Name Routine | Iron Track', canActivate: [AuthGuard] },
+  { path: 'routines/:routine_id', component: RoutineComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
