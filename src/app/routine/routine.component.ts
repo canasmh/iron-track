@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RoutinesService } from '../../shared/services/routines.service';
 import { Routine } from 'src/shared/types/Routine';
@@ -9,9 +9,10 @@ import { Routine } from 'src/shared/types/Routine';
   styleUrls: ['./routine.component.scss']
 })
 
-export class RoutineComponent implements OnInit {
+export class RoutineComponent {
 
   routine: Routine;
+  routineId: number;
   expand: boolean[];
 
   handleExpand(i: number) {
@@ -19,15 +20,9 @@ export class RoutineComponent implements OnInit {
   }
 
   constructor(private route: ActivatedRoute, private routinesService: RoutinesService) {
-    const routineName = this.route.snapshot.params['routine_name'];
-    this.routine = this.routinesService.getRoutines().filter(routine => routine.name === routineName)[0];
+    this.routineId = this.route.snapshot.params['routine_id'];
+    const routines = this.routinesService.getRoutines();
+    this.routine = routines.filter(routine => routine.id == this.routineId)[0];
     this.expand = this.routine.exercises.map(() => false);
-  }
-
-  ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      const all_routines = this.routinesService.getRoutines();
-      this.routine = all_routines.filter(routine => routine.name === params['routine_name'])[0];
-    });
   }
 }
