@@ -25,6 +25,6 @@ export class RoutinesService {
   }
 
   retrieveRoutines(): Observable<any> {
-    return this.http.get('/api/home', { headers: this.authService.getHeader() });
+    return this.http.get('/api/routines', { headers: this.authService.getHeader() });
   }
 }

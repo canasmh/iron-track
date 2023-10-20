@@ -15,7 +15,6 @@ export class HomeComponent {
     this.routines = [];
     this.routinesService.retrieveRoutines().subscribe({
       next: (data) => {
-        console.log(data.routines);
         this.routinesService.setRoutines(data.routines);
       },
       error: (e) => {

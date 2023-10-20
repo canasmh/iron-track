@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { RoutineExercise } from '../types/RoutineExercise';
 import { AuthService } from './auth.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +46,10 @@ export class RoutineService {
   }
 
   createRoutine() {
-    return this.http.post('/api/home/createRoutine', this.routine, { headers: this.authService.getHeader() });
+    return this.http.post('/api/routines/createRoutine', this.routine, { headers: this.authService.getHeader() });
+  }
+
+  retrieveRoutine(routineId: number): Observable<any> {
+    return this.http.get(`/api/routines/${routineId}`, { headers: this.authService.getHeader() });
   }
 }

@@ -53,6 +53,7 @@ export class AddRoutineComponent implements OnInit {
       this.addExerciseForm.patchValue({
         name: '',
         weight: '',
+        sets: '',
         quantity: '',
         quantityUnity: 'rep'
       });
