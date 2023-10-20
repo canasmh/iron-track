@@ -4,15 +4,12 @@
 
 .routine {
   height: 75vh;
-  max-height: 75vh;
-  overflow-y: scroll;
+  overflow-y: auto;
   padding-top: $xl;
   padding-bottom: $xl;
   text-transform: uppercase;
 
   &__container {
-      max-height: 75vh;
-
       display: flex;
       flex-flow: column nowrap;
       justify-content: center;

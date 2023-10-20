@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { User, UserCredentials } from '../types/customTypes';
+import { Login } from '../types/Login';
+import { Signup } from '../types/Signup';
 
 @Injectable({
   providedIn: 'root'
@@ -33,13 +34,13 @@ export class AuthService {
     this.header = this.header.delete(name);
   }
 
-  signup(user: User): Observable<any> {
+  signup(signup: Signup): Observable<any> {
 
-    return this.http.post('/api/auth/signup', user, { headers: this.header });
+    return this.http.post('/api/auth/signup', signup, { headers: this.header });
   }
 
-  login(user: UserCredentials): Observable<any> {
-    return this.http.post('/api/auth/login', user, { headers: this.header });
+  login(login: Login): Observable<any> {
+    return this.http.post('/api/auth/login', login, { headers: this.header });
   }
 
   isAuthenticated() {

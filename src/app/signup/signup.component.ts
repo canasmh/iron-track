@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { confirmPasswordValidator } from '../../shared/validators/customValidators';
 import { Router } from '@angular/router';
-import { User } from '../../shared/types/customTypes';
+import { Signup } from 'src/shared/types/Signup';
 import { AuthService } from '../../shared/services/auth.service';
 import { ErrorMessageService } from '../../shared/services/error-message.service';
 
@@ -17,7 +17,7 @@ export class SignupComponent implements OnInit {
   submitted: boolean = false;
   signupForm!: FormGroup;
   errorMessage?: string | null;
-  userData: User = {
+  userData: Signup = {
     name: '',
     email: '',
     password: ''
@@ -38,7 +38,7 @@ export class SignupComponent implements OnInit {
           // this is executed if api call is successfull
           this.authService.addHeader('Authorization', `Bearer ${data.token}`);
           localStorage.setItem('token', data.token);
-          this.router.navigate(['/home']);
+          this.router.navigate(['/routines']);
         },
         error: (e) => {
           // this is where I would handle errors

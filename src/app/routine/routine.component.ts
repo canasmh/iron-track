@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { RoutinesService } from '../../shared/services/routines.service';
-import { Routine } from '../../shared/types/customTypes';
+import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Routine } from 'src/shared/types/Routine';
+import { RoutineService } from 'src/shared/services/routine.service';
 
 @Component({
   selector: 'app-routine',
@@ -9,7 +9,7 @@ import { Routine } from '../../shared/types/customTypes';
   styleUrls: ['./routine.component.scss']
 })
 
-export class RoutineComponent implements OnInit {
+export class RoutineComponent {
 
   routine: Routine;
   expand: boolean[];
@@ -18,16 +18,27 @@ export class RoutineComponent implements OnInit {
     this.expand[i] = !this.expand[i];
   }
 
-  constructor(private route: ActivatedRoute, private routinesService: RoutinesService) {
-    const routineName = this.route.snapshot.params['routine_name'];
-    this.routine = this.routinesService.getRoutines().filter(routine => routine.name === routineName)[0];
-    this.expand = this.routine.exercises.map(() => false);
-  }
+  constructor(private route: ActivatedRoute, private router: Router,private routineService: RoutineService) {
+    const routineId = this.route.snapshot.params['routine_id'];
+    this.routine = { name: '', exercises: [] };
+    this.routineService.retrieveRoutine(routineId).subscribe({
+      next: (data: {routine: Routine}) => {
+        this.routine = data.routine;
+      },
+      error: (error) => {
+        this.router.navigate(['/routines']);
 
-  ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      const all_routines = this.routinesService.getRoutines();
-      this.routine = all_routines.filter(routine => routine.name === params['routine_name'])[0];
+        if (error.error.statusCode === 404) {
+          console.error('Routine was not found', error);
+        } else if (error.error.statusCode === 403) {
+          console.error('User not authorized to view resource', error);
+        } else {
+          console.error('Unhandled error', error);
+        }
+
+      }
     });
+
+    this.expand = this.routine.exercises.map(() => false);
   }
 }

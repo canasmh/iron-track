@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Exercise, Routine } from '../types/customTypes';
+import { Routine } from '../types/Routine';
 import { HttpClient } from '@angular/common/http';
+
+import { RoutineExercise } from '../types/RoutineExercise';
 import { AuthService } from './auth.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,30 +12,21 @@ import { AuthService } from './auth.service';
 
 export class RoutineService {
 
-  private routine: Routine = {
-    name: '',
-    exercises: []
-  };
+  private routine: Routine;
 
-  constructor(private http: HttpClient, private authService: AuthService) { }
-
-  getExercises() {
-    return this.routine.exercises;
+  constructor(private http: HttpClient, private authService: AuthService) {
+    this.routine = {
+      name: '',
+      exercises: []
+    };
   }
 
-  setExercise(exercise: Exercise) {
-    this.routine.exercises = [...this.routine.exercises, exercise];
-  }
+  setExercises(exercises: RoutineExercise[]) {
 
-  setExercises(exercises: Exercise[]) {
     this.routine.exercises = exercises;
   }
 
-  getRoutineName() {
-    return this.routine.name;
-  }
-
-  setRoutineName(name: string) {
+  setName(name: string) {
     this.routine.name = name;
   }
 
@@ -40,11 +34,22 @@ export class RoutineService {
     return this.routine;
   }
 
-  createRoutine() {
-    return this.http.post('/api/home/createRoutine', this.routine, { headers: this.authService.getHeader() });
+  setRoutine(routine: Routine) {
+    this.routine = routine;
   }
 
   resetRoutine() {
-    this.routine = { name: '', exercises: [] };
+    this.routine = {
+      name: '',
+      exercises: []
+    };
+  }
+
+  createRoutine() {
+    return this.http.post('/api/routines/createRoutine', this.routine, { headers: this.authService.getHeader() });
+  }
+
+  retrieveRoutine(routineId: number): Observable<any> {
+    return this.http.get(`/api/routines/${routineId}`, { headers: this.authService.getHeader() });
   }
 }

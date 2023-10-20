@@ -23,12 +23,12 @@ export class AddRoutineFinalComponent implements OnInit {
 
     if (!this.nameRoutineForm.invalid) {
       const name: string = this.nameRoutineForm.value['name'];
-      this.routineService.setRoutineName(name);
+      this.routineService.setName(name);
       this.routineService.createRoutine().subscribe({
         next: (data) => {
           console.log(data);
           this.routineService.resetRoutine();
-          this.router.navigate(['/home']);
+          this.router.navigate(['/routines']);
         },
         error: (e) => {
           console.error(e);

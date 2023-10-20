@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Routine } from 'src/shared/types/customTypes';
+import { Routine } from 'src/shared/types/Routine';
 import { RoutinesService } from '../../shared/services/routines.service';
 
 @Component({
@@ -15,10 +15,13 @@ export class HomeComponent {
     this.routines = [];
     this.routinesService.retrieveRoutines().subscribe({
       next: (data) => {
-        console.log(data);
+        this.routinesService.setRoutines(data.routines);
       },
       error: (e) => {
         console.error(e);
+      },
+      complete: () => {
+        this.routines = this.routinesService.getRoutines();
       }
     });
   }
