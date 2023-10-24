@@ -1,0 +1,20 @@
+<section class="edit-routine" xmlns="http://www.w3.org/1999/html">
+  <div class="routine__container">
+    <h2 class="routine__heading">{{ editRoutine.name }}</h2>
+    <div *ngFor="let exercise of editRoutine.exercises; index as i;" class="exercise__container">
+      <div class="exercise__header">
+        <div class="exercise__header--content">
+          <h4 class="exercise__header--name"> {{ exercise.exercise.name }}</h4>
+        </div>
+        <div class="exercise__icon_group">
+          <a class="exercise__icon" [routerLink]="['/routines',editRoutine.id,'edit',exercise.id]"><i class="fa-solid fa-pencil" style="color: #B96E31;"></i></a>
+          <a class="exercise__icon" routerLink='routine/edit-exercise'><i class="fa-regular fa-trash-can" style="color: #e10909;"></i></a>
+        </div>
+      </div>
+    </div>
+
+  <a [routerLink]="['/routines/add-routine']" class="btn btn__ghost">Add Exercise</a>
+  <a [routerLink]="['/routines',editRoutine.id]" class="btn btn__orange">Cancel</a>
+  <a [routerLink]="['/routines', editRoutine.id]" class="btn btn__fill">Finish Editing</a>
+  </div>
+</section>

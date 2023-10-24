@@ -14,6 +14,8 @@ import { AddRoutineComponent } from './add-routine/add-routine.component';
 import { AddRoutineFinalComponent } from './add-routine-final/add-routine-final.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RoutineComponent } from './routine/routine.component';
+import { EditRoutineComponent } from './edit-routine/edit-routine.component';
+import { EditExerciseComponent } from './edit-exercise/edit-exercise.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,10 @@ import { RoutineComponent } from './routine/routine.component';
     HomeComponent,
     AddRoutineComponent,
     AddRoutineFinalComponent,
-    RoutineComponent
+    RoutineComponent,
+    EditRoutineComponent,
+    EditExerciseComponent
+
   ],
   imports: [
     BrowserModule,

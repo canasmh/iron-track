@@ -1,0 +1,131 @@
+@use "@angular/material" as mat;
+@import '../../scss/abstracts/variables';
+@import '../../scss//custom-theme.scss';
+
+.routine {
+  height: 75vh;
+  overflow-y: auto;
+  padding-top: $xl;
+  padding-bottom: $xl;
+  text-transform: uppercase;
+
+  &__container {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+  }
+
+  &__heading {
+    letter-spacing: 3px;
+    text-indent: 3px;
+    font-weight: 200;
+    margin-bottom: $xl;
+
+  }
+}
+
+.exercise {
+
+  &__container {
+    margin-bottom: $lg;
+    &:last-of-type {
+      margin-bottom: $xl;
+    }
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid mat.get-color-from-palette($iron-track-accent, 'default');
+    padding: $sm $md;
+    padding-left: 0;
+
+    &--content {
+      display: flex;
+      align-items: center;
+
+    }
+
+    &--name {
+      white-space: nowrap;
+      overflow-x: auto;
+      max-width: 60vw;
+
+      &-icon {
+        margin-right: $md;
+        font-size: 2rem;
+        cursor: pointer;
+      }
+    }
+
+    &--icon {
+      transition: transform 0.2s ease;
+      cursor: pointer;
+    }
+  }
+
+  &__content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease;
+
+  }
+  &__table {
+    width: 100%;
+    border: 1px solid mat.get-color-from-palette($iron-track-accent, 'default');
+    border-top: none;
+    border-collapse: collapse;
+    letter-spacing: 1px;
+    text-indent: 1px;
+    transform-origin: top;
+
+
+    &--head-data {
+      padding: $sm 0;
+    }
+
+    &--body {
+      background-color: mat.get-color-from-palette($iron-track-accent, 'default');
+      color: mat.get-color-from-palette($iron-track-dark-primary, 'default');
+      &-data {
+        padding: $sm 0;
+      }
+    }
+  }
+  &__icon {
+    &:not(:last-child){
+      margin-right: 15px;
+    }
+
+  }
+}
+
+.rotate {
+  transform: rotate(-180deg);
+}
+
+.expand {
+  max-height: 10rem;
+}
+.btn__ghost {
+  border: 1px solid mat.get-color-from-palette($iron-track-dark-primary, 'default-contrast');
+  color: mat.get-color-from-palette($iron-track-dark-primary, 'default-contrast');
+  margin-bottom: $md;
+  border-radius: 8px;
+}
+
+.btn__orange{
+  color: mat.get-color-from-palette($iron-track-accent, 'default');
+  border: 1px solid mat.get-color-from-palette($iron-track-accent, 'default');
+  border-radius: 8px;
+  margin-bottom: $md;
+
+}
+
+.btn__fill {
+  background-color: #008000;
+  border: 1px solid #008000;
+  border-radius: 8px;
+
+}

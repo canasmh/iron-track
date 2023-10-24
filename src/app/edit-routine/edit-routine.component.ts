@@ -2,18 +2,18 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Routine } from 'src/shared/types/Routine';
 import { RoutineService } from 'src/shared/services/routine.service';
+import { RoutineExercise } from '../../shared/types/RoutineExercise';
 
 @Component({
   selector: 'app-routine',
-  templateUrl: './routine.component.html',
-  styleUrls: ['./routine.component.scss']
+  templateUrl: './edit-routine.component.html',
+  styleUrls: ['./edit-routine.component.scss']
 })
 
-export class RoutineComponent {
+export class EditRoutineComponent {
 
-  routine: Routine;
+  editRoutine: Routine;
   expand: boolean[];
-  errorMessage?: string | null;
 
   handleExpand(i: number) {
     this.expand[i] = !this.expand[i];
@@ -21,13 +21,12 @@ export class RoutineComponent {
 
   constructor(private route: ActivatedRoute, private router: Router,private routineService: RoutineService) {
     const routineId = this.route.snapshot.params['routine_id'];
-    this.routine = { name: '', exercises: [] };
+    this.editRoutine = { name: '', exercises: [] };
     this.routineService.retrieveRoutine(routineId).subscribe({
       next: (data: {routine: Routine}) => {
-        this.routine = data.routine;
+        this.editRoutine = data.routine;
       },
       error: (error) => {
-        this.router.navigate(['/routines']);
 
         if (error.error.statusCode === 404) {
           console.error('Routine was not found', error);
@@ -37,12 +36,9 @@ export class RoutineComponent {
           console.error('Unhandled error', error);
         }
 
-        this.errorMessage = error.error.message;
-
       }
-
     });
 
-    this.expand = this.routine.exercises.map(() => false);
+    this.expand = this.editRoutine.exercises.map(() => false);
   }
 }

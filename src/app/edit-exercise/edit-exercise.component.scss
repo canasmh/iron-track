@@ -1,0 +1,30 @@
+@import "../../scss/abstracts/variables";
+
+.add-routine-final {
+  height: 75vh;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+  justify-content: center;
+
+  h2 {
+    text-transform: uppercase;
+    font-size: 2.4rem;
+    margin-bottom: $lg;
+  }
+
+  & .form {
+    & > *:not(:last-child) {
+      margin-bottom: $md;
+    }
+
+    &__input {
+      text-align: center;
+      font-size: 2rem;
+    }
+
+    &__button {
+      text-transform: uppercase;
+    }
+  }
+}
