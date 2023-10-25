@@ -1,0 +1,29 @@
+<section class="edit-routine">
+  <div *ngIf="isOpen" class="modal" cdkTrapFocus #modalContent="cdkTrapFocus">
+    <div class="modal__content">
+      <p class="modal__content--text">Are you sure you want to delete <strong>{{ excerciseToDelete?.exercise?.name }}</strong> from your routine?</p>
+      <p class="modal__content--text">This action can not be undone</p>
+      <div class="modal__btn--group">
+        <button type="button" class="modal__btn modal__btn--cancel" (click)="close()" autofocus>Cancel</button>
+        <button type="button" class="modal__btn modal__btn--delete" (click)="delete()">Delete</button>
+      </div>
+    </div>
+  </div>
+  <div class="edit-routine__container">
+      <h2 class="edit-routine__heading">{{ routine.name }}</h2>
+      <div *ngFor="let exercise of routine.exercises; index as i;" class="exercise__container">
+        <div class="exercise__header">
+          <div class="exercise__header--content">
+            <h4 class="exercise__header--name"> {{ exercise.exercise.name }}</h4>
+          </div>
+          <div>
+            <i class="fa-solid fa-pencil exercise__header--icon"></i>
+            <i class="fa-regular fa-trash-can exercise__header--icon" (click)="open(exercise.id)"></i>
+          </div>
+        </div>
+      </div>
+      <a href="#" class="btn edit-routine__btn--add">Add Exercise</a>
+      <a href="#" class="btn edit-routine__btn--cancel">Cancel</a>
+      <a href="#" class="btn  edit-routine__btn--finish">Finish Editing</a>
+  </div>
+</section>

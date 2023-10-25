@@ -1,0 +1,175 @@
+@use "@angular/material" as mat;
+@import '../../scss/abstracts/variables';
+@import '../../scss//custom-theme.scss';
+
+
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 75vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(10, 10, 10, 0.8);
+
+  &__content {
+    max-width: 80%;
+    border-radius: 8px;
+    background-color: mat.get-color-from-palette($iron-track-dark-primary, 'default');
+
+    padding: $lg;
+    text-align: left;
+    border: 1px solid mat.get-color-from-palette($iron-track-accent, 'default');
+    &--text:last-of-type {
+      margin-top: $md;
+    }
+  }
+
+  &__btn {
+    border-radius: 8px;
+    padding: $sm $md;
+    margin-top: $md;
+    cursor: pointer;
+    &--group {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    &--cancel {
+      background-color: transparent;
+      color: mat.get-color-from-palette($iron-track-accent, 'default');
+      border: 1px solid mat.get-color-from-palette($iron-track-accent, 'default');
+      margin-right: $md;
+    }
+
+    &--delete {
+      background-color: mat.get-color-from-palette($iron-track-warn, 'default');
+      color: mat.get-color-from-palette($iron-track-warn, 'default-contrast');
+      border: 1px solid mat.get-color-from-palette($iron-track-warn, 'default');
+    }
+  }
+}
+.edit-routine {
+  height: 75vh;
+  overflow-y: auto;
+  padding-top: $xl;
+  padding-bottom: $xl;
+  text-transform: uppercase;
+  position: relative;
+
+  &__container {
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+  }
+
+  &__heading {
+    letter-spacing: 3px;
+    text-indent: 3px;
+    font-weight: 200;
+    margin-bottom: $xl;
+
+  }
+}
+
+.exercise {
+
+  &__container {
+    margin-bottom: $lg;
+    &:last-of-type {
+      margin-bottom: $xl;
+    }
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid mat.get-color-from-palette($iron-track-accent, 'default');
+    padding: $sm 0;
+
+    &--content {
+      display: flex;
+      align-items: center;
+
+    }
+
+    &--name {
+      white-space: nowrap;
+      overflow-x: auto;
+      max-width: 60vw;
+
+      &-icon {
+        margin-right: $md;
+        font-size: 2rem;
+        cursor: pointer;
+      }
+    }
+
+    &--icon {
+      transition: transform 0.2s ease;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+  }
+
+  &__content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease;
+
+  }
+  &__table {
+    width: 100%;
+    border: 1px solid mat.get-color-from-palette($iron-track-accent, 'default');
+    border-top: none;
+    border-collapse: collapse;
+    letter-spacing: 1px;
+    text-indent: 1px;
+    transform-origin: top;
+
+
+    &--head-data {
+      padding: $sm 0;
+    }
+
+    &--body {
+      background-color: mat.get-color-from-palette($iron-track-accent, 'default');
+      color: mat.get-color-from-palette($iron-track-dark-primary, 'default');
+      &-data {
+        padding: $sm 0;
+      }
+    }
+  }
+}
+
+.fa-pencil {
+  color: mat.get-color-from-palette($iron-track-accent, 'default');
+  margin-right: $smmd;
+}
+
+.fa-trash-can {
+  color: mat.get-color-from-palette($iron-track-warn, 'default');
+}
+
+.rotate {
+  transform: rotate(-180deg);
+}
+
+.expand {
+  max-height: 10rem;
+}
+.btn__ghost {
+    border: 1px solid mat.get-color-from-palette($iron-track-dark-primary, 'default-contrast');
+    color: mat.get-color-from-palette($iron-track-dark-primary, 'default-contrast');
+    margin-bottom: $md;
+    border-radius: 8px;
+}
+.btn__fill {
+    background-color: #008000;
+    border: 1px solid #008000;
+    border-radius: 8px;
+}
