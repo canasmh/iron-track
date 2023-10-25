@@ -82,17 +82,10 @@
 
     &--add {
       border: 1px solid mat.get-color-from-palette($iron-track-accent, 'default');
-      background-color: mat.get-color-from-palette($iron-track-accent, 'default');
-      color: mat.get-color-from-palette($iron-track-accent, 'default-contrast');
-    }
-
-    &--cancel {
-      border: 1px solid mat.get-color-from-palette($iron-track-accent, 'default');
       color: mat.get-color-from-palette($iron-track-accent, 'default');
     }
 
     &--finish {
-
       background-color: #008000;
       border: 1px solid #008000;
 
