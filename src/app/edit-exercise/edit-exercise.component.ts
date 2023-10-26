@@ -42,10 +42,6 @@ export class EditExerciseComponent implements OnInit {
     if (this.workoutInputChanged) {
       this.errorMessage = 'Invalid workout selected';
     } else if (!this.editExerciseForm.invalid) {
-      // add exercises to the local routineExercises
-      // reset form values
-      this.router.navigate(['/routines', this.routineId, 'edit']
-      );
       this.routineExercise = {
         exercise: this.exercise,
         weight: `${this.weight.value} ${this.weightUnit}`,
@@ -54,10 +50,11 @@ export class EditExerciseComponent implements OnInit {
         quantityUnit: this.quantityUnit.value
       };
       this.routineExerciseService.editRoutineExercise(this.routineId,this.routineExerciseId,this.routineExercise).subscribe({
-        next:()=>{
+        next: () =>{
           this.router.navigate(['/routines',this.routineId, 'edit']);
         },
         error: (error)=>{
+          console.error(error);
           this.errorMessage = error.error.message;
         }
       });
@@ -100,16 +97,7 @@ export class EditExerciseComponent implements OnInit {
     private errorMessageService: ErrorMessageService,
     private routineExerciseService: RoutineExerciseService,
     private route: ActivatedRoute
-  ) {
-    this.routineExerciseService.getRoutineExercise(this.routineId, this.routineExerciseId).subscribe({
-      next: (data:{routineExercise:RoutineExercise}) => {
-        this.routineExercise = data.routineExercise;
-      },
-      error: err => {
-        console.error(err);
-      }
-    });
-  }
+  ) { }
 
   ngOnInit(): void {
 
