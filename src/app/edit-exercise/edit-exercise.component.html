@@ -74,9 +74,8 @@
     </div>
   </form>
   <div>
-
-    <a class="btn btn__ghost" role="button">Cancel</a>
-    <a class="btn btn__ghost--accent" role="button" (click)="nextStep()">Save Changes</a>
+    <a [routerLink]="['/routines',routineId,'edit']" class="btn btn__ghost">Cancel</a>
+    <a class="btn btn__ghost--accent" role="button" (click)="saveExercise()">Save Changes</a>
   </div>
 
   <div *ngIf="submittedExercise && errorMessage" class="error" aria-live="assertive">
