@@ -49,7 +49,7 @@ export class RoutineService {
     return this.http.post('/api/routines/createRoutine', this.routine, { headers: this.authService.getHeader() });
   }
 
-  retrieveRoutine(routineId: number): Observable<any> {
+  retrieveRoutine(routineId: string): Observable<any> {
     return this.http.get(`/api/routines/${routineId}`, { headers: this.authService.getHeader() });
   }
 }
