@@ -8,6 +8,8 @@ import { AddRoutineComponent } from './add-routine/add-routine.component';
 import { AddRoutineFinalComponent } from './add-routine-final/add-routine-final.component';
 import { RoutineComponent } from './routine/routine.component';
 import { AuthGuard, NoAuthGuard } from './auth/auth.guard';
+import { EditRoutineComponent } from './edit-routine/edit-routine.component';
+import { AddRoutineExerciseComponent } from './add-routine-exercise/add-routine-exercise.component';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent, data: { showFooter: false }, title: 'Welcome | Iron Track', canActivate: [NoAuthGuard] },
@@ -16,7 +18,9 @@ const routes: Routes = [
   { path: 'routines', component: HomeComponent, title: 'Routines | Iron Track', canActivate: [AuthGuard] },
   { path: 'routines/add-routine', component: AddRoutineComponent, title: 'Add Exercises | Iron Track', canActivate: [AuthGuard] },
   { path: 'routines/add-routine/final', component: AddRoutineFinalComponent, title: 'Name Routine | Iron Track', canActivate: [AuthGuard] },
-  { path: 'routines/:routine_id', component: RoutineComponent, canActivate: [AuthGuard] }
+  { path: 'routines/:routine_id', component: RoutineComponent, canActivate: [AuthGuard] },
+  { path: 'routines/:routine_id/edit', component: EditRoutineComponent, canActivate: [AuthGuard] },
+  { path: 'routines/:routine_id/add', component: AddRoutineExerciseComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

@@ -14,6 +14,9 @@ import { AddRoutineComponent } from './add-routine/add-routine.component';
 import { AddRoutineFinalComponent } from './add-routine-final/add-routine-final.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RoutineComponent } from './routine/routine.component';
+import { EditRoutineComponent } from './edit-routine/edit-routine.component';
+import { A11yModule } from '@angular/cdk/a11y';
+import { AddRoutineExerciseComponent } from './add-routine-exercise/add-routine-exercise.component';
 
 @NgModule({
   declarations: [
@@ -26,13 +29,16 @@ import { RoutineComponent } from './routine/routine.component';
     HomeComponent,
     AddRoutineComponent,
     AddRoutineFinalComponent,
-    RoutineComponent
+    RoutineComponent,
+    EditRoutineComponent,
+    AddRoutineExerciseComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    A11yModule
   ],
   providers: [],
   bootstrap: [AppComponent]

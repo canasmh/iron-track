@@ -1,0 +1,84 @@
+<section class="add-routine">
+  <h2 class="add-routine__header">Add exercises</h2>
+
+  <form class="add-routine__form" [formGroup]="addExerciseForm">
+      <div class="add-routine__form-group relative">
+          <label class="add-routine__label" for="name">Select a workout</label>
+
+          <input
+              type="text"
+              class="add-routine__input"
+              name="name"
+              id="name"
+              placeholder="Barbell Squat"
+              formControlName="name"
+              (ngModelChange)="searchExercises()"
+          >
+          <div class="search-results" *ngIf="workoutInputChanged && addExerciseForm.controls['name']?.dirty">
+              <ul class="search-results__list">
+                  <li
+                      *ngFor="let availableExercise of availableExercises"
+                      class="search-results__list--item"
+                      (click)="selectExercise(availableExercise)"
+                  >
+                      {{ availableExercise.name }}
+                  </li>
+                  <li *ngIf="availableExercises.length === 0 && addExerciseForm.dirty">Exercise Not Available</li>
+              </ul>
+          </div>
+      </div>
+      <div class="add-routine__form-group">
+          <label class="add-routine__label" for="weight">Select a weight</label>
+          <div class="relative">
+              <input
+                  type="text"
+                  class="add-routine__input"
+                  name="weight"
+                  id="weight"
+                  placeholder="9000"
+                  formControlName="weight"
+              >
+              <p>lbs</p>
+          </div>
+      </div>
+      <div class="add-routine__form-group add-routine__form-group--sub">
+          <div class="add-routine__form-group--half">
+              <label for="sets">Sets</label>
+              <input
+                  type="text"
+                  class="add-routine__input add-routine__input--sub"
+                  name="sets"
+                  id="sets"
+                  formControlName="sets"
+                  placeholder="10"
+              >
+          </div>
+          <div class="add-routine__form-group--half" >
+              <label *ngIf="reps">Reps</label>
+              <label *ngIf="!reps">Duration</label>
+              <input
+                  type="text"
+                  class="add-routine__input add-routine__input--sub-longer"
+                  name="quantity"
+                  id="quantity"
+                  formControlName="quantity"
+                  placeholder="10"
+              >
+              <select aria-label="select a unit" formControlName="quantityUnit">
+
+                  <option value="rep">rep(s)</option>
+                  <option value="sec">sec</option>
+                  <option value="min">min</option>
+              </select>
+          </div>
+      </div>
+  </form>
+  <div>
+      <a [routerLink]="['/routines', routineId, 'edit']" class="btn btn__ghost" role="button">Cancel</a>
+      <a class="btn btn__ghost--accent" role="button" (click)="addExercise()">Save Changes</a>
+  </div>
+
+  <div *ngIf="submittedExercise && errorMessage" class="error" aria-live="assertive">
+      <p class="error__message">{{ errorMessage }}</p>
+  </div>
+</section>
