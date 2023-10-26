@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RoutineComponent } from './routine/routine.component';
 import { EditRoutineComponent } from './edit-routine/edit-routine.component';
 import { A11yModule } from '@angular/cdk/a11y';
+import { EditExerciseComponent } from './edit-exercise/edit-exercise.component';
 import { AddRoutineExerciseComponent } from './add-routine-exercise/add-routine-exercise.component';
 
 @NgModule({
@@ -31,6 +32,7 @@ import { AddRoutineExerciseComponent } from './add-routine-exercise/add-routine-
     AddRoutineFinalComponent,
     RoutineComponent,
     EditRoutineComponent,
+    EditExerciseComponent,
     AddRoutineExerciseComponent
   ],
   imports: [

@@ -19,7 +19,7 @@ export class EditRoutineComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.modalContent.nativeElement.focus();
   }
-
+  routineId: string = this.route.snapshot.params['routine_id'];
   routine: Routine;
   expand: boolean[];
   isOpen: boolean = false;
@@ -42,11 +42,11 @@ export class EditRoutineComponent implements AfterViewInit {
 
   delete() {
     console.log('Will delete ', this.excerciseToDelete);
-    this.routineExerciseService.deleteRoutineExercise(this.routine.id, this.excerciseToDelete?.id).subscribe({
+    this.routineExerciseService.deleteRoutineExercise(this.routineId, this.excerciseToDelete?.id).subscribe({
       next: () => {
         window.location.reload();
       },
-      error: (error: any) => {
+      error: (error) => {
         console.log(error);
       }
     });
@@ -58,9 +58,8 @@ export class EditRoutineComponent implements AfterViewInit {
     private routineService: RoutineService,
     private routineExerciseService: RoutineExerciseService
   ) {
-    const routineId = this.route.snapshot.params['routine_id'];
     this.routine = { name: '', exercises: [] };
-    this.routineService.retrieveRoutine(routineId).subscribe({
+    this.routineService.retrieveRoutine(this.routineId).subscribe({
       next: (data: {routine: Routine}) => {
         this.routine = data.routine;
       },

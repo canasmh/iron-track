@@ -35,8 +35,8 @@ export class RoutineComponent {
         } else {
           console.error('Unhandled error', error);
         }
-
       }
+
     });
 
     this.expand = this.routine.exercises.map(() => false);
