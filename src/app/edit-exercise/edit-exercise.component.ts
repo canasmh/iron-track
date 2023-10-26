@@ -10,7 +10,6 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { ErrorMessageService } from '../../shared/services/error-message.service';
 import { RoutineExerciseService } from '../../shared/services/routine-exercise.service';
-import {Routine} from "../../shared/types/Routine";
 
 @Component({
   selector: 'app-routine',
@@ -45,9 +44,23 @@ export class EditExerciseComponent implements OnInit {
     } else if (!this.editExerciseForm.invalid) {
       // add exercises to the local routineExercises
       // reset form values
-      this.successMessage = 'Exercise successfully added';
-
-      this.workoutInputChanged = true;
+      this.router.navigate(['/routines', this.routineId, 'edit']
+      );
+      this.routineExercise = {
+        exercise: this.exercise,
+        weight: `${this.weight.value} ${this.weightUnit}`,
+        sets: this.sets.value,
+        quantity: this.quantity.value,
+        quantityUnit: this.quantityUnit.value
+      };
+      this.routineExerciseService.editRoutineExercise(this.routineId,this.routineExerciseId,this.routineExercise).subscribe({
+        next:()=>{
+          this.router.navigate(['/routines',this.routineId, 'edit']);
+        },
+        error: (error)=>{
+          this.errorMessage = error.error.message;
+        }
+      });
 
     } else {
       if (this.weight.invalid) {
@@ -100,31 +113,46 @@ export class EditExerciseComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if (this.routineExercise) {
-      this.editExerciseForm = new FormGroup({
-        name: new FormControl(this.routineExercise?.exercise.name, [
-          Validators.required
-        ]),
-        weight: new FormControl(this.routineExercise?.weight, [
-          Validators.required,
-          checkIfNumber()
-        ]),
-        sets: new FormControl(this.routineExercise?.sets, [
-          Validators.required,
-          checkIfNumber(),
-          isGreaterThanZero()
-        ]),
-        quantity: new FormControl(this.routineExercise?.quantity, [
-          Validators.required,
-          checkIfNumber(),
-          isGreaterThanZero()
-        ]),
-        quantityUnit: new FormControl(this.routineExercise?.quantityUnit, [
-          Validators.required
-        ])
-      });
-    }
+    this.editExerciseForm = new FormGroup({
+      name: new FormControl('', [
+        Validators.required
+      ]),
+      weight: new FormControl('', [
+        Validators.required,
+        checkIfNumber()
+      ]),
+      sets: new FormControl('', [
+        Validators.required,
+        checkIfNumber(),
+        isGreaterThanZero()
+      ]),
+      quantity: new FormControl('', [
+        Validators.required,
+        checkIfNumber(),
+        isGreaterThanZero()
+      ]),
+      quantityUnit: new FormControl('rep', [
+        Validators.required
+      ])
+    });
 
+    this.routineExerciseService.getRoutineExercise(this.routineId, this.routineExerciseId).subscribe({
+      next: (data:{routineExercise:RoutineExercise}) => {
+        this.routineExercise = data.routineExercise;
+        this.exercise = data.routineExercise.exercise;
+        this.editExerciseForm.patchValue({
+          name:this.exercise.name,
+          weight:this.routineExercise.weight.split(' ')[0],
+          sets:this.routineExercise.sets,
+          quantity:this.routineExercise.quantity,
+          quantityUnit:this.routineExercise.quantityUnit
+        });
+        this.workoutInputChanged = false;
+      },
+      error: err => {
+        console.error(err);
+      }
+    });
     this.inputChanged$
       .pipe(
         debounceTime(350),
