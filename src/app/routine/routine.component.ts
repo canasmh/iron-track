@@ -13,7 +13,6 @@ export class RoutineComponent {
 
   routine: Routine;
   expand: boolean[];
-  errorMessage?: string | null;
 
   handleExpand(i: number) {
     this.expand[i] = !this.expand[i];
@@ -36,9 +35,6 @@ export class RoutineComponent {
         } else {
           console.error('Unhandled error', error);
         }
-
-        this.errorMessage = error.error.message;
-
       }
 
     });

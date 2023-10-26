@@ -40,7 +40,6 @@ export class AuthService {
   }
 
   login(login: Login): Observable<any> {
-    console.log(this.login);
 
     return this.http.post('/api/auth/login', login, { headers: this.header });
   }
