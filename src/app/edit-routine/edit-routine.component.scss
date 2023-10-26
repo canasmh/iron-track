@@ -2,17 +2,68 @@
 @import '../../scss/abstracts/variables';
 @import '../../scss//custom-theme.scss';
 
-.routine {
+
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 75vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(10, 10, 10, 0.8);
+
+  &__content {
+    max-width: 80%;
+    border-radius: 8px;
+    background-color: mat.get-color-from-palette($iron-track-dark-primary, 'default');
+
+    padding: $lg;
+    text-align: left;
+    border: 1px solid mat.get-color-from-palette($iron-track-accent, 'default');
+    &--text:last-of-type {
+      margin-top: $md;
+    }
+  }
+
+  &__btn {
+    border-radius: 8px;
+    padding: $sm $md;
+    margin-top: $md;
+    cursor: pointer;
+    &--group {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    &--cancel {
+      background-color: transparent;
+      color: mat.get-color-from-palette($iron-track-accent, 'default');
+      border: 1px solid mat.get-color-from-palette($iron-track-accent, 'default');
+      margin-right: $md;
+    }
+
+    &--delete {
+      background-color: mat.get-color-from-palette($iron-track-warn, 'default');
+      color: mat.get-color-from-palette($iron-track-warn, 'default-contrast');
+      border: 1px solid mat.get-color-from-palette($iron-track-warn, 'default');
+    }
+  }
+}
+.edit-routine {
   height: 75vh;
   overflow-y: auto;
   padding-top: $xl;
   padding-bottom: $xl;
   text-transform: uppercase;
+  position: relative;
 
   &__container {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
   }
 
   &__heading {
@@ -20,6 +71,25 @@
     text-indent: 3px;
     font-weight: 200;
     margin-bottom: $xl;
+  }
+
+  &__btn {
+    border-radius: 8px;
+
+    &:not(:last-child) {
+      margin-bottom: $md;
+    }
+
+    &--add {
+      border: 1px solid mat.get-color-from-palette($iron-track-accent, 'default');
+      color: mat.get-color-from-palette($iron-track-accent, 'default');
+    }
+
+    &--finish {
+      background-color: #008000;
+      border: 1px solid #008000;
+
+    }
 
   }
 }
@@ -38,8 +108,7 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid mat.get-color-from-palette($iron-track-accent, 'default');
-    padding: $sm $md;
-    padding-left: 0;
+    padding: $sm 0;
 
     &--content {
       display: flex;
@@ -61,6 +130,7 @@
 
     &--icon {
       transition: transform 0.2s ease;
+      font-size: 2rem;
       cursor: pointer;
     }
   }
@@ -93,12 +163,20 @@
       }
     }
   }
-  &__icon {
-    &:not(:last-child){
-      margin-right: 15px;
-    }
 
+  &__btn-group {
+    & > a:not(:last-child) {
+      margin-right: $md;
+    }
   }
+}
+
+.fa-pencil {
+  color: mat.get-color-from-palette($iron-track-accent, 'default');
+}
+
+.fa-trash-can {
+  color: mat.get-color-from-palette($iron-track-warn, 'default');
 }
 
 .rotate {
@@ -107,25 +185,4 @@
 
 .expand {
   max-height: 10rem;
-}
-.btn__ghost {
-  border: 1px solid mat.get-color-from-palette($iron-track-dark-primary, 'default-contrast');
-  color: mat.get-color-from-palette($iron-track-dark-primary, 'default-contrast');
-  margin-bottom: $md;
-  border-radius: 8px;
-}
-
-.btn__orange{
-  color: mat.get-color-from-palette($iron-track-accent, 'default');
-  border: 1px solid mat.get-color-from-palette($iron-track-accent, 'default');
-  border-radius: 8px;
-  margin-bottom: $md;
-
-}
-
-.btn__fill {
-  background-color: #008000;
-  border: 1px solid #008000;
-  border-radius: 8px;
-
 }

@@ -8,12 +8,11 @@ import { RoutineExercise } from '../types/RoutineExercise';
   providedIn: 'root'
 })
 export class RoutineExerciseService {
-
   getRoutineExercise(routineId: string, routineExerciseId: string): Observable<any> {
     return this.http.get(`/api/routines/${routineId}/edit/${routineExerciseId}`,{ headers:this.authService.getHeader() });
   }
 
-  deleteRoutineExercise(routineId: string, routineExerciseId: string): Observable<any> {
+  deleteRoutineExercise(routineId: string, routineExerciseId: number | undefined): Observable<any> {
     return this.http.delete(`/api/routines/${routineId}/${routineExerciseId}`,{ headers:this.authService.getHeader() });
   }
 
@@ -24,4 +23,3 @@ export class RoutineExerciseService {
   constructor(private http: HttpClient, private authService: AuthService) {
   }
 }
-

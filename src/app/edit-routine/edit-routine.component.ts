@@ -1,32 +1,70 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Routine } from 'src/shared/types/Routine';
 import { RoutineService } from 'src/shared/services/routine.service';
-import { RoutineExercise } from '../../shared/types/RoutineExercise';
+import { Routine } from 'src/shared/types/Routine';
+import { RoutineExercise } from 'src/shared/types/RoutineExercise';
+import { ElementRef, ViewChild } from '@angular/core';
+import { RoutineExerciseService } from 'src/shared/services/routine-exercise.service';
 
 @Component({
-  selector: 'app-routine',
+  selector: 'app-edit-routine',
   templateUrl: './edit-routine.component.html',
   styleUrls: ['./edit-routine.component.scss']
 })
 
-export class EditRoutineComponent {
+export class EditRoutineComponent implements AfterViewInit {
 
-  editRoutine: Routine;
+  @ViewChild('modalContent', { read: ElementRef, static: true }) modalContent!: ElementRef;
+
+  ngAfterViewInit(): void {
+    this.modalContent.nativeElement.focus();
+  }
+  routineId: string = this.route.snapshot.params['routine_id'];
+  routine: Routine;
   expand: boolean[];
+  isOpen: boolean = false;
+  excerciseToDelete?: RoutineExercise;
 
   handleExpand(i: number) {
     this.expand[i] = !this.expand[i];
   }
 
-  constructor(private route: ActivatedRoute, private router: Router,private routineService: RoutineService) {
-    const routineId = this.route.snapshot.params['routine_id'];
-    this.editRoutine = { name: '', exercises: [] };
-    this.routineService.retrieveRoutine(routineId).subscribe({
-      next: (data: {routine: Routine}) => {
-        this.editRoutine = data.routine;
+  open(id: number | undefined) {
+    this.isOpen = true;
+    this.excerciseToDelete = this.routine.exercises.find(exercise => exercise.id === id);
+    this.modalContent.nativeElement.focus();
+  }
+
+  close() {
+    this.isOpen = false;
+    this.excerciseToDelete = undefined;
+  }
+
+  delete() {
+    console.log('Will delete ', this.excerciseToDelete);
+    this.routineExerciseService.deleteRoutineExercise(this.routineId, this.excerciseToDelete?.id).subscribe({
+      next: () => {
+        window.location.reload();
       },
       error: (error) => {
+        console.log(error);
+      }
+    });
+  }
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private routineService: RoutineService,
+    private routineExerciseService: RoutineExerciseService
+  ) {
+    this.routine = { name: '', exercises: [] };
+    this.routineService.retrieveRoutine(this.routineId).subscribe({
+      next: (data: {routine: Routine}) => {
+        this.routine = data.routine;
+      },
+      error: (error) => {
+        this.router.navigate(['/routines']);
 
         if (error.error.statusCode === 404) {
           console.error('Routine was not found', error);
@@ -38,7 +76,6 @@ export class EditRoutineComponent {
 
       }
     });
-
-    this.expand = this.editRoutine.exercises.map(() => false);
+    this.expand = this.routine.exercises.map(() => false);
   }
 }
