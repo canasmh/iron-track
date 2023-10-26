@@ -113,13 +113,12 @@
     &--content {
       display: flex;
       align-items: center;
-
+      max-width: 80%;
+      overflow-x: auto;
     }
 
     &--name {
       white-space: nowrap;
-      overflow-x: auto;
-      max-width: 60vw;
 
       &-icon {
         margin-right: $md;
