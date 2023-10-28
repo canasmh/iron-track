@@ -41,6 +41,7 @@ export class AddRoutineComponent implements OnInit {
       this.errorMessage = 'Invalid workout selected';
     } else if (!this.addExerciseForm.invalid) {
       // add exercises to the local routineExercises
+      //Send the data to a component that will display the exercises
       this.routineExercises.push({
         exercise: this.exercise,
         weight: this.weight.value + ` ${this.weightUnit}`,
