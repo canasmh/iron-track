@@ -9,6 +9,7 @@ import { ExercisesApiService } from '../../shared/services/apiNinjas.service';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { ErrorMessageService } from '../../shared/services/error-message.service';
+import { Overlay } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-add-routine',
@@ -17,6 +18,11 @@ import { ErrorMessageService } from '../../shared/services/error-message.service
 })
 
 export class AddRoutineComponent implements OnInit {
+  isOverlayOpen = false;
+
+  open() {
+    this.isOverlayOpen = true;
+  }
   private inputChanged$ = new Subject<string>();
 
   addExerciseForm!: FormGroup;
@@ -105,7 +111,8 @@ export class AddRoutineComponent implements OnInit {
     private router: Router,
     private routineService: RoutineService,
     private exercisesService: ExercisesApiService,
-    private errorMessageService: ErrorMessageService
+    private errorMessageService: ErrorMessageService,
+    private overlay: Overlay
   ) {}
 
   ngOnInit(): void {
@@ -161,4 +168,5 @@ export class AddRoutineComponent implements OnInit {
   setErrorMessage(field: AbstractControl, fieldName: string) {
     this.errorMessage = this.errorMessageService.getErrorMessage(field, fieldName);
   }
+
 }

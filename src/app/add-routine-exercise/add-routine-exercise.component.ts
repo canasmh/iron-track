@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { checkIfNumber, isGreaterThanZero } from '../../shared/validators/customValidators';
-import { RoutineExercise } from 'src/shared/types/RoutineExercise';
-import { Exercise, initExercise } from 'src/shared/types/Exercise';
-import { RoutineService } from '../../shared/services/routine.service';
-import { ExercisesApiService } from '../../shared/services/apiNinjas.service';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import { ErrorMessageService } from '../../shared/services/error-message.service';
-import { RoutineExerciseService } from 'src/shared/services/routine-exercise.service';
+import {Component, OnInit} from '@angular/core';
+import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {checkIfNumber, isGreaterThanZero} from '../../shared/validators/customValidators';
+import {RoutineExercise} from 'src/shared/types/RoutineExercise';
+import {Exercise, initExercise} from 'src/shared/types/Exercise';
+import { RoutineService} from '../../shared/services/routine.service';
+import { ExercisesApiService} from '../../shared/services/apiNinjas.service';
+import { debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
+import { Subject} from 'rxjs';
+import { ErrorMessageService} from '../../shared/services/error-message.service';
+import { RoutineExerciseService} from 'src/shared/services/routine-exercise.service';
 
 @Component({
   selector: 'app-add-routine-exercise',
@@ -98,7 +98,8 @@ export class AddRoutineExerciseComponent implements OnInit {
     private routineExerciseService: RoutineExerciseService,
     private exercisesService: ExercisesApiService,
     private errorMessageService: ErrorMessageService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
 
@@ -144,11 +145,25 @@ export class AddRoutineExerciseComponent implements OnInit {
     });
   }
 
-  get name() { return this.addExerciseForm.controls['name']; }
-  get weight() { return this.addExerciseForm.controls['weight']; }
-  get sets() { return this.addExerciseForm.controls['sets']; }
-  get quantity() { return this.addExerciseForm.controls['quantity']; }
-  get quantityUnit() { return this.addExerciseForm.controls['quantityUnit']; }
+  get name() {
+    return this.addExerciseForm.controls['name'];
+  }
+
+  get weight() {
+    return this.addExerciseForm.controls['weight'];
+  }
+
+  get sets() {
+    return this.addExerciseForm.controls['sets'];
+  }
+
+  get quantity() {
+    return this.addExerciseForm.controls['quantity'];
+  }
+
+  get quantityUnit() {
+    return this.addExerciseForm.controls['quantityUnit'];
+  }
 
   setErrorMessage(field: AbstractControl, fieldName: string) {
     this.errorMessage = this.errorMessageService.getErrorMessage(field, fieldName);

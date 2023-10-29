@@ -74,8 +74,9 @@
         </div>
     </form>
     <div>
-        <a class="btn btn__ghost" role="button" (click)="addExercise()">Add Exercise</a>
-        <a class="btn btn__ghost--accent" role="button" (click)="nextStep()">Next Step</a>
+        <a class="btn btn__ghost" role="button" (click)="addExercise();open()">Add Exercise</a>
+      <app-exercise-pop-up [isOpen]="isOverlayOpen"></app-exercise-pop-up>
+      <a class="btn btn__ghost--accent" role="button" (click)="nextStep()">Next Step</a>
     </div>
 
     <div *ngIf="submittedExercise && errorMessage" class="error" aria-live="assertive">
