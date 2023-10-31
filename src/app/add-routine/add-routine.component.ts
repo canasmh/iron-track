@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { checkIfNumber, isGreaterThanZero } from '../../shared/validators/customValidators';
-import { RoutineExercise } from 'src/shared/types/RoutineExercise';
-import { Exercise, initExercise } from 'src/shared/types/Exercise';
-import { RoutineService } from '../../shared/services/routine.service';
-import { ExercisesApiService } from '../../shared/services/apiNinjas.service';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import { ErrorMessageService } from '../../shared/services/error-message.service';
-import { Overlay } from '@angular/cdk/overlay';
+import {Component, OnInit} from '@angular/core';
+import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {checkIfNumber, isGreaterThanZero} from '../../shared/validators/customValidators';
+import {RoutineExercise} from 'src/shared/types/RoutineExercise';
+import {Exercise, initExercise} from 'src/shared/types/Exercise';
+import {RoutineService} from '../../shared/services/routine.service';
+import {ExercisesApiService} from '../../shared/services/apiNinjas.service';
+import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
+import {Subject} from 'rxjs';
+import {ErrorMessageService} from '../../shared/services/error-message.service';
+import {Overlay, OverlayRef} from '@angular/cdk/overlay';
+import {ExercisePopUpComponent} from '../exercise-pop-up/exercise-pop-up.component';
+import {ComponentPortal} from '@angular/cdk/portal';
+import {OverlayService} from "../../shared/services/overlay.service";
 
 @Component({
   selector: 'app-add-routine',
@@ -18,11 +21,7 @@ import { Overlay } from '@angular/cdk/overlay';
 })
 
 export class AddRoutineComponent implements OnInit {
-  isOverlayOpen = false;
 
-  open() {
-    this.isOverlayOpen = true;
-  }
   private inputChanged$ = new Subject<string>();
 
   addExerciseForm!: FormGroup;
@@ -33,6 +32,7 @@ export class AddRoutineComponent implements OnInit {
   weightUnit: string = 'lbs';
 
   routineExercises: RoutineExercise[] = [];
+
   exercise: Exercise = initExercise;
   nExercises = this.routineExercises.length;
   reps: boolean = true;
@@ -112,8 +112,13 @@ export class AddRoutineComponent implements OnInit {
     private routineService: RoutineService,
     private exercisesService: ExercisesApiService,
     private errorMessageService: ErrorMessageService,
-    private overlay: Overlay
-  ) {}
+    public overlayService: OverlayService
+  ) {
+  }
+
+  openOverlay() {
+    this.overlayService.showOverlay();
+  }
 
   ngOnInit(): void {
 
@@ -159,14 +164,29 @@ export class AddRoutineComponent implements OnInit {
     });
   }
 
-  get name() { return this.addExerciseForm.controls['name']; }
-  get weight() { return this.addExerciseForm.controls['weight']; }
-  get sets() { return this.addExerciseForm.controls['sets']; }
-  get quantity() { return this.addExerciseForm.controls['quantity']; }
-  get quantityUnit() { return this.addExerciseForm.controls['quantityUnit']; }
+  get name() {
+    return this.addExerciseForm.controls['name'];
+  }
+
+  get weight() {
+    return this.addExerciseForm.controls['weight'];
+  }
+
+  get sets() {
+    return this.addExerciseForm.controls['sets'];
+  }
+
+  get quantity() {
+    return this.addExerciseForm.controls['quantity'];
+  }
+
+  get quantityUnit() {
+    return this.addExerciseForm.controls['quantityUnit'];
+  }
 
   setErrorMessage(field: AbstractControl, fieldName: string) {
     this.errorMessage = this.errorMessageService.getErrorMessage(field, fieldName);
   }
 
 }
+
