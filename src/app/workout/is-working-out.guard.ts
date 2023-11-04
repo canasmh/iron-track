@@ -19,3 +19,10 @@ export const isWorkingOutGuard: CanActivateFn = (route, state) => {
     return true;
   }
 };
+
+export const isNotWorkingOutGuard: CanActivateFn = (route, state) => {
+  const workoutService = inject(WorkoutService);
+  console.log('in not workout', route.params);
+
+  return true;
+};

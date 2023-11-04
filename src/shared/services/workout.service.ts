@@ -12,16 +12,18 @@ import { Router } from '@angular/router';
 export class WorkoutService {
 
   private workout: Workout;
-  workoutFinished: boolean = false;
+  workoutFinished: boolean;
+  hasLocalStorage: boolean;
 
   constructor(
     private http: HttpClient,
     private authService: AuthService,
     private router: Router
   ) {
-    this.workout = {
-      sessionStart: new Date().getTime()
-    };
+    const localStorageWorkout = localStorage.getItem('workout');
+    this.workoutFinished = !!localStorageWorkout;
+    this.hasLocalStorage = !!localStorageWorkout;
+    this.workout = JSON.parse(localStorageWorkout ?? '{}') ?? { sessionStart: new Date().getTime() };
   }
 
   setRoutine(routine: Routine) {
