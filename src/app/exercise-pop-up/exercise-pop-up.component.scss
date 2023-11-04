@@ -3,6 +3,7 @@
 @import '../../scss/custom-theme.scss';
 @import '../../scss/abstracts/mixins';
 
+
 .overlay {
   position: fixed;
   top: 0;
@@ -14,6 +15,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+table{
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: $md;
+
+  th, td {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+    font-weight: bold;
+    border-radius:  15px 50px 30px 5px;
+  }
+  th{
+    background-color: #b7b7b7;
+    color: #b8641b;
+    border-radius: 15px 50px 30px 5px;
+  }
 }
 
 .btn {
