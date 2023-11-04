@@ -1,5 +1,5 @@
 import { inject } from '@angular/core';
-import { CanActivateFn } from '@angular/router';
+import {  CanActivateFn } from '@angular/router';
 import { WorkoutService } from 'src/shared/services/workout.service';
 
 export const isWorkingOutGuard: CanActivateFn = (route, state) => {

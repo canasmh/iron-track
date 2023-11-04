@@ -50,6 +50,7 @@ export class WorkoutService {
 
   finishWorkout() {
     this.setSessionEnd(new Date().getTime());
+    this.workoutFinished = true;
     this.updateWorkout().subscribe({
       next: () => {
         localStorage.removeItem('workout');
@@ -59,7 +60,7 @@ export class WorkoutService {
         localStorage.removeItem('workout');
       },
       complete: () => {
-        this.workoutFinished = true;
+
       }
     });
   }

@@ -12,6 +12,7 @@ export class WorkoutComponent implements OnInit {
 
   private workoutId: string;
   workout: Workout;
+  isPageReload: boolean = false;
 
   finishWorkout() {
     this.workoutService.finishWorkout();
@@ -20,6 +21,12 @@ export class WorkoutComponent implements OnInit {
 
   @HostListener('window:beforeunload', ['$event'])
   confirmNavigation($event: any) {
+
+    if (this.isPageReload) {
+
+      return;
+    }
+
     $event.preventDefault();
 
     if (!this.workoutService.workoutFinished) {
@@ -34,6 +41,14 @@ export class WorkoutComponent implements OnInit {
     private router: Router,
     private workoutService: WorkoutService
   ) {
+    const type = performance.getEntriesByType('navigation')[0].toJSON().type;
+
+    if (type === 'reload') {
+      this.isPageReload = true;
+    } else {
+      this.isPageReload = false;
+    }
+
     const workoutJson = localStorage.getItem('workout');
     const workout: Workout = workoutJson ? JSON.parse(workoutJson) : null;
     this.workout = this.workoutService.getWorkout();
