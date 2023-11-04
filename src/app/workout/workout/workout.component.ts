@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WorkoutService } from 'src/shared/services/workout.service';
 import { Workout } from 'src/shared/types/Workout';
@@ -14,26 +14,26 @@ export class WorkoutComponent implements OnInit {
   workout: Workout;
 
   finishWorkout() {
-    this.workoutService.setSessionEnd(new Date().getTime());
-    this.workoutService.updateWorkout().subscribe({
-      next: () => {
-        this.router.navigate(['/routines', this.workoutService.getWorkout().routine?.id]);
-      },
-      error: (error) => {
-        console.error(error);
-        this.router.navigate(['/routines']);
-      },
-      complete: () => {
-        localStorage.removeItem('workout');
-      }
-    });
+    this.workoutService.finishWorkout();
+    this.router.navigate(['/routines', this.workout.routine?.id]);
+  }
+
+  @HostListener('window:beforeunload', ['$event'])
+  confirmNavigation($event: any) {
+    $event.preventDefault();
+
+    if (!this.workoutService.workoutFinished) {
+      $event.returnValue = this.workoutService.finishWorkout();
+    }
+
+    return $event;
   }
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private workoutService: WorkoutService,
-    private viewContainerRef: ViewContainerRef) {
+    private workoutService: WorkoutService
+  ) {
     const workoutJson = localStorage.getItem('workout');
     const workout: Workout = workoutJson ? JSON.parse(workoutJson) : null;
     this.workout = this.workoutService.getWorkout();

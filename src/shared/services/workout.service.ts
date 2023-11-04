@@ -4,6 +4,7 @@ import { Routine } from '../types/Routine';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +12,12 @@ import { Observable } from 'rxjs';
 export class WorkoutService {
 
   private workout: Workout;
+  workoutFinished: boolean = false;
+
   constructor(
     private http: HttpClient,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {
     this.workout = {
       sessionStart: new Date().getTime()
@@ -42,6 +46,22 @@ export class WorkoutService {
 
   getWorkout() {
     return this.workout;
+  }
+
+  finishWorkout() {
+    this.setSessionEnd(new Date().getTime());
+    this.updateWorkout().subscribe({
+      next: () => {
+        localStorage.removeItem('workout');
+      },
+      error: (error) => {
+        console.error(error);
+        localStorage.removeItem('workout');
+      },
+      complete: () => {
+        this.workoutFinished = true;
+      }
+    });
   }
 
   createWorkout(): Observable<any> {
