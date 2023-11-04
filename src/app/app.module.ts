@@ -18,6 +18,7 @@ import { EditRoutineComponent } from './edit-routine/edit-routine.component';
 import { A11yModule } from '@angular/cdk/a11y';
 import { EditExerciseComponent } from './edit-exercise/edit-exercise.component';
 import { AddRoutineExerciseComponent } from './add-routine-exercise/add-routine-exercise.component';
+import { WorkoutModule } from './workout/workout.module';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { AddRoutineExerciseComponent } from './add-routine-exercise/add-routine-
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    A11yModule
+    A11yModule,
+    WorkoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
