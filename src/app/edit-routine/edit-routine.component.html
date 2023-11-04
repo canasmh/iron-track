@@ -14,7 +14,7 @@
       <div *ngFor="let exercise of routine.exercises; index as i;" class="exercise__container">
         <div class="exercise__header">
           <div class="exercise__header--content">
-            <h4 class="exercise__header--name"> {{ exercise.exercise.name }}</h4>
+            <h5 class="exercise__header--name"> {{ exercise.exercise.name }}</h5>
           </div>
           <div class="exercise__btn-group">
             <a [routerLink]="['/routines', routine.id, 'edit', exercise.id]" tabindex="0"><i class="fa-solid fa-pencil exercise__header--icon"></i></a>
