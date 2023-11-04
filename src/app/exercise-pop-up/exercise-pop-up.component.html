@@ -1,7 +1,22 @@
 <section class="overlay">
   <div>
-    exercises: {{exercise}}
-    <div>
+    <table>
+    <tr>
+      <th>Name</th>
+      <th>Sets</th>
+      <th>Quantity</th>
+      <th>Weight</th>
+      <th>Type</th>
+    </tr>
+    <tr *ngFor="let routineExercise of arrayOfRoutineExercises">
+      <td>{{routineExercise.exercise.name}}</td>
+      <td>{{routineExercise.sets}}</td>
+      <td>{{routineExercise.quantity}}</td>
+      <td>{{routineExercise.weight}}</td>
+      <td>{{routineExercise.quantityUnit}}</td>
+    </tr>
+      </table>
+    <div id="div i want to see">
       <a class="btn btn__ghost" role="button" (click)="closeOverlay()">Back to Add Exercise</a>
     </div>
   </div>

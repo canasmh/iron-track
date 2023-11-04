@@ -1,3 +1,8 @@
+@use '@angular/material' as mat;
+@import '../../scss/abstracts/variables';
+@import '../../scss/custom-theme.scss';
+@import '../../scss/abstracts/mixins';
+
 .overlay {
   position: fixed;
   top: 0;
@@ -9,4 +14,31 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.btn {
+  &__ghost {
+    color: mat.get-color-from-palette($iron-track-accent, 'default');
+    border: 1px solid mat.get-color-from-palette($iron-track-accent, 'default');
+    margin-bottom: $md;
+
+    @include respond(laptop) {
+      &:hover {
+        color: mat.get-color-from-palette($iron-track-accent, 'darker');
+        border-color: mat.get-color-from-palette($iron-track-accent, 'darker');
+      }
+    }
+  }
+
+  &__ghost--accent {
+    color: mat.get-color-from-palette($iron-track-dark-primary, 'default-contrast');
+    border: 1px solid mat.get-color-from-palette($iron-track-dark-primary, 'default-contrast');
+
+    @include respond(laptop) {
+      &:hover {
+        color: mat.get-color-from-palette($iron-track-accent, 'lighter-contrast');
+        border-color: mat.get-color-from-palette($iron-track-accent, 'lighter-contrast');
+      }
+    }
+  }
 }

@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RoutineAddComponent } from './add-routine.component';
+import { AddRoutineComponent } from './add-routine.component';
 
 describe('RoutineAddComponent', () => {
-  let component: RoutineAddComponent;
-  let fixture: ComponentFixture<RoutineAddComponent>;
+  let component: AddRoutineComponent;
+  let fixture: ComponentFixture<AddRoutineComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [RoutineAddComponent]
+      declarations: [AddRoutineComponent]
     });
-    fixture = TestBed.createComponent(RoutineAddComponent);
+    fixture = TestBed.createComponent(AddRoutineComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
