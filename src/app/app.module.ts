@@ -18,6 +18,8 @@ import { EditRoutineComponent } from './edit-routine/edit-routine.component';
 import { A11yModule } from '@angular/cdk/a11y';
 import { EditExerciseComponent } from './edit-exercise/edit-exercise.component';
 import { AddRoutineExerciseComponent } from './add-routine-exercise/add-routine-exercise.component';
+import { ExercisePopUpComponent } from './exercise-pop-up/exercise-pop-up.component';
+import { CdkConnectedOverlay, CdkOverlayOrigin } from '@angular/cdk/overlay';
 import { WorkoutModule } from './workout/workout.module';
 import { WorkoutService } from 'src/shared/services/workout.service';
 import { Router } from '@angular/router';
@@ -47,7 +49,8 @@ export function appInitializer(workoutService: WorkoutService, router: Router) {
     RoutineComponent,
     EditRoutineComponent,
     EditExerciseComponent,
-    AddRoutineExerciseComponent
+    AddRoutineExerciseComponent,
+    ExercisePopUpComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +58,8 @@ export function appInitializer(workoutService: WorkoutService, router: Router) {
     ReactiveFormsModule,
     HttpClientModule,
     A11yModule,
+    CdkConnectedOverlay,
+    CdkOverlayOrigin,
     WorkoutModule
   ],
   providers: [

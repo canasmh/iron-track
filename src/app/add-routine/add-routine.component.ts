@@ -9,6 +9,7 @@ import { ExercisesApiService } from '../../shared/services/apiNinjas.service';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { ErrorMessageService } from '../../shared/services/error-message.service';
+import { OverlayService } from '../../shared/services/overlay.service';
 
 @Component({
   selector: 'app-add-routine',
@@ -17,6 +18,7 @@ import { ErrorMessageService } from '../../shared/services/error-message.service
 })
 
 export class AddRoutineComponent implements OnInit {
+
   private inputChanged$ = new Subject<string>();
 
   addExerciseForm!: FormGroup;
@@ -27,6 +29,7 @@ export class AddRoutineComponent implements OnInit {
   weightUnit: string = 'lbs';
 
   routineExercises: RoutineExercise[] = [];
+
   exercise: Exercise = initExercise;
   nExercises = this.routineExercises.length;
   reps: boolean = true;
@@ -41,6 +44,7 @@ export class AddRoutineComponent implements OnInit {
       this.errorMessage = 'Invalid workout selected';
     } else if (!this.addExerciseForm.invalid) {
       // add exercises to the local routineExercises
+      //Send the data to a component that will display the exercises
       this.routineExercises.push({
         exercise: this.exercise,
         weight: this.weight.value + ` ${this.weightUnit}`,
@@ -104,8 +108,14 @@ export class AddRoutineComponent implements OnInit {
     private router: Router,
     private routineService: RoutineService,
     private exercisesService: ExercisesApiService,
-    private errorMessageService: ErrorMessageService
-  ) {}
+    private errorMessageService: ErrorMessageService,
+    public overlayService: OverlayService
+  ) {
+  }
+
+  openOverlay() {
+    this.overlayService.showOverlay();
+  }
 
   ngOnInit(): void {
 
@@ -151,13 +161,29 @@ export class AddRoutineComponent implements OnInit {
     });
   }
 
-  get name() { return this.addExerciseForm.controls['name']; }
-  get weight() { return this.addExerciseForm.controls['weight']; }
-  get sets() { return this.addExerciseForm.controls['sets']; }
-  get quantity() { return this.addExerciseForm.controls['quantity']; }
-  get quantityUnit() { return this.addExerciseForm.controls['quantityUnit']; }
+  get name() {
+    return this.addExerciseForm.controls['name'];
+  }
+
+  get weight() {
+    return this.addExerciseForm.controls['weight'];
+  }
+
+  get sets() {
+    return this.addExerciseForm.controls['sets'];
+  }
+
+  get quantity() {
+    return this.addExerciseForm.controls['quantity'];
+  }
+
+  get quantityUnit() {
+    return this.addExerciseForm.controls['quantityUnit'];
+  }
 
   setErrorMessage(field: AbstractControl, fieldName: string) {
     this.errorMessage = this.errorMessageService.getErrorMessage(field, fieldName);
   }
+
 }
+

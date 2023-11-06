@@ -1,0 +1,25 @@
+<section class="overlay">
+  <div class="overlay__container">
+    <table class="overlay__table">
+      <thead class="overlay__table--head">
+        <tr class="overlay__table--head-row">
+          <th class="overlay__table--head-item">Name</th>
+          <th class="overlay__table--head-item">Weight</th>
+          <th class="overlay__table--head-item">Sets</th>
+        </tr>
+      </thead>
+      <tbody  class="overlay__table--body">
+        <tr class="overlay__table--body-row" *ngFor="let routineExercise of arrayOfRoutineExercises">
+          <td class="overlay__table--body-item">{{routineExercise.exercise.name}}</td>
+          <td class="overlay__table--body-item">{{routineExercise.weight}}</td>
+          <td class="overlay__table--body-item">{{routineExercise.sets}}</td>
+
+          <td class="overlay__table--body-item"></td>
+        </tr>
+      </tbody>
+    </table>
+    <div id="div i want to see">
+      <a class="btn btn__ghost" role="button" (click)="closeOverlay()">Close</a>
+    </div>
+  </div>
+</section>

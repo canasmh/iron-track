@@ -74,8 +74,10 @@
         </div>
     </form>
     <div>
-        <a class="btn btn__ghost" role="button" (click)="addExercise()">Add Exercise</a>
-        <a class="btn btn__ghost--accent" role="button" (click)="nextStep()">Next Step</a>
+      <app-exercise-pop-up *ngIf="overlayService.getOverlayState() | async" [arrayOfRoutineExercises]="routineExercises"></app-exercise-pop-up>
+       <a class="btn btn__ghost" role="button" (click)="addExercise()">Add Exercise</a>
+      <a class="btn btn__ghost" role="button" (click)="openOverlay()">Check Exercises Added</a>
+      <a class="btn btn__ghost--accent" role="button" (click)="nextStep()">Next Step</a>
     </div>
 
     <div *ngIf="submittedExercise && errorMessage" class="error" aria-live="assertive">

@@ -98,7 +98,8 @@ export class AddRoutineExerciseComponent implements OnInit {
     private routineExerciseService: RoutineExerciseService,
     private exercisesService: ExercisesApiService,
     private errorMessageService: ErrorMessageService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
 
@@ -144,11 +145,25 @@ export class AddRoutineExerciseComponent implements OnInit {
     });
   }
 
-  get name() { return this.addExerciseForm.controls['name']; }
-  get weight() { return this.addExerciseForm.controls['weight']; }
-  get sets() { return this.addExerciseForm.controls['sets']; }
-  get quantity() { return this.addExerciseForm.controls['quantity']; }
-  get quantityUnit() { return this.addExerciseForm.controls['quantityUnit']; }
+  get name() {
+    return this.addExerciseForm.controls['name'];
+  }
+
+  get weight() {
+    return this.addExerciseForm.controls['weight'];
+  }
+
+  get sets() {
+    return this.addExerciseForm.controls['sets'];
+  }
+
+  get quantity() {
+    return this.addExerciseForm.controls['quantity'];
+  }
+
+  get quantityUnit() {
+    return this.addExerciseForm.controls['quantityUnit'];
+  }
 
   setErrorMessage(field: AbstractControl, fieldName: string) {
     this.errorMessage = this.errorMessageService.getErrorMessage(field, fieldName);
