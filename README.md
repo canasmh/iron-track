@@ -13,7 +13,7 @@ $ npm install
 There are some variables we want to keep secret, such as our api-ninjas API key! So in order to have this application running in development mode, you must set valid values for the predefined environment variables. This can be done by making a copy of `src/environments/environment.ts`
 
 ```
-$ cp src/environments/environment.ts src/enviornments/environment.development.ts
+$ cp src/environments/environment.ts src/environments/environment.development.ts
 ```
 
 Be sure to set `production=false`. Once you're environment variables are set up, you are ready to run the application.
