@@ -15,25 +15,38 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
+  padding: $sm $lg;
+  max-width: 100%;
 
-table{
-  border-collapse: collapse;
-  width: 100%;
-  margin-bottom: $md;
+  &__container {
+    background-color: mat.get-color-from-palette($iron-track-dark-primary, 'default');
+    padding: $md;
+    border: 1px solid mat.get-color-from-palette($iron-track-accent, 'default');
+    border-radius: 8px;
+  }
 
-  th, td {
-    border: 1px solid #ddd;
-    text-align: left;
-    padding: 8px;
-    font-weight: bold;
-    border-radius:  15px 50px 30px 5px;
+  &__table {
+    max-width: 100%;
+    margin-bottom: $md;
   }
-  th{
-    background-color: #b7b7b7;
-    color: #b8641b;
-    border-radius: 15px 50px 30px 5px;
+
+  &__table--head {
+
+    &-item {
+      padding: 0 $sm $xs;
+    }
   }
+
+  &__table--body {
+
+    &-item {
+      overflow-x: auto;
+      text-wrap: nowrap;
+      max-width: 30vw;
+      padding: $sm $xs;
+    }
+  }
+
 }
 
 .btn {
