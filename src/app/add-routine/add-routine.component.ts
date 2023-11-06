@@ -1,18 +1,15 @@
-import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
-import {checkIfNumber, isGreaterThanZero} from '../../shared/validators/customValidators';
-import {RoutineExercise} from 'src/shared/types/RoutineExercise';
-import {Exercise, initExercise} from 'src/shared/types/Exercise';
-import {RoutineService} from '../../shared/services/routine.service';
-import {ExercisesApiService} from '../../shared/services/apiNinjas.service';
-import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
-import {Subject} from 'rxjs';
-import {ErrorMessageService} from '../../shared/services/error-message.service';
-import {Overlay, OverlayRef} from '@angular/cdk/overlay';
-import {ExercisePopUpComponent} from '../exercise-pop-up/exercise-pop-up.component';
-import {ComponentPortal} from '@angular/cdk/portal';
-import {OverlayService} from "../../shared/services/overlay.service";
+import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { checkIfNumber, isGreaterThanZero } from '../../shared/validators/customValidators';
+import { RoutineExercise } from 'src/shared/types/RoutineExercise';
+import { Exercise, initExercise } from 'src/shared/types/Exercise';
+import { RoutineService } from '../../shared/services/routine.service';
+import { ExercisesApiService } from '../../shared/services/apiNinjas.service';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { ErrorMessageService } from '../../shared/services/error-message.service';
+import { OverlayService } from '../../shared/services/overlay.service';
 
 @Component({
   selector: 'app-add-routine',
