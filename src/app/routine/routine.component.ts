@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Routine } from 'src/shared/types/Routine';
 import { RoutineService } from 'src/shared/services/routine.service';
+import { Workout } from 'src/shared/types/Workout';
+import { WorkoutService } from 'src/shared/services/workout.service';
 
 @Component({
   selector: 'app-routine',
@@ -18,7 +20,22 @@ export class RoutineComponent {
     this.expand[i] = !this.expand[i];
   }
 
-  constructor(private route: ActivatedRoute, private router: Router,private routineService: RoutineService) {
+  beginWorkout() {
+    this.workoutService.setRoutine(this.routine);
+    this.workoutService.setSessionStart(new Date().getTime());
+    this.workoutService.createWorkout().subscribe({
+      next: (res: Workout) => {
+        this.workoutService.setId(res.id);
+        localStorage.setItem('workout', JSON.stringify(this.workoutService.getWorkout()));
+        this.router.navigate(['/workout', res.id]);
+      },
+      error: (e) => {
+        console.error(e);
+      }
+    });
+  }
+
+  constructor(private route: ActivatedRoute, private router: Router, private routineService: RoutineService, private workoutService: WorkoutService) {
     const routineId = this.route.snapshot.params['routine_id'];
     this.routine = { name: '', exercises: [] };
     this.routineService.retrieveRoutine(routineId).subscribe({

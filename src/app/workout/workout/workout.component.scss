@@ -1,0 +1,55 @@
+@use "@angular/material" as mat;
+@import '../../../scss/abstracts/variables';
+@import '../../../scss//custom-theme.scss';
+
+.workout {
+  height: 75vh;
+  padding-top: $xl;
+  padding-bottom: $xl;
+  overflow-y: auto;
+
+  &__timer {
+    font-size: 4rem;
+  }
+
+  &__heading {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-indent: 2px;
+    margin-bottom: $sm;
+  }
+
+  &__sub-heading {
+    font-weight: 200;
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-indent: 2px;
+    margin-bottom: $md;
+  }
+
+  &__list {
+    list-style-type: none;
+    text-align: left;
+
+    &-item {
+      margin-bottom: $lg;
+    }
+
+    &-link, &-link:visited, &-link:link {
+      border: 1px solid mat.get-color-from-palette($iron-track-dark-primary, 'default-contrast');
+      overflow-x: auto;
+      text-wrap: nowrap;
+    }
+  }
+
+  &__icon {
+    transform: rotate(-30deg);
+  }
+
+  &__finish {
+    background-color: #008800;
+    border: 1px solid #008800;
+    color: mat.get-color-from-palette($iron-track-dark-primary, 'default-contrast');
+  }
+}

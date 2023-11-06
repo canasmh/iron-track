@@ -108,6 +108,7 @@
     border-radius: 8px;
 }
 .btn__fill {
+    color: mat.get-color-from-palette($iron-track-dark-primary, 'default-contrast');
     background-color: #008000;
     border: 1px solid #008000;
     border-radius: 8px;

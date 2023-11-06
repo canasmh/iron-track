@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +18,20 @@ import { EditRoutineComponent } from './edit-routine/edit-routine.component';
 import { A11yModule } from '@angular/cdk/a11y';
 import { EditExerciseComponent } from './edit-exercise/edit-exercise.component';
 import { AddRoutineExerciseComponent } from './add-routine-exercise/add-routine-exercise.component';
+import { WorkoutModule } from './workout/workout.module';
+import { WorkoutService } from 'src/shared/services/workout.service';
+import { Router } from '@angular/router';
+
+export function appInitializer(workoutService: WorkoutService, router: Router) {
+  return () => {
+    const workout = workoutService.hasLocalStorage ? workoutService.getWorkout() : false;
+
+    if (workout) {
+      // Redirect to the workout route
+      router.navigate(['/workout', workout.id]);
+    }
+  };
+}
 
 @NgModule({
   declarations: [
@@ -40,9 +54,18 @@ import { AddRoutineExerciseComponent } from './add-routine-exercise/add-routine-
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    A11yModule
+    A11yModule,
+    WorkoutModule
   ],
-  providers: [],
+  providers: [
+    WorkoutService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: appInitializer,
+      deps: [WorkoutService, Router],
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
