@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { WorkoutComponent } from './workout/workout.component';
 import { WorkoutTimerComponent } from './workout-timer/workout-timer.component';
 import { RouterModule } from '@angular/router';
+import { SetComponent } from './set/set.component';
 
 @NgModule({
   declarations: [
     WorkoutComponent,
-    WorkoutTimerComponent
+    WorkoutTimerComponent,
+    SetComponent
   ],
   imports: [
     CommonModule,

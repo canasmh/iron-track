@@ -23,6 +23,7 @@ import { CdkConnectedOverlay, CdkOverlayOrigin } from '@angular/cdk/overlay';
 import { WorkoutModule } from './workout/workout.module';
 import { WorkoutService } from 'src/shared/services/workout.service';
 import { Router } from '@angular/router';
+import { SetTimerComponent } from './set-timer/set-timer.component';
 
 export function appInitializer(workoutService: WorkoutService, router: Router) {
   return () => {
@@ -50,7 +51,8 @@ export function appInitializer(workoutService: WorkoutService, router: Router) {
     EditRoutineComponent,
     EditExerciseComponent,
     AddRoutineExerciseComponent,
-    ExercisePopUpComponent
+    ExercisePopUpComponent,
+    SetTimerComponent
   ],
   imports: [
     BrowserModule,

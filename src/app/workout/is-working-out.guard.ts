@@ -4,6 +4,7 @@ import { WorkoutService } from 'src/shared/services/workout.service';
 
 export const isWorkingOutGuard: CanActivateFn = (route, state) => {
   const workoutService = inject(WorkoutService);
+  console.log('in workout', route.params);
 
   if (localStorage.getItem('workout') && !workoutService.workoutFinished) {
 
