@@ -1,6 +1,6 @@
 <section class="set">
   <div class="set__timer">
-    <a href="" class="set__timer--link"><i class="fa-solid fa-chevron-left"></i> Back</a>
+    <a [routerLink]="['/workout', workout.id]" class="set__timer--link"><i class="fa-solid fa-chevron-left"></i> Back</a>
     <p class="set__timer--text"><strong>Total Time: </strong><app-workout-timer></app-workout-timer></p>
   </div>
   <div class="set__header">
