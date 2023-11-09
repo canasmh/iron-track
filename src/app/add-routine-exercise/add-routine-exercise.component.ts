@@ -41,7 +41,6 @@ export class AddRoutineExerciseComponent implements OnInit {
     if (this.workoutInputChanged) {
       this.errorMessage = 'Invalid workout selected';
     } else if (!this.addExerciseForm.invalid) {
-      console.log('exercise', this.exercise);
       this.routineExercise = {
         exercise: this.exercise,
         weight: this.weight.value + ' ' + this.weightUnit,
@@ -51,8 +50,7 @@ export class AddRoutineExerciseComponent implements OnInit {
       };
 
       this.routineExerciseService.addRoutineExercise(this.routineId, this.routineExercise).subscribe({
-        next: (data) => {
-          console.log(data);
+        next: () => {
           this.router.navigate(['/routines', this.routineId, 'edit']);
         },
         error: (error) => {

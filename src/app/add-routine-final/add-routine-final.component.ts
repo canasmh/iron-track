@@ -25,8 +25,7 @@ export class AddRoutineFinalComponent implements OnInit {
       const name: string = this.nameRoutineForm.value['name'];
       this.routineService.setName(name);
       this.routineService.createRoutine().subscribe({
-        next: (data) => {
-          console.log(data);
+        next: () => {
           this.routineService.resetRoutine();
           this.router.navigate(['/routines']);
         },
