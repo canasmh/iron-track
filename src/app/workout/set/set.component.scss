@@ -38,6 +38,10 @@
 
   &__container {
     margin: $sm;
+
+    &--header {
+      font-size: 1.6rem;
+    }
   }
 
   &__checkbox {
