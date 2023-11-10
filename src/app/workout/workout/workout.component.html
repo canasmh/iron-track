@@ -7,5 +7,15 @@
       <a [routerLink]="['/workout', workout.id, exercise.id]" class="btn workout__list-link"><i class="fa-solid fa-dumbbell workout__icon" aria-label="icon of a dumbbell"></i> {{ exercise.exercise.name }}</a>
     </li>
   </ul>
-  <button class="btn workout__finish" (click)="finishWorkout()">Finish Workout</button>
+  <button class="btn workout__finish" (click)="open()">Finish Workout</button>
+  <div *ngIf="isOpen" class="modal">
+    <div class="modal__content">
+      <h5 class="modal__header">Finished Working Out?</h5>
+      <p class="modal__text">Are you sure you want to finish your workout?</p>
+      <div class="modal__btn-containers">
+        <button class="modal__btn modal__btn--cancel" (click)="close()">Cancel</button>
+        <button class="modal__btn modal__btn--confirm" (click)="finishWorkout()">Confirm</button>
+      </div>
+    </div>
+  </div>
 </section>

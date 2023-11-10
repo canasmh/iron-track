@@ -13,8 +13,19 @@ export class WorkoutComponent implements OnInit {
   private workoutId: string;
   workout: Workout;
 
+  isOpen: boolean = false;
+
+  close() {
+    this.isOpen = false;
+  }
+
+  open() {
+    this.isOpen = true;
+  }
+
   finishWorkout() {
     this.workoutService.finishWorkout();
+    this.isOpen = false;
     this.router.navigate(['/routines', this.workout.routine?.id]);
   }
 
