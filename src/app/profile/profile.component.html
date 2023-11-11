@@ -1,0 +1,21 @@
+<div class="profile">
+  <h2>Profile</h2>
+  <div>
+    <label>Name:
+      {{user.name}}
+    </label>
+    <label>Email:
+      {{user.email}}
+    </label>
+    <label>Password:
+      <span *ng-if="showPassword">********</span>
+      <button (click)="togglePasswordVisibility()">Show</button>
+     {{user.password}}
+    </label>
+  </div>
+  <div> <button (click)="edit()">Edit Profile</button>
+    <button (click)="logout()">Logout</button>
+    <button (click)="delete()">Delete Account</button>
+</div>
+</div>
+```

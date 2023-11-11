@@ -21,6 +21,8 @@ import { AddRoutineExerciseComponent } from './add-routine-exercise/add-routine-
 import { ExercisePopUpComponent } from './exercise-pop-up/exercise-pop-up.component';
 import { CdkConnectedOverlay, CdkOverlayOrigin } from '@angular/cdk/overlay';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { ProfileComponent } from './profile/profile.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { OverlayModule } from '@angular/cdk/overlay';
     EditRoutineComponent,
     EditExerciseComponent,
     AddRoutineExerciseComponent,
-    ExercisePopUpComponent
+    ExercisePopUpComponent,
+    ProfileComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,
