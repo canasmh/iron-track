@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Login } from '../types/Login';
-import { Signup } from '../types/Signup';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {Login} from '../types/Login';
+import {Signup} from '../types/Signup';
 
 @Injectable({
   providedIn: 'root'
@@ -36,15 +36,15 @@ export class AuthService {
 
   signup(signup: Signup): Observable<any> {
 
-    return this.http.post('/api/auth/signup', signup, { headers: this.header });
+    return this.http.post('/api/auth/signup', signup, {headers: this.header});
   }
 
   login(login: Login): Observable<any> {
 
-    return this.http.post('/api/auth/login', login, { headers: this.header });
+    return this.http.post('/api/auth/login', login, {headers: this.header});
   }
 
   isAuthenticated() {
-    return this.http.get('/api/token', { headers: this.header });
+    return this.http.get('/api/token', {headers: this.header});
   }
 }
