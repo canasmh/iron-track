@@ -8,13 +8,19 @@
     <h3 class="set__header--sub-heading">{{ weight }}</h3>
   </div>
   <div class="set__grid">
-    <div *ngFor="let set of sets" class="set__container">
+    <div *ngFor="let set of sets; index as i;" class="set__container">
       <h5 class="set__container--header">{{ quantity }}</h5>
-      <div class="set__checkbox">&nbsp;</div>
-      <p class="set__continer--timer">00:00</p>
+
+      <div *ngIf="i < currentSet" class="set__checkbox set__checkbox--completed"><i class="fa-solid fa-check"></i></div>
+      <div *ngIf="i >= currentSet" class="set__checkbox">&nbsp;</div>
+
+      <p *ngIf="(i < currentSet)">{{ calculateTimeDifference(set.sessionStart, set.sessionEnd) }}</p>
+      <p *ngIf="inWorkout && i === currentSet" class="set__continer--timer"><app-set-timer></app-set-timer></p>
+      <p *ngIf="(!inWorkout && i === currentSet)">00:00</p>
+      <p *ngIf="(i > currentSet)">00:00</p>
     </div>
   </div>
-  <div role="button" class="set__cta">
-    <p class="set__cta--text">Start</p>
+  <div role="button" class="set__cta {{ inWorkout ? 'set__break' : ''}}" (click)="!inWorkout ? beginSet() : endSet()">
+    <p class="set__cta--text">{{ !inWorkout ? "Start" : "Break" }}</p>
   </div>
 </section>

@@ -1,5 +1,6 @@
 @use "@angular/material" as mat;
 @import '../../../scss/abstracts/variables';
+@import '../../../scss/abstracts/mixins';
 @import '../../../scss//custom-theme.scss';
 
 .workout {
@@ -76,6 +77,18 @@
     display: flex;
     flex-flow: column nowrap;
     gap: $md;
+
+    @include respond(tab-port) {
+      width: 75%;
+    }
+
+    @include respond(tab-land) {
+      width: 50%;
+    }
+
+    @include respond(laptop) {
+      width: 35%;
+    }
   }
 
   &__btn-containers {
@@ -88,6 +101,7 @@
     border-radius: 3px;
     padding: $xs $md;
     border: 1px solid transparent;
+    cursor: pointer;
 
     &--cancel {
       border: 1px solid mat.get-color-from-palette($iron-track-accent, 'default');

@@ -54,6 +54,8 @@ export class WorkoutService {
     this.updateWorkout().subscribe({
       next: () => {
         localStorage.removeItem('workout');
+        localStorage.removeItem('sets');
+        localStorage.removeItem('currentSet');
       },
       error: (error) => {
         console.error(error);
