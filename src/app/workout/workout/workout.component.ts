@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WorkoutService } from 'src/shared/services/workout.service';
-import { Workout } from 'src/shared/types/Workout';
+import { Workout, WorkoutSet } from 'src/shared/types/Workout';
 
 @Component({
   selector: 'app-workout',
@@ -12,6 +12,9 @@ export class WorkoutComponent implements OnInit {
 
   private workoutId: string;
   workout: Workout;
+  currentSet?: WorkoutSet;
+  sets?: WorkoutSet[];
+  setsCompleted?: any;
 
   isOpen: boolean = false;
 
@@ -54,6 +57,12 @@ export class WorkoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.workout = this.workoutService.getWorkout();
+    const setsLocalStorage = localStorage.getItem('sets');
+    const setsJSONLocalStorage: WorkoutSet[] = JSON.parse(setsLocalStorage ?? '[]');
+    const routineExerciseIds = new Set();
+    setsJSONLocalStorage.forEach((workoutSet) => {
+      routineExerciseIds.add(workoutSet.routineExercise?.id);
+    });
   }
 
 }
