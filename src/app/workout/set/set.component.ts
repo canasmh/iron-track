@@ -13,6 +13,8 @@ import { Workout, WorkoutSet } from 'src/shared/types/Workout';
 export class SetComponent implements OnInit {
 
   workout: Workout;
+  routineExerciseIdParams?: string;
+  currentWorkoutSetId?: number;
   currentSet: number = 0;
   sets?: WorkoutSet[];
   routineExercise?: RoutineExercise;
@@ -21,6 +23,15 @@ export class SetComponent implements OnInit {
   name?: string;
   inWorkout: boolean = !!localStorage.getItem('currentSet');
 
+  handleClick() {
+    if (this.inWorkout) {
+      if (this.routineExerciseIdParams == this.currentWorkoutSetId) {
+        this.endSet();
+      }
+    } else {
+      this.beginSet();
+    }
+  }
   beginSet() {
     if (this.routineExercise !== undefined) {
       this.workoutSetService.setRoutineExercise(this.routineExercise);
@@ -46,6 +57,7 @@ export class SetComponent implements OnInit {
           this.workoutSetService.setId(res.id);
           localStorage.setItem('currentSet', JSON.stringify(this.workoutSetService.getSet()));
           this.inWorkout = true;
+          this.currentWorkoutSetId = res.routineExercise?.id;
         },
         error: (error) => {
           console.error(error);
@@ -98,10 +110,10 @@ export class SetComponent implements OnInit {
   }
 
   constructor(private route: ActivatedRoute, private workoutService: WorkoutService, private workoutSetService: WorkoutSetService) {
-    const routineExerciseId = route.snapshot.params['routine_exercise_id'];
+    this.routineExerciseIdParams = route.snapshot.params['routine_exercise_id'];
     this.workout = workoutService.getWorkout();
 
-    this.routineExercise = this.workout.routine?.exercises.find(exercise => exercise.id == routineExerciseId);
+    this.routineExercise = this.workout.routine?.exercises.find(exercise => exercise.id == this.routineExerciseIdParams);
 
     this.sets = new Array(this.routineExercise?.sets);
     this.weight = this.routineExercise?.weight;
@@ -116,6 +128,11 @@ export class SetComponent implements OnInit {
     this.currentSet = thisWorkoutSet.length;
     this.sets = [...thisWorkoutSet, ...(this.sets?.slice(thisWorkoutSet.length) ?? [])];
     console.log('sets', this.sets);
+
+    const localStorageCurrentSet = localStorage.getItem('currentSet');
+    const jsonCurrentWorkoutSet: WorkoutSet = JSON.parse(localStorageCurrentSet ?? '{}');
+    this.currentWorkoutSetId = jsonCurrentWorkoutSet.routineExercise?.id;
+
   }
 
 }
