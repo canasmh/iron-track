@@ -56,6 +56,11 @@
   }
 }
 
+.active {
+  color: mat.get-color-from-palette($iron-track-accent, 'default');
+  border: 1px solid mat.get-color-from-palette($iron-track-accent, 'default')!important;
+}
+
 .modal {
   position: absolute;
   top: 0;

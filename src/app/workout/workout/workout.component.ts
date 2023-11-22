@@ -63,6 +63,8 @@ export class WorkoutComponent implements OnInit {
     setsJSONLocalStorage.forEach((workoutSet) => {
       routineExerciseIds.add(workoutSet.routineExercise?.id);
     });
+
+    this.currentSet = JSON.parse(localStorage.getItem('currentSet') ?? '{}');
   }
 
 }

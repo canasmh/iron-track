@@ -4,8 +4,9 @@
   <h3 class="workout__sub-heading">Select Exercise</h3>
   <ul class="workout__list">
     <li class="workout__list-item" *ngFor="let exercise of workout.routine?.exercises">
-      <a [routerLink]="['/workout', workout.id, exercise.id]" class="btn workout__list-link">
-        <i class="fa-solid fa-dumbbell workout__icon" aria-label="icon of a dumbbell"></i>
+      <a [routerLink]="['/workout', workout.id, exercise.id]" class="btn workout__list-link {{currentSet?.routineExercise?.id === exercise.id ? 'active' : ''}}">
+        <i *ngIf="exercise.id === currentSet?.routineExercise?.id" class="fa-solid fa-timer"></i>
+        <i *ngIf="exercise.id !== currentSet?.routineExercise?.id" class="fa-solid fa-dumbbell workout__icon" aria-label="icon of a dumbbell"></i>
         {{ exercise.exercise.name }}
       </a>
     </li>
