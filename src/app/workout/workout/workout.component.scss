@@ -61,6 +61,11 @@
   border: 1px solid mat.get-color-from-palette($iron-track-accent, 'default')!important;
 }
 
+.completed {
+  color: #008800!important;
+  border-color: #008800!important;
+}
+
 .modal {
   position: absolute;
   top: 0;

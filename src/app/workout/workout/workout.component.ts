@@ -14,7 +14,7 @@ export class WorkoutComponent implements OnInit {
   workout: Workout;
   currentSet?: WorkoutSet;
   sets?: WorkoutSet[];
-  setsCompleted?: any;
+  setsCompleted?: Map<string, boolean> = new Map();
 
   isOpen: boolean = false;
 
@@ -63,6 +63,14 @@ export class WorkoutComponent implements OnInit {
     setsJSONLocalStorage.forEach((workoutSet) => {
       routineExerciseIds.add(workoutSet.routineExercise?.id);
     });
+    routineExerciseIds.forEach(id => {
+      const currentExercise: WorkoutSet[] | undefined = setsJSONLocalStorage.filter(set => id === set.routineExercise?.id);
+      const nSets = currentExercise.length;
+      const routineExerciseId = currentExercise[0].routineExercise?.id?.toString() ?? '';
+      this.setsCompleted?.set(routineExerciseId,  currentExercise[0].routineExercise?.sets === nSets);
+    });
+
+    console.log('sets completed', this.setsCompleted);
 
     this.currentSet = JSON.parse(localStorage.getItem('currentSet') ?? '{}');
   }
