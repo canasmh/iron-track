@@ -1,8 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {Signup} from "../../shared/types/Signup";
-import {UserService} from "../../shared/services/user.service";
-import {User} from "../../shared/types/User";
+import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../shared/services/user.service';
+import { User } from '../../shared/types/User';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -11,17 +10,27 @@ import {User} from "../../shared/types/User";
 })
 export class ProfileComponent implements OnInit {
 
-  password: string = '';
-  showPassword: boolean = false;
+  newUsername: string = '';
+  newPassword: string = '';
 
-  constructor(private route: ActivatedRoute, public user: User, private userService: UserService) {
+  showPassword: boolean = false;
+  user?: User;
+  constructor(private userService: UserService,  private router: Router) {
+  }
+
+  ngOnInit(): void {
+    this.userService.getUser().subscribe((res:User) => {
+      this.user = res;
+    }, (err) => {
+      console.log('error getting user', err);
+    });
   }
 
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
   }
-  editProfile() {
-    this.userService.editUser(this.user.id).subscribe((res) => {
+  editProfileUserName() {
+    this.userService.editUser().subscribe((res) => {
       console.log('profile edited successfully', res);
     },(err) => {
       console.log('error editing profile', err);
@@ -29,12 +38,23 @@ export class ProfileComponent implements OnInit {
 
   }
 
+  editProfilePassword() {
+    this.userService.editPassword().subscribe((res) => {
+      console.log('profile edited successfully', res);
+    },(err) => {
+      console.log('error editing profile', err);
+    });
+  }
+
   logoutOfAccount() {
+    localStorage.removeItem('token');
+    location.reload();
+    this.router.navigate(['/login']);
 
   }
 
   deleteProfile() {
-    this.userService.deleteUser(this.user.id).subscribe((res) => {
+    this.userService.deleteUser().subscribe((res) => {
       console.log('profile deleted successfully', res);
     }, (err) => {
       console.log('error deleting profile', err);
@@ -42,8 +62,5 @@ export class ProfileComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
-
-  }
 }
 

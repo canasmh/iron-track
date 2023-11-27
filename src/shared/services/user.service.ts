@@ -1,24 +1,31 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {AuthService} from "./auth.service";
-import {Observable} from "rxjs";
+import { HttpClient} from '@angular/common/http';
+import { AuthService } from './auth.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  private newUsername: any;
+  private newPassword: any;
 
   constructor(private http: HttpClient, private authService:AuthService) { }
 
-  getUser(userId: number):Observable<any> {
-    return this.http.get(`/api/routines/${userId}`,{ headers:this.authService.getHeader() });
+  getUser() : Observable<any> {
+    return this.http.get('/api/profile',{ headers:this.authService.getHeader() });
   }
 
-  editUser(userId: number | undefined):Observable<any> {
-    return this.http.put(`/api/routines/${userId}`,{ headers:this.authService.getHeader() });
+  editUser():Observable<any> {
+    return this.http.put(`/api/profile/${(this.newUsername)}`,{ headers:this.authService.getHeader() });
   }
 
-  deleteUser(userId: number | undefined):Observable<any> {
-    return this.http.delete(`/api/routines/${userId}`,{ headers:this.authService.getHeader() });
+  editPassword():Observable<any> {
+    return this.http.put(`/api/profile/${(this.newPassword)}`,{ headers:this.authService.getHeader() });
   }
+
+  deleteUser():Observable<any> {
+    return this.http.delete('/api/profile',{ headers:this.authService.getHeader() });
+  }
+
 }

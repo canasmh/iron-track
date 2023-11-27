@@ -8,7 +8,7 @@ import { FooterComponent } from './footer/footer.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { AddRoutineComponent } from './add-routine/add-routine.component';
 import { AddRoutineFinalComponent } from './add-routine-final/add-routine-final.component';
@@ -23,6 +23,13 @@ import { CdkConnectedOverlay, CdkOverlayOrigin } from '@angular/cdk/overlay';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { ProfileComponent } from './profile/profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import {USER_TOKEN} from "../shared/types/injection-token";
+import {User} from "../shared/types/User";
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatSelectModule} from "@angular/material/select";
+import {MatButtonModule} from "@angular/material/button";
+import {MatInputModule} from "@angular/material/input";
+import { EditUserNameComponent } from './edit-user-name/edit-user-name.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +48,8 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     AddRoutineExerciseComponent,
     ExercisePopUpComponent,
     ProfileComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    EditUserNameComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +58,12 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     HttpClientModule,
     A11yModule,
     CdkConnectedOverlay,
-    CdkOverlayOrigin
+    CdkOverlayOrigin,
+    MatDialogModule,
+    FormsModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,18 +2,18 @@
   <h2>Profile</h2>
   <div>
     <label>Name:
-      {{user.name}}
+      {{user?.name}}
     </label>
     <label>Email:
-      {{user.email}}
+      {{user?.email
     </label>
     <label>Password:
-      <span *ng-if="showPassword">********</span>
-      <button (click)="togglePasswordVisibility()">Show</button>
-     {{user.password}}
+      <button *ng-if="showPassword" (click)="togglePasswordVisibility()">Click to hide/show</button>
+     {{user?.password}}
     </label>
   </div>
-  <div> <button (click)="editProfile()">Edit Profile</button>
+  <div> <button (click)="editProfilePassword()">Edit Password</button>
+     <button (click)="editProfileUserName()">Edit Email</button>
     <button (click)="logoutOfAccount()">Logout</button>
     <button (click)="deleteProfile()">Delete Account</button>
 </div>
