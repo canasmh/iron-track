@@ -8,6 +8,7 @@
   padding-top: $xl;
   padding-bottom: $xl;
   text-transform: uppercase;
+  position: relative;
 
   &__container {
       display: flex;
@@ -96,6 +97,32 @@
 
 .rotate {
   transform: rotate(-180deg);
+}
+
+.exercise-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 75vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__container {
+    background-color: mat.get-color-from-palette($iron-track-dark-primary, 'default');
+    height: 65vh;
+    width: 90%;
+    border: 1px solid mat.get-color-from-palette($iron-track-accent, 'default');
+    overflow-y: auto;
+    padding: 1rem 0;
+  }
+
+  &__content {
+    text-align: left;
+  }
 }
 
 .expand {
