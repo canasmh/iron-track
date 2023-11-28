@@ -22,13 +22,8 @@ import { ExercisePopUpComponent } from './exercise-pop-up/exercise-pop-up.compon
 import { CdkConnectedOverlay, CdkOverlayOrigin } from '@angular/cdk/overlay';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { ProfileComponent } from './profile/profile.component';
-import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import {USER_TOKEN} from "../shared/types/injection-token";
 import {User} from "../shared/types/User";
-import {MatDialogModule} from "@angular/material/dialog";
-import {MatSelectModule} from "@angular/material/select";
-import {MatButtonModule} from "@angular/material/button";
-import {MatInputModule} from "@angular/material/input";
 import { EditUserNameComponent } from './edit-user-name/edit-user-name.component';
 
 @NgModule({
@@ -48,7 +43,6 @@ import { EditUserNameComponent } from './edit-user-name/edit-user-name.component
     AddRoutineExerciseComponent,
     ExercisePopUpComponent,
     ProfileComponent,
-    EditProfileComponent,
     EditUserNameComponent
   ],
   imports: [
@@ -59,11 +53,8 @@ import { EditUserNameComponent } from './edit-user-name/edit-user-name.component
     A11yModule,
     CdkConnectedOverlay,
     CdkOverlayOrigin,
-    MatDialogModule,
     FormsModule,
-    MatSelectModule,
-    MatButtonModule,
-    MatInputModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

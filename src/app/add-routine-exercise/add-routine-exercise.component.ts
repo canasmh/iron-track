@@ -10,6 +10,7 @@ import { debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
 import { Subject} from 'rxjs';
 import { ErrorMessageService} from '../../shared/services/error-message.service';
 import { RoutineExerciseService} from 'src/shared/services/routine-exercise.service';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-add-routine-exercise',
