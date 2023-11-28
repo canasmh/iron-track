@@ -110,18 +110,70 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  text-transform: none;
 
   &__container {
     background-color: mat.get-color-from-palette($iron-track-dark-primary, 'default');
     height: 65vh;
     width: 90%;
     border: 1px solid mat.get-color-from-palette($iron-track-accent, 'default');
-    overflow-y: auto;
-    padding: 1rem 0;
+    border-radius: 8px;
+    display: flex;
+    flex-flow: column nowrap;
+  }
+
+  &__title {
+    padding: $md;
+    border-bottom: 1px solid mat.get-color-from-palette($iron-track-accent, 'default');
+    position: relative;
+  }
+
+  &__blur {
+    background-image: linear-gradient(to bottom, rgba(mat.get-color-from-palette($iron-track-dark-primary, 'default'), 1), rgba(0, 0, 0, 0));
+    height: $md;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: translateY(calc(100% + 1px));
+
+    &--reverse {
+      background-image: linear-gradient(to top, rgba(mat.get-color-from-palette($iron-track-dark-primary, 'default'), 1), rgba(0, 0, 0, 0));
+      height: $lg;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateY(calc(-100% - 1px));
+    }
   }
 
   &__content {
     text-align: left;
+    overflow-y: auto;
+
+    &--text {
+      padding: $md;
+    }
+
+    &--group:not(:last-child) {
+      padding-bottom: $smmd;
+    }
+  }
+
+  &__btn-container {
+    border-top: 1px solid mat.get-color-from-palette($iron-track-accent, 'default');
+    padding: $md $lg;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+  }
+
+  &__btn {
+    padding: $xs $smmd;
+    background-color: mat.get-color-from-palette($iron-track-dark-primary, 'default-contrast');
+    border: 1px solid mat.get-color-from-palette($iron-track-dark-primary, 'default-contrast');
+    border-radius: 3px;
   }
 }
 

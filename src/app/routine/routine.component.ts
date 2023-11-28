@@ -28,6 +28,11 @@ export class RoutineComponent {
     this.showModal = true;
   }
 
+  closeModal() {
+    this.currentExercise = undefined;
+    this.showModal = false;
+  }
+
   beginWorkout() {
     this.workoutService.setRoutine(this.routine);
     this.workoutService.setSessionStart(new Date().getTime());
