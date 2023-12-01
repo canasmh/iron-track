@@ -18,5 +18,6 @@ export class OverlayService {
   getOverlayState(): Observable<boolean> {
     return this.overlayVisible.asObservable();
   }
+
 }
 

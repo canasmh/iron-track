@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {OverlayService} from "../../shared/services/overlay.service";
 
 @Component({
   selector: 'app-edit-user-name',
@@ -8,5 +9,10 @@ import { Component } from '@angular/core';
 export class EditUserNameComponent {
 
   newUserName: string = '';
+  constructor(private overlayService: OverlayService) {
+  }
 
+  closeOverlay() {
+    this.overlayService.hideOverlay();
+  }
 }

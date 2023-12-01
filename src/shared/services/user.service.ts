@@ -7,8 +7,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  private newUsername: any;
+  private newEmail: any;
   private newPassword: any;
+  private newName: any;
 
   constructor(private http: HttpClient, private authService:AuthService) { }
 
@@ -17,7 +18,7 @@ export class UserService {
   }
 
   editUser():Observable<any> {
-    return this.http.put(`/api/profile/${(this.newUsername)}`,{ headers:this.authService.getHeader() });
+    return this.http.put(`/api/profile/${(this.newEmail)}`,{ headers:this.authService.getHeader() });
   }
 
   editPassword():Observable<any> {
@@ -26,6 +27,10 @@ export class UserService {
 
   deleteUser():Observable<any> {
     return this.http.delete('/api/profile',{ headers:this.authService.getHeader() });
+  }
+
+  editName():Observable<any> {
+    return this.http.put(`/api/profile/${(this.newName)}`,{ headers:this.authService.getHeader() });
   }
 
 }

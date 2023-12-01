@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../shared/services/user.service';
 import { User } from '../../shared/types/User';
 import { Router } from '@angular/router';
+import {OverlayService} from "../../shared/services/overlay.service";
 
 @Component({
   selector: 'app-profile',
@@ -10,12 +11,19 @@ import { Router } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
 
-  newUsername: string = '';
+  newEmail: string = '';
   newPassword: string = '';
+  newName: string = '';
 
   showPassword: boolean = false;
   user?: User;
-  constructor(private userService: UserService,  private router: Router) {
+
+  constructor(private userService: UserService,  private router: Router, public overlayService: OverlayService) {
+
+  }
+
+  openEditUserName() {
+    this.overlayService.showOverlay();
   }
 
   ngOnInit(): void {
@@ -26,9 +34,6 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  togglePasswordVisibility() {
-    this.showPassword = !this.showPassword;
-  }
   editProfileUserName() {
     this.userService.editUser().subscribe((res) => {
       console.log('profile edited successfully', res);
@@ -59,6 +64,15 @@ export class ProfileComponent implements OnInit {
     }, (err) => {
       console.log('error deleting profile', err);
     });
+
+  }
+  editProfileName() {
+    this.userService.editName().subscribe((res) => {
+      console.log('profile edited successfully', res);
+    },(err) => {
+      console.log('error editing profile', err);
+    });
+
 
   }
 

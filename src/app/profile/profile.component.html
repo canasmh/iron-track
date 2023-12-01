@@ -5,17 +5,16 @@
       {{user?.name}}
     </label>
     <label>Email:
-      {{user?.email
-    </label>
-    <label>Password:
-      <button *ng-if="showPassword" (click)="togglePasswordVisibility()">Click to hide/show</button>
-     {{user?.password}}
+      {{user?.email}}
     </label>
   </div>
-  <div> <button (click)="editProfilePassword()">Edit Password</button>
-     <button (click)="editProfileUserName()">Edit Email</button>
+  <div>
+    <button (click)="editProfileName()">Edit Name</button>
+    <button (click)="editProfilePassword()">Edit Password</button>
+    <app-edit-user-name *ngIf="overlayService.getOverlayState() | async" ></app-edit-user-name>
+     <button (click)="editProfileUserName() ; openEditUserName()">Edit Email</button>
     <button (click)="logoutOfAccount()">Logout</button>
     <button (click)="deleteProfile()">Delete Account</button>
 </div>
 </div>
-```
+
