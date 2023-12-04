@@ -4,6 +4,7 @@ import { Routine } from 'src/shared/types/Routine';
 import { RoutineService } from 'src/shared/services/routine.service';
 import { Workout } from 'src/shared/types/Workout';
 import { WorkoutService } from 'src/shared/services/workout.service';
+import { Exercise } from 'src/shared/types/Exercise';
 
 @Component({
   selector: 'app-routine',
@@ -15,9 +16,21 @@ export class RoutineComponent {
 
   routine: Routine;
   expand: boolean[];
+  currentExercise?: Exercise;
+  showModal: boolean = false;
 
   handleExpand(i: number) {
     this.expand[i] = !this.expand[i];
+  }
+
+  openModal(id: number | undefined) {
+    this.currentExercise = this.routine.exercises.find(exercise => exercise.id == id)?.exercise;
+    this.showModal = true;
+  }
+
+  closeModal() {
+    this.currentExercise = undefined;
+    this.showModal = false;
   }
 
   beginWorkout() {
