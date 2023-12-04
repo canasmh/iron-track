@@ -21,7 +21,7 @@ Be sure to set `production=false`. Once you're environment variables are set up,
 # Running the Application
 
 ### Back-End Access
-The server for this application lives in [this GitHub Repo](https://github.com/canasmh/IronTrackBE). The application can run without the server but you will not be able to make an http requests, and thus lose the data persistence feature of Iron-Track.
+The server for this application lives in [this GitHub Repo](https://github.com/AkDProjects/IronTrackBE). The application can run without the server but you will not be able to make an http requests, and thus lose the data persistence feature of Iron-Track.
 
 To run the application, use the command
 ```
