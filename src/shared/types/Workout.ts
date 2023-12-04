@@ -13,5 +13,5 @@ export type WorkoutSet = {
   workout?: Workout,
   routineExercise?: RoutineExercise,
   sessionStart: number,
-  sessionEnd: number,
+  sessionEnd?: number,
 };

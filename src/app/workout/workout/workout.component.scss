@@ -1,5 +1,6 @@
 @use "@angular/material" as mat;
 @import '../../../scss/abstracts/variables';
+@import '../../../scss/abstracts/mixins';
 @import '../../../scss//custom-theme.scss';
 
 .workout {
@@ -7,6 +8,7 @@
   padding-top: $xl;
   padding-bottom: $xl;
   overflow-y: auto;
+  position: relative;
 
   &__timer {
     font-size: 4rem;
@@ -52,4 +54,75 @@
     border: 1px solid #008800;
     color: mat.get-color-from-palette($iron-track-dark-primary, 'default-contrast');
   }
+}
+
+.active {
+  color: mat.get-color-from-palette($iron-track-accent, 'default');
+  border: 1px solid mat.get-color-from-palette($iron-track-accent, 'default')!important;
+}
+
+.completed {
+  color: #008800!important;
+  border-color: #008800!important;
+}
+
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 75vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__content {
+    background-color: mat.get-color-from-palette($iron-track-dark-primary, 'default');
+    padding: $lg;
+    border: 1px solid mat.get-color-from-palette($iron-track-accent, 'default');
+    width: 85%;
+    text-align: left;
+    border-radius: 8px;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: $md;
+
+    @include respond(tab-port) {
+      width: 75%;
+    }
+
+    @include respond(tab-land) {
+      width: 50%;
+    }
+
+    @include respond(laptop) {
+      width: 35%;
+    }
+  }
+
+  &__btn-containers {
+    display: flex;
+    justify-content: flex-end;
+    gap: $md;
+  }
+
+  &__btn {
+    border-radius: 3px;
+    padding: $xs $md;
+    border: 1px solid transparent;
+    cursor: pointer;
+
+    &--cancel {
+      border: 1px solid mat.get-color-from-palette($iron-track-accent, 'default');
+      background-color: transparent;
+      color: mat.get-color-from-palette($iron-track-accent, 'default');
+    }
+
+    &--confirm {
+      background-color: #008800;
+      color: mat.get-color-from-palette($iron-track-dark-primary, 'default-contrast');
+    }
+  }
+
 }

@@ -12,7 +12,6 @@ import { Router } from '@angular/router';
 export class WorkoutService {
 
   private workout: Workout;
-  workoutFinished: boolean;
   hasLocalStorage: boolean;
 
   constructor(
@@ -21,7 +20,6 @@ export class WorkoutService {
     private router: Router
   ) {
     const localStorageWorkout = localStorage.getItem('workout');
-    this.workoutFinished = !!localStorageWorkout;
     this.hasLocalStorage = !!localStorageWorkout;
     this.workout = JSON.parse(localStorageWorkout ?? '{}') ?? { sessionStart: new Date().getTime() };
   }
@@ -32,6 +30,7 @@ export class WorkoutService {
 
   setSessionStart(sessionStart: number) {
     this.workout.sessionStart = sessionStart;
+    this.workout.sessionEnd = undefined;
   }
 
   setSessionEnd(sessionEnd: number) {
@@ -52,10 +51,11 @@ export class WorkoutService {
 
   finishWorkout() {
     this.setSessionEnd(new Date().getTime());
-    this.workoutFinished = true;
     this.updateWorkout().subscribe({
       next: () => {
         localStorage.removeItem('workout');
+        localStorage.removeItem('sets');
+        localStorage.removeItem('currentSet');
       },
       error: (error) => {
         console.error(error);

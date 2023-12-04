@@ -41,13 +41,12 @@ export class EditRoutineComponent implements AfterViewInit {
   }
 
   delete() {
-    console.log('Will delete ', this.excerciseToDelete);
     this.routineExerciseService.deleteRoutineExercise(this.routineId, this.excerciseToDelete?.id).subscribe({
       next: () => {
         window.location.reload();
       },
       error: (error) => {
-        console.log(error);
+        console.error(error);
       }
     });
   }

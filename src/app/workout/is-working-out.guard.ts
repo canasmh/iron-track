@@ -1,17 +1,21 @@
 import { inject } from '@angular/core';
-import {  CanActivateFn } from '@angular/router';
+import { CanActivateFn, Router } from '@angular/router';
 import { WorkoutService } from 'src/shared/services/workout.service';
 
 export const isWorkingOutGuard: CanActivateFn = (route, state) => {
   const workoutService = inject(WorkoutService);
+  const hasLocalStorage = !!localStorage.getItem('workout');
 
-  if (localStorage.getItem('workout') && !workoutService.workoutFinished) {
+  if (hasLocalStorage) {
+
+    if (workoutService.getWorkout().sessionEnd) {
+      return true;
+    }
 
     if (window.confirm('Are you sure you want to leave? Proceeding will automatically end your workout')) {
       workoutService.finishWorkout();
 
       return true;
-
     } else {
       return false;
     }
@@ -22,7 +26,13 @@ export const isWorkingOutGuard: CanActivateFn = (route, state) => {
 
 export const isNotWorkingOutGuard: CanActivateFn = (route, state) => {
   const workoutService = inject(WorkoutService);
-  console.log('in not workout', route.params);
+  const router = inject(Router);
 
-  return true;
+  if (localStorage.getItem('workout') && workoutService.getWorkout().id == route.params['workout_id']) {
+    return true;
+  } else {
+    router.navigate(['routines']);
+
+    return false;
+  }
 };
