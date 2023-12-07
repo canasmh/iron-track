@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
+import { EditPassword } from '../types/EditPassword';
 
 @Injectable({
   providedIn: 'root'
@@ -23,8 +24,8 @@ export class UserService {
     return this.http.put('/api/profile/editemail', { email: user.email }, { headers:this.authService.getHeader() });
   }
 
-  editPassword(user: { password: string }, oldPassword: string):Observable<any> {
-    return this.http.put( '/api/profile/editpassword', { password: user.password, oldPassword:oldPassword }, { headers:this.authService.getHeader() });
+  editPassword(passwordObject: EditPassword):Observable<any> {
+    return this.http.put('/api/profile/editpassword', passwordObject, { headers:this.authService.getHeader() });
   }
 
   deleteUser():Observable<any> {
