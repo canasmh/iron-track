@@ -102,6 +102,12 @@ export class EditPasswordComponent implements OnInit {
     return this.editPasswordForm.controls['confirmPassword'];
   }
   closeOverlay() {
+    this.editPasswordForm.patchValue({
+      currentPassword: '',
+      password: '',
+      confirmPassword: ''
+    });
+
     this.closeModal.emit();
   }
 
