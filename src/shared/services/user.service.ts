@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
-import {Login} from "../types/Login";
-import {User} from "../types/User";
-import {AbstractControl} from "@angular/forms";
 
 @Injectable({
   providedIn: 'root'
@@ -21,12 +18,13 @@ export class UserService {
   }
 
   editEmail(user: {email: string}):Observable<any> {
-    console.log(user)
-    return this.http.put(`/api/profile/editemail`,{email: user.email},{ headers:this.authService.getHeader() });
+    console.log(user);
+
+    return this.http.put('/api/profile/editemail', { email: user.email }, { headers:this.authService.getHeader() });
   }
 
   editPassword(user: { password: string }, oldPassword: string):Observable<any> {
-    return this.http.put(`/api/profile/editpassword`, {password: user.password, oldPassword:oldPassword },{ headers:this.authService.getHeader() });
+    return this.http.put( '/api/profile/editpassword', { password: user.password, oldPassword:oldPassword }, { headers:this.authService.getHeader() });
   }
 
   deleteUser():Observable<any> {
@@ -34,7 +32,7 @@ export class UserService {
   }
 
   editName(user: { name: string}):Observable<any> {
-    return this.http.put(`/api/profile/editname`, {name: user.name},{ headers:this.authService.getHeader() });
+    return this.http.put('/api/profile/editname', { name: user.name },{ headers:this.authService.getHeader() });
   }
 
 }
