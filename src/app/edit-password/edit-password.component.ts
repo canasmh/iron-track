@@ -4,6 +4,7 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { User } from '../../shared/types/User';
 import { UserService } from '../../shared/services/user.service';
 import { ErrorMessageService } from '../../shared/services/error-message.service';
+import { confirmPasswordValidator } from 'src/shared/validators/customValidators';
 
 @Component({
   selector: 'app-edit-password',
@@ -14,7 +15,6 @@ export class EditPasswordComponent implements OnInit {
 
   @Input() isOpen: boolean = true;
   @Output() closeModal = new EventEmitter<void>();
-  @Output() submitForm = new EventEmitter<any>();
 
   submitted: boolean = false;
   editPasswordForm!: FormGroup;
@@ -44,10 +44,11 @@ export class EditPasswordComponent implements OnInit {
         Validators.minLength(5),
         Validators.maxLength(72)
       ])
-    });
+    }, { validators: confirmPasswordValidator });
 
     this.editPasswordForm.valueChanges.subscribe(() => {
       this.submitted = false;
+      this.errorMessage = null;
     });
   }
 
@@ -59,29 +60,32 @@ export class EditPasswordComponent implements OnInit {
 
     if (!this.editPasswordForm.invalid ) {
       this.userObject.password = this.editPasswordForm.value.password.trim();
-      // this.userService.editPassword({ password: this.userObject.password }, this.oldPassword).subscribe({
-      //   next:(data) => {
-      //     console.log(data);
-      //   }
-      // });
     } else {
-      if (this.password.invalid) {
+      if (this.currentPassword.invalid) {
+        this.getErrorMessage(this.currentPassword, 'Current Password');
+      } else if (this.password.invalid) {
         this.getErrorMessage(this.password, 'Password');
-      } else {
+      } else if (this.confirmPassword.invalid) {
+        this.getErrorMessage(this.confirmPassword, 'Confirm Password');
+      }
+
+      else {
         console.error('Uncaught Validation Error');
         this.errorMessage = 'Uncaught Validation Error';
       }
+
+      console.log('error message: ', this.errorMessage);
     }
   }
 
   get currentPassword() {
-    return this.editPasswordForm.controls['currentPassword'].value;
+    return this.editPasswordForm.controls['currentPassword'];
   }
   get password() {
-    return this.editPasswordForm.controls['password'].value;
+    return this.editPasswordForm.controls['password'];
   }
   get confirmPassword() {
-    return this.editPasswordForm.controls['confirmPassword'].value;
+    return this.editPasswordForm.controls['confirmPassword'];
   }
   closeOverlay() {
     this.closeModal.emit();
