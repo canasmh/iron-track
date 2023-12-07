@@ -2,8 +2,8 @@
     <nav class="footer__nav">
         <ul class="footer__list">
             <li class="footer__list--item"><a routerLink="/routines" class="footer__list--link" aria-label="Go to graphs page"><i class="fa-solid fa-chart-simple"></i></a></li>
-            <li class="footer__list--item"><a [routerLink]="['/routines', routineId]" class="footer__list--link" aria-label="Go to home page" routerLinkActive="active" ariaCurrentWhenActive="page"><i class="fa-solid fa-house"></i></a></li>
-            <li class="footer__list--item"><a [routerLink]="['/profile']" class="footer__list--link" aria-label="Go to your profile page" (click)="navigateToProfile()"><i class="fa-solid fa-user"></i></a></li>
+            <li class="footer__list--item"><a routerLink="/routines" class="footer__list--link" aria-label="Go to home page" routerLinkActive="active" ariaCurrentWhenActive="page"><i class="fa-solid fa-house"></i></a></li>
+            <li class="footer__list--item"><a routerLink="/profile" class="footer__list--link" aria-label="Go to your profile page" routerLinkActive="active" ariaCurrentWhenActive="page"><i class="fa-solid fa-user"></i></a></li>
         </ul>
     </nav>
 </footer>
