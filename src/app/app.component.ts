@@ -11,7 +11,8 @@ export class AppComponent implements OnInit {
   title = 'iron-track';
   showFooter: boolean = true;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+  }
 
   ngOnInit(): void {
     this.router.events.pipe(

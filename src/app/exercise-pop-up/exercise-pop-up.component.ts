@@ -9,7 +9,6 @@ import { OverlayService } from '../../shared/services/overlay.service';
 })
 
 export class ExercisePopUpComponent {
-//q:how do I get the routineExercises from the add-routine component?
   @Input() arrayOfRoutineExercises!: RoutineExercise[];
   constructor(private overlayService: OverlayService) {
   }

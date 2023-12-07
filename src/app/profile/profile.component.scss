@@ -1,0 +1,95 @@
+@use '@angular/material' as mat;
+@import '../../scss/custom-theme.scss';
+@import '../../scss/abstracts/variables';
+@import '../../scss/abstracts/mixins';
+
+.profile {
+  min-height: 75vh;
+  padding-top: $xl;
+  padding-bottom: $xl;
+  position: relative;
+
+  &__header {
+    margin-bottom: $lg;
+  }
+
+  &__content {
+    margin-bottom: $xl;
+  }
+
+  &__group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: $md;
+  }
+
+  &__edit {
+
+    &-btn {
+      background-color: transparent;
+      outline: transparent;
+      border: transparent;
+      height: 2.4rem;
+      width: 2.4rem;
+      text-align: center;
+      cursor: pointer;
+      border-radius: 3px;
+      &:focus {
+        outline: 2px solid mat.get-color-from-palette($iron-track-accent, 'lighter');
+      }
+    }
+
+    &-icon {
+      color: mat.get-color-from-palette($iron-track-accent, 'default');
+      transition: color 0.2s ease;
+    }
+
+    &-btn:hover &-icon {
+      color: mat.get-color-from-palette($iron-track-accent, 'lighter');
+    }
+  }
+
+  &__buttons {
+
+    &--btn {
+      display: block;
+      width: 100%;
+      padding: $smmd 0;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    &--btn:not(:last-child) {
+      margin-bottom: $md;
+    }
+
+    &--logout {
+      border: 1px solid mat.get-color-from-palette($iron-track-warn, 'default');
+      background-color: transparent;
+      color: mat.get-color-from-palette($iron-track-warn, 'default');
+
+      @include respond(laptop) {
+        &:hover {
+          color: mat.get-color-from-palette($iron-track-warn, 'darker');
+          border-color: mat.get-color-from-palette($iron-track-warn, 'darker');
+        }
+      }
+    }
+
+    &--delete {
+      border: 1px solid mat.get-color-from-palette($iron-track-warn, 'default');
+      background-color: mat.get-color-from-palette($iron-track-warn, 'default');
+      color: mat.get-color-from-palette($iron-track-warn, 'default-contrast');
+      @include respond(laptop) {
+        &:hover {
+          color: mat.get-color-from-palette($iron-track-warn, 'darker-contrast');
+          border-color: mat.get-color-from-palette($iron-track-warn, 'darker');
+          background-color: mat.get-color-from-palette($iron-track-warn, 'darker');
+        }
+      }
+    }
+
+
+  }
+}

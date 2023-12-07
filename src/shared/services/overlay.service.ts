@@ -11,6 +11,10 @@ export class OverlayService {
     this.overlayVisible.next(true);
   }
 
+  showOverlayPass(){
+    this.overlayVisible.next(true);
+  }
+
   hideOverlay() {
     this.overlayVisible.next(false);
   }
@@ -18,5 +22,6 @@ export class OverlayService {
   getOverlayState(): Observable<boolean> {
     return this.overlayVisible.asObservable();
   }
+
 }
 

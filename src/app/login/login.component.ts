@@ -30,9 +30,8 @@ export class LoginComponent implements OnInit {
       this.userCredentials.password = this.loginForm.value.password.trim();
       this.authService.login(this.userCredentials).subscribe({
         next: (data) => {
-          // this is executed if api call is successfull
           this.authService.addHeader('Authorization', `Bearer ${data.token}`);
-          localStorage.setItem('token', data.token);
+          this.authService.setTokenAndLocalStorage(data.token);
           this.router.navigate(['/routines']);
         },
         error: (e) => {
