@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { OverlayService } from '../../shared/services/overlay.service';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
-import { User } from '../../shared/types/User';
 import { UserService } from '../../shared/services/user.service';
 import { ErrorMessageService } from '../../shared/services/error-message.service';
 import { confirmPasswordValidator } from 'src/shared/validators/customValidators';
+import { EditPassword } from 'src/shared/types/EditPassword';
 
 @Component({
   selector: 'app-edit-password',
@@ -19,9 +19,10 @@ export class EditPasswordComponent implements OnInit {
   submitted: boolean = false;
   editPasswordForm!: FormGroup;
   errorMessage?: string | null;
-  userObject: User = {
-    email: '', password: '',
-    name: ''
+  editPasswordObject: EditPassword = {
+    currentPassword: '',
+    password: '',
+    confirmPassword: ''
   };
 
   constructor(private overlayServicePass: OverlayService, private userService: UserService, private errorMessageService:ErrorMessageService) {
@@ -59,7 +60,20 @@ export class EditPasswordComponent implements OnInit {
     console.log('invalid', this.editPasswordForm.invalid);
 
     if (!this.editPasswordForm.invalid ) {
-      this.userObject.password = this.editPasswordForm.value.password.trim();
+      this.editPasswordObject = {
+        currentPassword: this.currentPassword.value,
+        password: this.password.value,
+        confirmPassword: this.confirmPassword.value
+      };
+
+      this.userService.editPassword(this.editPasswordObject).subscribe({
+        next: (data) => {
+          console.log('edit password res', data);
+        },
+        error: (err) => {
+          console.log('error', err);
+        }
+      });
     } else {
       if (this.currentPassword.invalid) {
         this.getErrorMessage(this.currentPassword, 'Current Password');
