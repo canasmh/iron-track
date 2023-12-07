@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { OverlayService } from '../../shared/services/overlay.service';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from '../../shared/types/User';
@@ -11,6 +11,11 @@ import { ErrorMessageService } from '../../shared/services/error-message.service
   styleUrls: ['./edit-password.component.scss']
 })
 export class EditPasswordComponent implements OnInit {
+
+  @Input() isOpen: boolean = true;
+  @Output() closeModal = new EventEmitter<void>();
+  @Output() submitForm = new EventEmitter<any>();
+
   submitted: boolean = false;
   editPasswordForm!: FormGroup;
   errorMessage?: string | null;
@@ -24,7 +29,17 @@ export class EditPasswordComponent implements OnInit {
 
   ngOnInit(): void {
     this.editPasswordForm = new FormGroup({
+      currentPassword: new FormControl('', [
+        Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(72)
+      ]),
       password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(72)
+      ]),
+      confirmPassword: new FormControl('', [
         Validators.required,
         Validators.minLength(5),
         Validators.maxLength(72)
@@ -44,11 +59,11 @@ export class EditPasswordComponent implements OnInit {
 
     if (!this.editPasswordForm.invalid ) {
       this.userObject.password = this.editPasswordForm.value.password.trim();
-      this.userService.editPassword({ password: this.userObject.password }, this.oldPassword).subscribe({
-        next:(data) => {
-          console.log(data);
-        }
-      });
+      // this.userService.editPassword({ password: this.userObject.password }, this.oldPassword).subscribe({
+      //   next:(data) => {
+      //     console.log(data);
+      //   }
+      // });
     } else {
       if (this.password.invalid) {
         this.getErrorMessage(this.password, 'Password');
@@ -59,14 +74,17 @@ export class EditPasswordComponent implements OnInit {
     }
   }
 
+  get currentPassword() {
+    return this.editPasswordForm.controls['currentPassword'].value;
+  }
   get password() {
     return this.editPasswordForm.controls['password'].value;
   }
-  get oldPassword() {
-    return this.editPasswordForm.controls['oldPassword'].value;
+  get confirmPassword() {
+    return this.editPasswordForm.controls['confirmPassword'].value;
   }
   closeOverlay() {
-    this.overlayServicePass.hideOverlay();
+    this.closeModal.emit();
   }
 
   getErrorMessage(field: AbstractControl, fieldName: string) {
