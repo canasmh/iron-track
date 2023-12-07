@@ -8,7 +8,7 @@ import { FooterComponent } from './footer/footer.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { AddRoutineComponent } from './add-routine/add-routine.component';
 import { AddRoutineFinalComponent } from './add-routine-final/add-routine-final.component';
@@ -23,6 +23,9 @@ import { CdkConnectedOverlay, CdkOverlayOrigin } from '@angular/cdk/overlay';
 import { WorkoutModule } from './workout/workout.module';
 import { WorkoutService } from 'src/shared/services/workout.service';
 import { Router } from '@angular/router';
+import { ProfileComponent } from './profile/profile.component';
+import { EditUserNameComponent } from './edit-user-name/edit-user-name.component';
+import { EditPasswordComponent } from './edit-password/edit-password.component';
 
 export function appInitializer(workoutService: WorkoutService, router: Router) {
   return () => {
@@ -34,11 +37,6 @@ export function appInitializer(workoutService: WorkoutService, router: Router) {
     }
   };
 }
-import { ProfileComponent } from './profile/profile.component';
-import {USER_TOKEN} from "../shared/types/injection-token";
-import {User} from "../shared/types/User";
-import { EditUserNameComponent } from './edit-user-name/edit-user-name.component';
-import { EditPasswordComponent } from './edit-password/edit-password.component';
 
 @NgModule({
   declarations: [
