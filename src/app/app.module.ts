@@ -26,6 +26,7 @@ import { Router } from '@angular/router';
 import { ProfileComponent } from './profile/profile.component';
 import { EditUserNameComponent } from './edit-user-name/edit-user-name.component';
 import { EditPasswordComponent } from './edit-password/edit-password.component';
+import { EditNameComponent } from './edit-name/edit-name.component';
 
 export function appInitializer(workoutService: WorkoutService, router: Router) {
   return () => {
@@ -56,7 +57,8 @@ export function appInitializer(workoutService: WorkoutService, router: Router) {
     ExercisePopUpComponent,
     ProfileComponent,
     EditUserNameComponent,
-    EditPasswordComponent
+    EditPasswordComponent,
+    EditNameComponent
   ],
   imports: [
     BrowserModule,

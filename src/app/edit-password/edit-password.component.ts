@@ -60,6 +60,7 @@ export class EditPasswordComponent implements OnInit {
 
     if (!this.editPasswordForm.invalid ) {
       this.userObject.password = this.editPasswordForm.value.password.trim();
+      this.userService.editPassword({password: this.userObject.password}, this.confirmPassword).subscribe()
     } else {
       if (this.currentPassword.invalid) {
         this.getErrorMessage(this.currentPassword, 'Current Password');
@@ -85,7 +86,7 @@ export class EditPasswordComponent implements OnInit {
     return this.editPasswordForm.controls['password'];
   }
   get confirmPassword() {
-    return this.editPasswordForm.controls['confirmPassword'];
+    return this.editPasswordForm.controls['confirmPassword'].value;
   }
   closeOverlay() {
     this.closeModal.emit();

@@ -23,8 +23,8 @@ export class UserService {
     return this.http.put('/api/profile/editemail', { email: user.email }, { headers:this.authService.getHeader() });
   }
 
-  editPassword(user: { password: string }, oldPassword: string):Observable<any> {
-    return this.http.put( '/api/profile/editpassword', { password: user.password, oldPassword:oldPassword }, { headers:this.authService.getHeader() });
+  editPassword(user: { password: string }, newPassword: string):Observable<any> {
+    return this.http.put( '/api/profile/editpassword', { oldPassword: user.password, newPassword:newPassword }, { headers:this.authService.getHeader() });
   }
 
   deleteUser():Observable<any> {

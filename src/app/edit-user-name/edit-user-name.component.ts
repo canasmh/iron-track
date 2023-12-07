@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {OverlayService} from "../../shared/services/overlay.service";
 import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ErrorMessageService} from "../../shared/services/error-message.service";
@@ -23,7 +23,8 @@ export class EditUserNameComponent implements OnInit{
   constructor(private overlayService: OverlayService, private errorMessageService: ErrorMessageService,
               private userService: UserService, private authService: AuthService, private router: Router) {
   }
-
+  @Input() isOpen: boolean = true;
+  @Output() closeModal = new EventEmitter<void>();
 
   ngOnInit(): void {
     this.editEmailForm = new FormGroup({
@@ -46,7 +47,8 @@ export class EditUserNameComponent implements OnInit{
     this.submitted = true;
     this.errorMessage = null
     console.log(this.editEmailForm.value)
-    console.log("invalid", this.editEmailForm.invalid)
+    console.log("invalid", this.editEmailForm.invalid);
+
     if (!this.editEmailForm.invalid ) {
       this.userObject.email = this.editEmailForm.value.email.trim();
       this.userService.editEmail({email: this.userObject.email}).subscribe({
@@ -65,7 +67,7 @@ export class EditUserNameComponent implements OnInit{
 
 
   closeOverlay() {
-    this.overlayService.hideOverlay();
+    this.closeModal.emit();
   }
 
   get email(){

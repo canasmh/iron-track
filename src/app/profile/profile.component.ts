@@ -10,7 +10,9 @@ import { OverlayService } from '../../shared/services/overlay.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  isPasswordModalOpen: boolean = true;
+  isPasswordModalOpen: boolean = false;
+  isEmailModalOpen: boolean = false;
+  isNameModalOpen: boolean = false;
   newEmail: string = '';
   newPassword: string = '';
   newName: string = '';
@@ -35,12 +37,20 @@ export class ProfileComponent implements OnInit {
     this.isPasswordModalOpen = false;
   }
 
-  openEditUserName() {
-    this.overlayService.showOverlay();
+  openEmailModal(){
+    this.isEmailModalOpen = true;
   }
 
-  openEditPassword() {
-    this.overlayServicePass.showOverlayPass();
+  closeEmailModal(){
+    this.isEmailModalOpen = false;
+  }
+
+  openNameModal(){
+    this.isNameModalOpen = true;
+  }
+
+  closeNameModal(){
+    this.isNameModalOpen = false;
   }
 
   ngOnInit(): void {

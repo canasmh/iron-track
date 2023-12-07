@@ -2,29 +2,29 @@
   <div class="modal__container">
     <div class="modal__header">
       <h4 class="modal__header--text">
-        Edit Email
+        Edit Name
       </h4>
     </div>
     <div class="modal__content">
-      <form class="modal__form" [formGroup]="editEmailForm">
+      <form class="modal__form" [formGroup]="editNameForm">
         <div class="modal__form--group">
-          <label for="email">New Email</label>
+          <label for="newName">New Name</label>
           <input
-            type="email"
-            name="email"
-            id="email"
-            formControlName="email"
-            placeholder="email"
+            type="text"
+            name="newName"
+            id="newName"
+            formControlName="name"
+            placeholder="New name"
           >
         </div>
         <div class="modal__form--group">
-          <label for="confirmEmail">Confirm Email</label>
+          <label for="confirmName">Confirm Name</label>
           <input
-            type="email"
-            name="confirmEmail"
-            id="confirmEmail"
-            formControlName="confirmEmail"
-            placeholder="Confirm Email"
+            type="text"
+            name="confirmName"
+            id="confirmName"
+            formControlName="confirmName"
+            placeholder="Confirm Name"
           >
         </div>
 
@@ -36,3 +36,4 @@
     </div>
   </div>
 </section>
+

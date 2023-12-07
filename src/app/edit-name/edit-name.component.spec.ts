@@ -1,0 +1,21 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { EditNameComponent } from './edit-name.component';
+
+describe('EditNameComponent', () => {
+  let component: EditNameComponent;
+  let fixture: ComponentFixture<EditNameComponent>;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [EditNameComponent]
+    });
+    fixture = TestBed.createComponent(EditNameComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
