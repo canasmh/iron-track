@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../shared/services/user.service';
 import { User } from '../../shared/types/User';
 import { Router } from '@angular/router';
-import {OverlayService} from "../../shared/services/overlay.service";
+import { OverlayService } from '../../shared/services/overlay.service';
 
 @Component({
   selector: 'app-profile',
@@ -18,16 +18,18 @@ export class ProfileComponent implements OnInit {
   showPassword: boolean = false;
   user?: User;
 
-  constructor(private userService: UserService,  private router: Router, public overlayService: OverlayService,
-              public overlayServicePass: OverlayService) {
-
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    public overlayService: OverlayService,
+    public overlayServicePass: OverlayService) {
   }
 
   openEditUserName() {
     this.overlayService.showOverlay();
   }
 
-  openEditPassword(){
+  openEditPassword() {
     this.overlayServicePass.showOverlayPass();
   }
 
@@ -38,8 +40,6 @@ export class ProfileComponent implements OnInit {
       console.log('error getting user', err);
     });
   }
-
-
 
   logoutOfAccount() {
     localStorage.removeItem('token');
@@ -56,7 +56,5 @@ export class ProfileComponent implements OnInit {
     });
 
   }
-
-
 }
 
