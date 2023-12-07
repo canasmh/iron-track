@@ -13,7 +13,7 @@ $ npm install
 There are some variables we want to keep secret, such as our api-ninjas API key! So in order to have this application running in development mode, you must set valid values for the predefined environment variables. This can be done by making a copy of `src/environments/environment.ts`
 
 ```
-$ cp src/environments/environment.ts src/enviornments/environment.development.ts
+$ cp src/environments/environment.ts src/environments/environment.development.ts
 ```
 
 Be sure to set `production=false`. Once you're environment variables are set up, you are ready to run the application.
@@ -21,7 +21,7 @@ Be sure to set `production=false`. Once you're environment variables are set up,
 # Running the Application
 
 ### Back-End Access
-The server for this application lives in [this GitHub Repo](https://github.com/canasmh/IronTrackBE). The application can run without the server but you will not be able to make an http requests, and thus lose the data persistence feature of Iron-Track.
+The server for this application lives in [this GitHub Repo](https://github.com/AkDProjects/IronTrackBE). The application can run without the server but you will not be able to make an http requests, and thus lose the data persistence feature of Iron-Track.
 
 To run the application, use the command
 ```

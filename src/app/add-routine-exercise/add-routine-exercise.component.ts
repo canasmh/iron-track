@@ -1,15 +1,15 @@
-import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {checkIfNumber, isGreaterThanZero} from '../../shared/validators/customValidators';
-import {RoutineExercise} from 'src/shared/types/RoutineExercise';
-import {Exercise, initExercise} from 'src/shared/types/Exercise';
-import { RoutineService} from '../../shared/services/routine.service';
-import { ExercisesApiService} from '../../shared/services/apiNinjas.service';
-import { debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
-import { Subject} from 'rxjs';
-import { ErrorMessageService} from '../../shared/services/error-message.service';
-import { RoutineExerciseService} from 'src/shared/services/routine-exercise.service';
+import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { checkIfNumber, isGreaterThanZero } from '../../shared/validators/customValidators';
+import { RoutineExercise } from 'src/shared/types/RoutineExercise';
+import { Exercise, initExercise } from 'src/shared/types/Exercise';
+import { RoutineService } from '../../shared/services/routine.service';
+import { ExercisesApiService } from '../../shared/services/apiNinjas.service';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { ErrorMessageService } from '../../shared/services/error-message.service';
+import { RoutineExerciseService } from 'src/shared/services/routine-exercise.service';
 import {ReactiveFormsModule} from '@angular/forms';
 
 @Component({
@@ -42,7 +42,6 @@ export class AddRoutineExerciseComponent implements OnInit {
     if (this.workoutInputChanged) {
       this.errorMessage = 'Invalid workout selected';
     } else if (!this.addExerciseForm.invalid) {
-      console.log('exercise', this.exercise);
       this.routineExercise = {
         exercise: this.exercise,
         weight: this.weight.value + ' ' + this.weightUnit,
@@ -52,8 +51,7 @@ export class AddRoutineExerciseComponent implements OnInit {
       };
 
       this.routineExerciseService.addRoutineExercise(this.routineId, this.routineExercise).subscribe({
-        next: (data) => {
-          console.log(data);
+        next: () => {
           this.router.navigate(['/routines', this.routineId, 'edit']);
         },
         error: (error) => {

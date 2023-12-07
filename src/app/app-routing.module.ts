@@ -12,6 +12,9 @@ import { EditRoutineComponent } from './edit-routine/edit-routine.component';
 import { AddRoutineExerciseComponent } from './add-routine-exercise/add-routine-exercise.component';
 import { EditExerciseComponent } from './edit-exercise/edit-exercise.component';
 import { ProfileComponent } from './profile/profile.component';
+import { WorkoutComponent } from './workout/workout/workout.component';
+import { isNotWorkingOutGuard, isWorkingOutGuard } from './workout/is-working-out.guard';
+import { SetComponent } from './workout/set/set.component';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent, data: { showFooter: false }, title: 'Welcome | Iron Track', canActivate: [NoAuthGuard] },
@@ -24,7 +27,22 @@ const routes: Routes = [
   { path: 'routines/:routine_id/edit', component: EditRoutineComponent, canActivate: [AuthGuard] },
   { path: 'routines/:routine_id/edit/:routineExercise_id', component: EditExerciseComponent, canActivate: [AuthGuard] },
   { path: 'routines/:routine_id/add', component: AddRoutineExerciseComponent, canActivate: [AuthGuard] },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] }
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  {
+    path: 'workout/:workout_id',
+    canActivate: [AuthGuard, isNotWorkingOutGuard],
+    canDeactivate: [isWorkingOutGuard],
+    children: [
+      {
+        path: '',
+        component: WorkoutComponent
+      },
+      {
+        path: ':routine_exercise_id',
+        component: SetComponent
+      }
+    ]
+  }
 ];
 
 @NgModule({

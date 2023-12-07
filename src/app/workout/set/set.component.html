@@ -1,0 +1,27 @@
+<section class="set">
+  <div class="set__timer">
+    <a [routerLink]="['/workout', workout.id]" class="set__timer--link"><i class="fa-solid fa-chevron-left"></i> Back</a>
+    <p class="set__timer--text"><strong>Total Time: </strong><app-workout-timer></app-workout-timer></p>
+  </div>
+  <div class="set__header">
+    <h2 class="set__header--heading">{{ name }}</h2>
+    <h3 class="set__header--sub-heading">{{ weight }}</h3>
+  </div>
+  <div class="set__grid">
+    <div *ngFor="let set of sets; index as i;" class="set__container">
+      <h5 class="set__container--header">{{ quantity }}</h5>
+
+      <div *ngIf="i < currentSet" class="set__checkbox set__checkbox--completed"><i class="fa-solid fa-check"></i></div>
+      <div *ngIf="i >= currentSet" class="set__checkbox">&nbsp;</div>
+
+      <p *ngIf="(i < currentSet)">{{ calculateTimeDifference(set.sessionStart, set.sessionEnd) }}</p>
+      <p *ngIf="inWorkout && i === currentSet && (routineExerciseIdParams == currentWorkoutSetId)" class="set__continer--timer"><app-set-timer></app-set-timer></p>
+      <p *ngIf="inWorkout && i === currentSet && !(routineExerciseIdParams == currentWorkoutSetId)" class="set__continer--timer">00:00</p>
+      <p *ngIf="(!inWorkout && i === currentSet)">00:00</p>
+      <p *ngIf="(i > currentSet)">00:00</p>
+    </div>
+  </div>
+  <div role="button" class="set__cta {{ inWorkout ? (routineExerciseIdParams == currentWorkoutSetId) ? 'set__break' : '' : ''}}" (click)="handleClick()">
+    <p class="set__cta--text">{{ inWorkout ? (routineExerciseIdParams == currentWorkoutSetId) ? "Break" : "Start" : "Start"}}</p>
+  </div>
+</section>

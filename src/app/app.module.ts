@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,7 +20,20 @@ import { EditExerciseComponent } from './edit-exercise/edit-exercise.component';
 import { AddRoutineExerciseComponent } from './add-routine-exercise/add-routine-exercise.component';
 import { ExercisePopUpComponent } from './exercise-pop-up/exercise-pop-up.component';
 import { CdkConnectedOverlay, CdkOverlayOrigin } from '@angular/cdk/overlay';
-import { OverlayModule } from '@angular/cdk/overlay';
+import { WorkoutModule } from './workout/workout.module';
+import { WorkoutService } from 'src/shared/services/workout.service';
+import { Router } from '@angular/router';
+
+export function appInitializer(workoutService: WorkoutService, router: Router) {
+  return () => {
+    const workout = workoutService.hasLocalStorage ? workoutService.getWorkout() : false;
+
+    if (workout) {
+      // Redirect to the workout route
+      router.navigate(['/workout', workout.id]);
+    }
+  };
+}
 import { ProfileComponent } from './profile/profile.component';
 import {USER_TOKEN} from "../shared/types/injection-token";
 import {User} from "../shared/types/User";
@@ -55,10 +68,19 @@ import { EditPasswordComponent } from './edit-password/edit-password.component';
     A11yModule,
     CdkConnectedOverlay,
     CdkOverlayOrigin,
-    FormsModule,
+    WorkoutModule,
+    FormsModule
 
   ],
-  providers: [],
+  providers: [
+    WorkoutService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: appInitializer,
+      deps: [WorkoutService, Router],
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

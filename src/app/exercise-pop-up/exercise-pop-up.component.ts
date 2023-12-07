@@ -1,7 +1,6 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RoutineExercise } from '../../shared/types/RoutineExercise';
 import { OverlayService } from '../../shared/services/overlay.service';
-import {Exercise} from "../../shared/types/Exercise";
 
 @Component({
   selector: 'app-exercise-pop-up',
