@@ -1,21 +1,26 @@
-<div class="profile">
-  <h2>Profile</h2>
-  <div>
-    <label>Name:
-      {{user?.name}}
-    </label>
-    <label>Email:
-      {{user?.email}}
-    </label>
+<section class="profile">
+  <h2 class="profile__header">Profile</h2>
+  <div class="profile__content">
+    <div class="profile__group">
+      <p class="profile__text"><strong>Name:</strong> {{user?.name}}</p>
+      <button class="profile__edit-btn"><i class="fa-solid fa-pencil profile__edit-icon"></i></button>
+    </div>
+    <div class="profile__group">
+      <p class="profile__text"><strong>Email:</strong> {{user?.email}}</p>
+      <button class="profile__edit-btn"><i class="fa-solid fa-pencil profile__edit-icon"></i></button>
+    </div>
+    <div class="profile__group">
+      <p class="profile__text"><strong>Password:</strong> **********</p>
+      <button class="profile__edit-btn" (click)="openPasswordModal()"><i class="fa-solid fa-pencil profile__edit-icon"></i></button>
+    </div>
   </div>
-  <div>
-    <button>="editProfileName">Edit Name</button>
-    <app-edit-password *ngIf="overlayServicePass.getOverlayState() | async" ><</app-edit-password>
-    <button (click)="openEditPassword()">Edit Password</button>
-    <app-edit-user-name *ngIf="overlayService.getOverlayState() | async" ></app-edit-user-name>
-    <button (click)="openEditUserName()">Edit Email</button>
-    <button (click)="logoutOfAccount()">Logout</button>
-    <button (click)="deleteProfile()">Delete Account</button>
-</div>
-</div>
+  <div class="profile__buttons">
+    <button class="profile__buttons--btn profile__buttons--logout" (click)="logoutOfAccount()">Logout</button>
+    <button class="profile__buttons--btn profile__buttons--delete" (click)="deleteProfile()">Delete Account</button>
+  </div>
+
+  <app-edit-password [isOpen]="isPasswordModalOpen" (closeModal)="closePasswordModal()"></app-edit-password>
+</section>
+
+
 
