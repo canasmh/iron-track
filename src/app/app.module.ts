@@ -25,6 +25,7 @@ import { ProfileComponent } from './profile/profile.component';
 import {USER_TOKEN} from "../shared/types/injection-token";
 import {User} from "../shared/types/User";
 import { EditUserNameComponent } from './edit-user-name/edit-user-name.component';
+import { EditPasswordComponent } from './edit-password/edit-password.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { EditUserNameComponent } from './edit-user-name/edit-user-name.component
     AddRoutineExerciseComponent,
     ExercisePopUpComponent,
     ProfileComponent,
-    EditUserNameComponent
+    EditUserNameComponent,
+    EditPasswordComponent
   ],
   imports: [
     BrowserModule,

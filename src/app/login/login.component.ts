@@ -32,7 +32,6 @@ export class LoginComponent implements OnInit {
         next: (data) => {
           this.authService.addHeader('Authorization', `Bearer ${data.token}`);
           this.authService.setTokenAndLocalStorage(data.token);
-          //localStorage.setItem('token', data.token);
           this.router.navigate(['/routines']);
         },
         error: (e) => {

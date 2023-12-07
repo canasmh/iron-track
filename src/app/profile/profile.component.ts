@@ -18,12 +18,17 @@ export class ProfileComponent implements OnInit {
   showPassword: boolean = false;
   user?: User;
 
-  constructor(private userService: UserService,  private router: Router, public overlayService: OverlayService) {
+  constructor(private userService: UserService,  private router: Router, public overlayService: OverlayService,
+              public overlayServicePass: OverlayService) {
 
   }
 
   openEditUserName() {
     this.overlayService.showOverlay();
+  }
+
+  openEditPassword(){
+    this.overlayServicePass.showOverlayPass();
   }
 
   ngOnInit(): void {
@@ -34,22 +39,7 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  editProfileUserName() {
-    this.userService.editUser().subscribe((res) => {
-      console.log('profile edited successfully', res);
-    },(err) => {
-      console.log('error editing profile', err);
-    });
 
-  }
-
-  editProfilePassword() {
-    this.userService.editPassword().subscribe((res) => {
-      console.log('profile edited successfully', res);
-    },(err) => {
-      console.log('error editing profile', err);
-    });
-  }
 
   logoutOfAccount() {
     localStorage.removeItem('token');
@@ -66,15 +56,7 @@ export class ProfileComponent implements OnInit {
     });
 
   }
-  editProfileName() {
-    this.userService.editName().subscribe((res) => {
-      console.log('profile edited successfully', res);
-    },(err) => {
-      console.log('error editing profile', err);
-    });
 
-
-  }
 
 }
 

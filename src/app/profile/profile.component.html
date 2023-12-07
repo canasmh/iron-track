@@ -9,10 +9,11 @@
     </label>
   </div>
   <div>
-    <button (click)="editProfileName()">Edit Name</button>
-    <button (click)="editProfilePassword()">Edit Password</button>
+    <button>="editProfileName">Edit Name</button>
+    <app-edit-password *ngIf="overlayServicePass.getOverlayState() | async" ><</app-edit-password>
+    <button (click)="openEditPassword()">Edit Password</button>
     <app-edit-user-name *ngIf="overlayService.getOverlayState() | async" ></app-edit-user-name>
-     <button (click)="editProfileUserName() ; openEditUserName()">Edit Email</button>
+    <button (click)="openEditUserName()">Edit Email</button>
     <button (click)="logoutOfAccount()">Logout</button>
     <button (click)="deleteProfile()">Delete Account</button>
 </div>

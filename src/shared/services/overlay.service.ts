@@ -11,6 +11,10 @@ export class OverlayService {
     this.overlayVisible.next(true);
   }
 
+  showOverlayPass(){
+    this.overlayVisible.next(true);
+  }
+
   hideOverlay() {
     this.overlayVisible.next(false);
   }

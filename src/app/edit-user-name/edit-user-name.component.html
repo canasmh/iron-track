@@ -1,10 +1,10 @@
 <section class="editEmail">
   <p class="emailText">Please enter your updated email</p>
-  <form class="editEmailForm" action="index.html" method="post">
-    <input class="editEmailInput" type="text" name="email" value="">
+  <form class="editEmailForm" [formGroup]="editEmailForm">
+    <input class="editEmailInput" type="text" name="email" formControlName="email" value="">
     <p class="confirmEmailText">Please confirm your updated email</p>
-    <input class="confirmEmailInput" type="text" name="confirmEmail" value="">
-    <input class="editEmailSubmit" type="submit" name="submit" value="Submit">
+    <input class="confirmEmailInput" type="text" name="confirmEmail">
+    <button class="editEmailSubmit" (click)="onSubmit()" name="submit" value="Submit">Submit</button>
   <button class="emailCancel" (click)="closeOverlay()">Cancel</button>
   </form>
 </section>
