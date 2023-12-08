@@ -59,7 +59,7 @@ export class EditPasswordComponent implements OnInit {
     console.log('invalid', this.editPasswordForm.invalid);
 
     if (!this.editPasswordForm.invalid ) {
-      this.userObject.password = this.editPasswordForm.value.password.trim();
+      this.userObject.password = this.editPasswordForm.value.currentPassword.trim();
       this.userService.editPassword({password: this.userObject.password}, this.confirmPassword).subscribe()
     } else {
       if (this.currentPassword.invalid) {

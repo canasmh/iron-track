@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {AbstractControl, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
 import {User} from "../../shared/types/User";
 import {ErrorMessageService} from "../../shared/services/error-message.service";
 import {UserService} from "../../shared/services/user.service";
@@ -15,7 +15,7 @@ export class EditNameComponent implements OnInit {
   errorMessage?: string | null;
   userObject: User = {
     email: "", password: "",
-    name: ''
+    name: "",
   };
 
   constructor(private errorMessageService: ErrorMessageService, private userService: UserService) {
@@ -26,7 +26,12 @@ export class EditNameComponent implements OnInit {
 
   ngOnInit(): void {
     this.editNameForm = new FormGroup({
-        name: new FormGroup('', [
+        name: new FormControl('', [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(20)
+        ]),
+        confirmName: new FormControl('',[
           Validators.required,
           Validators.minLength(2),
           Validators.maxLength(20)
@@ -52,7 +57,7 @@ export class EditNameComponent implements OnInit {
       })
     } else {
       if (this.name.invalid) {
-        this.getErrorMessage(this.name, 'Name');
+        this.getErrorMessage(this.name, 'newName');
       } else {
         console.error('Uncaught Validation Error');
         this.errorMessage = 'Uncaught Validation Error';

@@ -18,7 +18,7 @@ export class EditUserNameComponent implements OnInit{
   errorMessage?: string | null;
   userObject: User ={
     email: "", password: "",
-    name: ''
+    name: "",
   };
   constructor(private overlayService: OverlayService, private errorMessageService: ErrorMessageService,
               private userService: UserService, private authService: AuthService, private router: Router) {

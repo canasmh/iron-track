@@ -24,11 +24,11 @@ export class UserService {
   }
 
   editPassword(user: { password: string }, newPassword: string):Observable<any> {
-    return this.http.put( '/api/profile/editpassword', { oldPassword: user.password, newPassword:newPassword }, { headers:this.authService.getHeader() });
+    return this.http.put( '/api/profile/editpassword', { password: user.password, newPassword }, { headers:this.authService.getHeader() });
   }
 
   deleteUser():Observable<any> {
-    return this.http.delete('/api/profile',{ headers:this.authService.getHeader() });
+    return this.http.delete('/api/profile/delete',{ headers:this.authService.getHeader() });
   }
 
   editName(user: { name: string}):Observable<any> {
