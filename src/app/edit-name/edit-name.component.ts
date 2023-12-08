@@ -3,6 +3,7 @@ import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/form
 import {User} from "../../shared/types/User";
 import {ErrorMessageService} from "../../shared/services/error-message.service";
 import {UserService} from "../../shared/services/user.service";
+import {Route, Router} from "@angular/router";
 
 @Component({
   selector: 'app-edit-name',
@@ -18,7 +19,7 @@ export class EditNameComponent implements OnInit {
     name: "",
   };
 
-  constructor(private errorMessageService: ErrorMessageService, private userService: UserService) {
+  constructor(private errorMessageService: ErrorMessageService, private userService: UserService, private router: Router) {
   }
 
   @Input() isOpen: boolean = true;
@@ -53,6 +54,7 @@ export class EditNameComponent implements OnInit {
       this.userObject.name = this.editNameForm.value.name.trim();
       this.userService.editName({name: this.userObject.name}).subscribe({
         next:(data) => {
+
         }
       })
     } else {
@@ -63,6 +65,7 @@ export class EditNameComponent implements OnInit {
         this.errorMessage = 'Uncaught Validation Error';
       }
     }
+    location.reload();
   }
 
 

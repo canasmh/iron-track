@@ -53,6 +53,7 @@ export class EditUserNameComponent implements OnInit{
       this.userObject.email = this.editEmailForm.value.email.trim();
       this.userService.editEmail({email: this.userObject.email}).subscribe({
         next:(data) => {
+          this.router.navigate(['/profile']);
         }
       })
     } else {
@@ -63,6 +64,7 @@ export class EditUserNameComponent implements OnInit{
         this.errorMessage = 'Uncaught Validation Error';
       }
     }
+    location.reload();
   }
 
 

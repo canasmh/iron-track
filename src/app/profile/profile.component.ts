@@ -78,6 +78,7 @@ export class ProfileComponent implements OnInit {
     }, (err) => {
       console.log('error deleting profile', err);
     });
+    location.reload();
 
   }
 }

@@ -77,6 +77,7 @@ export class EditPasswordComponent implements OnInit {
 
       console.log('error message: ', this.errorMessage);
     }
+    location.reload();
   }
 
   get currentPassword() {
